@@ -105,7 +105,7 @@ class table_generator():
             total_primes = int(0)
             a, b, c = self.a_line[i], self.b_line[i], self.c_line[i]
             for y in range(yn, -yn, -1):
-                if gmpy2.is_prime(abs(p1p2p3(a, b, c, y))):
+                if isprime(abs(p1p2p3(a, b, c, y))):
                     total_primes += 1
                     if y > 0: pos_primes += 1
                     else: neg_primes += 1
@@ -113,6 +113,30 @@ class table_generator():
             neg_primes_list.append(neg_primes)
             total_primes_list.append(total_primes)
         return pos_primes_list, neg_primes_list, total_primes_list
+
+    def primes_sequences(self):
+        big_seq = list()
+        for i in self.p_range:
+            primes_seq = list()
+            a, b, c = self.a_line[i], self.b_line[i], self.c_line[i]
+            yp = 1
+            yn = 0
+            possible_prime = p1p2p3(a, b, c, yp)
+            while isprime(possible_prime):
+                primes_seq.append(possible_prime)
+                yp += 1
+                possible_prime = p1p2p3(a, b, c, yp)
+            primes_seq.append(possible_prime)
+            primes_seq.reverse()
+            possible_prime = p1p2p3(a, b, c, yn)
+            while isprime(possible_prime):
+                primes_seq.append(possible_prime)
+                yn -= 1
+                possible_prime = p1p2p3(a, b, c, yn)
+            primes_seq.append(possible_prime)
+            if len(primes_seq) > 8:
+                big_seq.append(primes_seq)
+        return big_seq
 
 def fixed_generator(p1a, p2a, p3a, p1b, p2b, p3b, p1c, p2c, p3c, p1d, p2d, p3d, ya, yb):
     yv_line = list()

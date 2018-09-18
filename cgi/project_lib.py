@@ -12,8 +12,8 @@ def isprime(num):
     return gmpy2.is_prime(abs(num))
 
 def abc_set(p1,p2,p3):
-    a = (p1-(2*p2)+p3)/2
-    b = (p3-p1)/2
+    a = (p1-(2*p2)+p3)/2.
+    b = (p3-p1)/2.
     c = p2
     return a, b, c
 
