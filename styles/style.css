@@ -1,0 +1,111 @@
+h1#sequences_header {
+	font-size:1.5em;
+	font-family: "Avenir Black","Courrier new", monospace;
+}
+table#sequences_table {
+	background-color:black;
+	font-size:0.8em;
+	font-family: "Avenir Black","Courrier new", monospace;
+}
+tr.sequences_table {
+}
+td.sequences_table {
+	min-width:33;
+	border:0px solid black;
+	min-height: 13px;
+	padding: 0px;
+	text-align: center;
+}
+tr#y_vertex, tr#offset, tr#y0_vertex, tr#offset0 {
+	background-color:#E6B8BF;
+	color: #1F497D;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#y_vertex_negative, td#y0_vertex_negative {
+	background-color:#F2DCDB;
+	color:red;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-size:0.75em;
+}
+td#offset_negative, td#offset0_negative {
+	background-color:#F2DCDB;
+	color:red;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#y_vertex_positive, td#y0_vertex_positive{
+	background-color:#DCE6F1;
+	color:blue;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-size:0.75em;
+}
+td#offset_positive, td#offset0_positive {
+	background-color:#DCE6F1;
+	color:blue;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#y_vertex_zero, td#offset_zero, td#y0_vertex_zero, td#offset0_zero, th#y_zero, td#zero{
+	background-color:red;
+	color:white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-weight: bold;
+}
+td#no_y_vertex, td#no_offset, td#no_y0_vertex, td#no_offset0 {
+	background-color:black;
+	color:red;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+tr.density {
+	background-color:gray;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-size:0.8em;
+}
+tr#a, tr#b, tr#c, tr#a0, tr#b0, tr#c0, tr.density {
+	background-color:gray;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+th#y, th#y0 {
+	background-color:#E6B8BF;
+	color: #1F497D;
+}
+th#y_one, th#y0_one {
+	background-color:#F2DCDB;
+	color: #1F497D;
+}
+td#prime, td#prime0 {
+	background-color:#538DD5;
+	color:white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#one, td#one0 {
+	background-color:#00B0F0;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#sqrt_round, td#sqrt_round0 {
+	background-color:#FFFF00;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#composite, td#composite0 {
+	background-color:#FCD5B4;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#y0_prime, td#y0_prime0 {
+	background-color:#8DB4E2;
+	color:white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#y0_one, td#y0_one0 {
+	background-color:#92CDDC;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#y0_sqrt_round, td#y0_sqrt_round0 {
+	background-color:#D8E4BC;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+td#y0_composite, td#y0_composite0 {
+	background-color:#FDE9D9;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
