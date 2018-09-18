@@ -1,0 +1,10 @@
+html {
+	font-family: "Avenir Black", "Courier new", monospace;
+}
+table#primes_sequences {
+	padding: 0;
+}
+table#primes_sequences td {
+	border: 1px solid black;
+	padding: 0;
+}

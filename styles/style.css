@@ -2,12 +2,10 @@ h1#sequences_header {
 	font-size:1.5em;
 	font-family: "Avenir Black","Courrier new", monospace;
 }
-table#sequences_table {
+table#sequences_table, table#primes_sequences {
 	background-color:black;
 	font-size:0.8em;
 	font-family: "Avenir Black","Courrier new", monospace;
-}
-tr.sequences_table {
 }
 td.sequences_table {
 	min-width:33;

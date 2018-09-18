@@ -1,2 +1,29 @@
-<h1>Please, keep calm Mr. Charles; call mr. H. and take a cup o tea for while I work to release here.</h1>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Sequences table</title>
+	</head>
+	<body style='font-family:"Courier new", monospace;'>
         <button onclick="window.history.back()">Go Back</button><br />
+		<h1>Primes counter</h1>
+		<form action="cgi/primes_counter.cgi" method="get">
+			<div id="p1">P1 initial value = 
+				<input type="text" name="p1" /></div><br />
+			<div id="p1_step">P1 step value = 
+				<input type="text" name="p1_step" /></div><br />
+			<div id="p2">P2 initial value = 
+				<input type="text" name="p2" /></div><br />
+			<div id="p2_step">P2 step value = 
+				<input type="text" name="p2_step" /></div><br />
+			<div id="p3">P3 initial value = 
+				<input type="text" name="p3" /></div><br />
+			<div id="p3_step">P3 step value = 
+				<input type="text" name="p3_step" /></div><br />
+			<div class="k" id="k">Columns range = 
+				<input type="text" name="k" value="30"/></div><br />
+			<input type="submit" value="Generate" />
+		</form>
+	</body>
+	
+</html>
