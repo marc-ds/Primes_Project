@@ -23,7 +23,7 @@ def y_vertex(a,b,c):
     if a!=0:
         y_vertex = float(-(b))/float(2*a)
     else:
-        y_vertex = 00
+        y_vertex = float(00)
     return y_vertex
 
 def offset(a,b,c):
@@ -46,9 +46,9 @@ class table_generator():
         self.p1_low = p1_init - (p1_step * k)
         self.p2_low = p2_init - (p2_step * k)
         self.p3_low = p3_init - (p3_step * k)
-        self.p3_high = p3_init + (p3_step * k)
-        self.p2_high = p2_init + (p2_step * k)
-        self.p1_high = p1_init + (p1_step * k)
+        self.p3_high = p3_init + (p3_step * (k))
+        self.p2_high = p2_init + (p2_step * (k))
+        self.p1_high = p1_init + (p1_step * (k))
         self.p_range = range(0, (k * 2) + 1)
 
         self.p1_range = list()
@@ -170,8 +170,8 @@ class table_generator():
                 yp += 1
                 p_previous_prime = previous_prime
                 previous_prime = possible_prime
+                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yp):break
                 possible_prime = p1p2p3(a, b, c, yp)
-                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yp): possible_prime = 0
             primes_seq.append(possible_prime)
             primes_seq.reverse()
             possible_prime = p1p2p3(a, b, c, yn)
@@ -180,34 +180,36 @@ class table_generator():
                 yn -= 1
                 p_previous_prime = previous_prime
                 previous_prime = possible_prime
-                possible_prime = p1p2p3(a, b, c, yp)
-                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yp): possible_prime = 0
+                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yn):break
+                possible_prime = p1p2p3(a, b, c, yn)
             primes_seq.append(possible_prime)
             if len(primes_seq) > min_size:
-                big_seq.append(0.primes_seq)
+                big_seq.append(primes_seq)
                 abc_seq.append([a, b, c])
                 offset_seq.append(offset(a,b,c))
                 yv_seq.append(y_vertex(a,b,c))
         return yv_seq, offset_seq, abc_seq, big_seq
 
-p1 = input('P1 value = ') or 1
-p2 = input('P2 value = ') or 1
-p3 = input('P3 value = ') or 1
-step1 = input('P1 Step (default: 0) = ') or 0
-step2 = input('P2 Step (default: 0) = ') or 0
-step3 = input('P3 Step (default: 1) = ') or 1
-k = input('K value (default: 10) = ') or 10
-min_size = input('Minimum size for sequence (default: 0) = ') or 7
+
+p1 = float(input('P1 value = ') or 1)
+p2 = float(input('P2 value = ') or 1)
+p3 = float(input('P3 value = ') or 1)
+step1 = int(input('P1 Step (default: 0) = ') or 0)
+step2 = int(input('P2 Step (default: 0) = ') or 0)
+step3 = int(input('P3 Step (default: 1) = ') or 1)
+k = int(input('K value (default: 10) = ') or 10)
+min_size = int(input('Minimum size for sequence (default: 7) = ') or 7)
+print()
 """p1, p2, p3, k = 1, 1, 1, 5
 step1, step2, step3 = 0, 0, 1
 a, b, c = abc_set(p1,p2,p3)
 min_size = 5"""
-calc = table_generator(p1,p2,p3,step1,step2,step3,k)
+calc = table_generator(p1,p2,int(p3),step1,step2,step3,k)
 yv_seq, off_seq, abc_seq, big_seq = calc.primes_sequences(min_size)
 for i in range(0, len(big_seq)):
     first = int(big_seq[i].pop(0))
-    last = str(big_seq[i].pop())
-    yv_txt = 'y_vertex: {:3.4} | '.format(yv_seq[i])
+    last = int(big_seq[i].pop())
+    yv_txt = 'y_vertex: {:3.4g} | '.format(yv_seq[i])
     off_txt = 'offset: {:3} | '.format(off_seq[i])
     a_txt = 'a: {:3g} | '.format(abc_seq[i][0])
     b_txt = 'b: {:3g} | '.format(abc_seq[i][1])
@@ -215,5 +217,5 @@ for i in range(0, len(big_seq)):
     length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
     l_txt = 'Primes in the above sequence: {}.'.format(length)
     print(yv_txt + off_txt, a_txt + b_txt + c_txt + l_txt)
-    print(first,primefactors(first),end=' '); print(*big_seq[i], sep=' ', end=' '); print(last)
-    print('----------------------------------------------------------------------------------------------')
+    print('({} {})'.format(first,primefactors(first)), end=' '); print(*big_seq[i], sep=' ', end=' '); print('({} {})'.format(last,primefactors(last)))
+    print('\n----------------------------------------------------------------------------------------------\n')
