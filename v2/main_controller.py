@@ -54,10 +54,16 @@ class P10P20P30(P1P2P3):
         self.offset = offset(self.a0, self.b0, self.c0)
 
 
-def column(obj, x, init, end):
+class Line(P1P2P3):
+    """return an iterable with a line in given range """
+
+def column(obj, init, end):
     for y in range(end, init-1, -1):
-        yield obj(y, x)
+        yield obj(y)
 
 
 a = P1P2P3(41,43,47)
+b = P10P20P30(41,43,47)
 print('a:{}, b:{}, c:{}, yv:{}, f:{}, result at y=0: {}'.format(a.a, a.b, a.c, a.y_vertex, a.offset, a(0)))
+print('a0:{}, b0{}, c0{}, yv0{}, f0{}, result at y=0: {}'.format(b.a, b.b, b.c, b.y_vertex, b.offset, b(0)))
+print('Column a={}'.format(list(column(a, -3, 3))))
