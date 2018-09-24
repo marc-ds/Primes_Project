@@ -55,8 +55,9 @@ class P10P20P30(P1P2P3):
 
 
 class Line(P1P2P3):
-    """return an iterable with a line in given range """
-
+    """return an iterable with a line in a given range """
+    def __init__(self, p1, p2, p3):
+        super.__init__(p1, p2, p3, init=-20, end=20)
 def column(obj, init, end):
     for y in range(end, init-1, -1):
         yield obj(y)
