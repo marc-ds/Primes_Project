@@ -54,11 +54,6 @@ class P10P20P30(P1P2P3):
         self.offset = offset(self.a0, self.b0, self.c0)
 
 
-def line(obj, y, init, end):
-    for x in range(init, end+1):
-        yield obj(y, x)
-
-
 def column(obj, x, init, end):
     for y in range(end, init-1, -1):
         yield obj(y, x)
