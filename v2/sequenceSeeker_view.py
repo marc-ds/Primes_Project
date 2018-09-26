@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-
 import cgi
 import cgitb
 from math import sqrt
-from main_controller import *
+from sequenceSeeker_controller import *
 from sympy import factorint
 cgitb.enable()
 form = cgi.FieldStorage()

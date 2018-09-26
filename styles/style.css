@@ -146,16 +146,20 @@ td#y0_composite, td#y0_composite0 {
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 td#y_vertex_negative, td#y_vertex_negative, td#y_vertex_zero, td#no_y_vertex {
-	min-width: 60px;
+	min-width: 70px;
+	text-align: center;
 }
 td#offset_zero, td#offset_negative, td#offset_positive, td#no_y_vertex {
-	min-width: 47px
+	min-width: 50px;
+	text-align: center;
 }
 td#a, td#b, td#c {
-	min-width: 60px
+	min-width: 60px;
+	text-align: center;
 }
 td#qtd_primes {
-	min-width: 75px
+	min-width: 80px;
+	text-align: center;
 }
 td.sequence_seeker {
 	text-align: left
