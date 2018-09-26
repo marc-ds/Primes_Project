@@ -1,17 +1,53 @@
+form#sequence_seeker {
+	width: 690px; 
+	margin: auto
+}
+td#delta_prime, td#delta_composite, td#c_g_composite, td#c_g_prime {
+	min-width: 40px;
+}
+td#c_g_composite, td#c_g_prime {
+	min-width: 68px;
+}
+form#sequence_seeker input {
+	width: 70px;
+	font-size: 0.7em;
+}
+
+form#sequence_seeker input#min_value {
+	width: 45px;
+}
+
+form#sequence_seeker input#submit {
+	height: auto;
+	width: auto;
+	margin-left: 28px;
+}
+
+h1#sequence_seeker {
+	font-size: 1.3em;
+	margin: 5px;
+	margin-top: 0;
+	text-align: center;
+}
+
+table#sequence_seeker {
+	margin: auto;
+}
 h1#sequences_header {
 	font-size:1.5em;
 	font-family: "Avenir Black","Courrier new", monospace;
 }
-table#sequences_table, table#primes_sequences {
+
+table#sequences_table, table#primes_sequences, table#sequence_seeker {
 	background-color:black;
 	font-size:0.8em;
 	font-family: "Avenir Black","Courrier new", monospace;
 	overflow: visible;
 }
-td.sequences_table {
+td.sequences_table, td.sequence_seeker  {
 	min-width:33;
 	border:0px solid black;
-	min-height: 13px;
+	min-height: 50px;
 	padding: 0px;
 	text-align: center;
 }
@@ -59,7 +95,7 @@ tr.density {
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 	font-size:0.8em;
 }
-tr#a, tr#b, tr#c, tr#a0, tr#b0, tr#c0, tr.density {
+tr#a, tr#b, tr#c, tr#a0, tr#b0, tr#c0, tr.density, tr.sequence_seeker_header {
 	background-color:gray;
 	color: white;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
@@ -72,7 +108,7 @@ th#y_one, th#y0_one {
 	background-color:#F2DCDB;
 	color: #1F497D;
 }
-td#prime, td#prime0 {
+td#prime, td#prime0, td#delta_prime, td#c_g_prime {
 	background-color:#538DD5;
 	color:white;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
@@ -86,8 +122,9 @@ td#sqrt_round, td#sqrt_round0 {
 	background-color:#FFFF00;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
-td#composite, td#composite0 {
+td#composite, td#composite0, td#delta_composite, td#c_g_composite {
 	background-color:#FCD5B4;
+	color: black;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 td#y0_prime, td#y0_prime0 {
@@ -108,6 +145,21 @@ td#y0_composite, td#y0_composite0 {
 	background-color:#FDE9D9;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
+td#y_vertex_negative, td#y_vertex_negative, td#y_vertex_zero, td#no_y_vertex {
+	min-width: 60px;
+}
+td#offset_zero, td#offset_negative, td#offset_positive, td#no_y_vertex {
+	min-width: 47px
+}
+td#a, td#b, td#c {
+	min-width: 60px
+}
+td#qtd_primes {
+	min-width: 75px
+}
+td.sequence_seeker {
+	text-align: left
+}
 form.setup div {
     height: 35%;
     width: 95%;
@@ -123,4 +175,7 @@ iframe {
     width: 99%;
     position: absolute;
     padding-left: 0px;
+}
+p#fill_fields {
+	text-align: center;
 }
