@@ -3,7 +3,7 @@ form#sequence_seeker {
 	margin: auto
 }
 td#delta_prime, td#delta_composite, td#c_g_composite, td#c_g_prime {
-	min-width: 40px;
+	min-width: 45px;
 }
 td#c_g_composite, td#c_g_prime {
 	min-width: 68px;
