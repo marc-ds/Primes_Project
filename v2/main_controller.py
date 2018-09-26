@@ -1,4 +1,4 @@
-from math import floor
+from math import floor, sqrt
 from gmpy2 import is_prime
 
 def roundz(f):
@@ -8,13 +8,11 @@ def roundz(f):
     else:
         return int(floor(f))+1
 
-
 def y_vertex(a, b):
     if a != 0:
         return -b / (2.*a)
     else:
         return 00
-
 
 def offset(a,b):
     if a != 0:
@@ -22,12 +20,24 @@ def offset(a,b):
     else:
         return 00
 
-def p1p2p3(a,b,c,y):
-    return int((a*(y**2))+(b*y)+c)
-
 def isprime(num):
     if abs(num) is 1: return 1
     return is_prime(abs(num))
+
+def p1p2p3(a,b,c,y):
+    return int((a*(y**2))+(b*y)+c)
+
+def data_type(value):
+    if abs(value) is 1: return 'one'
+    elif value is 0: return 'zero'
+    elif isprime(value): return 'prime'
+    elif not (sqrt(abs(value))*10)%2: return 'sqrt_round'
+    else: return 'composite'
+
+def header_type(value):
+    if value == 0: return 'zero'
+    elif value > 0: return 'positive'
+    elif value < 0: return 'negative'
 
 class P1P2P3:
     """by P1, P2 and P3 set the values of a, b, c, y_vertex and offset, when called return f(x) = ay^2 + by + c"""
@@ -42,6 +52,9 @@ class P1P2P3:
         self.c = self.p2
         self.y_vertex = y_vertex(self.a, self.b)
         self.offset = offset(self.a, self.b)
+        self.delta = int(self.b ** 2 - 4 * self.a * self.c)
+        sqrtdelta = sqrt(abs(self.delta))
+        self.c_g = sqrtdelta - int(sqrtdelta)
         self.a0 = abs(self.a)
         self.b0 = -abs(self.b + 2 * self.a * self.offset)
         if self.a <= 0:
@@ -50,154 +63,29 @@ class P1P2P3:
             self.c0 = self.c + self.a * self.offset
         self.y_vertex0 = y_vertex(self.a0, self.b0)
         self.offset0 = offset(self.a0, self.b0)
+        self._result = p1p2p3(self.a, self.b, self.c, self.y)
+        self._result0 = p1p2p3(self.a0, self.b0, self.c0, self.y)
 
     def __call__(self):
         """return the value of f(x) = ay^2 + by + c"""
-        return int(self.a * self.y ** 2 + self.b * self.y + self.c)
+        return self._result
 
     def when_f0(self):
         """return the value of f(x) = ay^2 + by + c when offset is 0"""
-        return int(self.a0 * self.y ** 2 + self.b0 * self.y + self.c0)
+        return self._result0
 
+    def type(self):
+        """return if the number are abs(one), composite, prime or a perfect sqrt"""
+        return data_type(self._result)
 
-class Paraboctys():
-    """return an iterable with a line in a given range"""
-    def __init__(self, p1, p2, p3, p1_step=0, p2_step=0, p3_step=1, init=-20, end=20):
-        self.p1 = int(p1)
-        self.p2 = int(p2)
-        self.p3 = int(p3)
-        self.init = int(init)
-        self.end = int(end)
-        self.p1_step = int(p1_step)
-        self.p2_step = int(p2_step)
-        self.p3_step = int(p3_step)
-        self.p_range = range(self.init, self.end+1)
+    def yv_type(self):
+        return header_type(self._result)
 
-    def __call__(self, y):
-        for i in self.p_range:
-            p1 = self.p1 + (self.p1_step*i)
-            p2 = self.p2 + self.p2_step*i
-            p3 = self.p3 + (self.p3_step*i)
-            yield P1P2P3(p1, p2, p3, y)
+    def f_type(self):
+        return header_type(self._result)
 
-class Blockbuster():
-    """return an iterable with n P1P2P3 objects where n is the number of P1P2P3 asked (**kwarg) on given y"""
-    def __init__(self, y_start, y_stop, **kwargs):
-        pass
+    def d_type(self):
+        return header_type(self._result)
 
-    def __call__(self):
-        pass
-
-class SequenceSeeker():
-    """seek first primes sequences of given P1, P2, P3, p_steps and columns range (k)"""
-    def __init__(self, p1, p2, p3, p1_step=0, p2_step=0, p3_step=1, k=10):
-        self.p1 = int(p1)
-        self.p2 = int(p2)
-        self.p3 = int(p3)
-        self.p1_step = int(p1_step)
-        self.p2_step = int(p2_step)
-        self.p3_step = int(p3_step)
-        self.k_range = range(-int(k)+1, int(k)+1)
-
-    def __call__(self, min_size=3):
-        big_seq = list()
-        abc_seq = list()
-        yv_seq = list()
-        offset_seq = list()
-        previous_prime = int()
-        for k in self.k_range:
-            primes_seq = list()
-            p1, p2, p3 =(self.p1 + (self.p1_step*k)), self.p2 + (self.p2_step*k), self.p3 + (self.p3_step*k)
-            a = (p1 - (2 * (p2)) + p3) / 2.
-            b = (p3 - p1) / 2.
-            c = p2
-            yp = 1
-            yn = 0
-            possible_prime = p1p2p3(a, b, c, yp)
-            while isprime(possible_prime):
-                primes_seq.append(possible_prime)
-                yp += 1
-                p_previous_prime = previous_prime
-                previous_prime = possible_prime
-                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yp): break
-                possible_prime = p1p2p3(a, b, c, yp)
-            primes_seq.append(possible_prime)
-            primes_seq.reverse()
-            possible_prime = p1p2p3(a, b, c, yn)
-            while isprime(possible_prime):
-                primes_seq.append(possible_prime)
-                yn -= 1
-                p_previous_prime = previous_prime
-                previous_prime = possible_prime
-                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yn): break
-                possible_prime = p1p2p3(a, b, c, yn)
-            primes_seq.append(possible_prime)
-            if len(primes_seq) > min_size:
-                big_seq.append(primes_seq)
-                abc_seq.append([a, b, c])
-                offset_seq.append(offset(a, b))
-                yv_seq.append(y_vertex(a, b))
-        return yv_seq, offset_seq, abc_seq, big_seq
-
-    def when_f0(self, min_size):
-        big_seq = list()
-        abc_seq = list()
-        yv_seq = list()
-        offset_seq = list()
-        previous_prime = int()
-        for k in self.k_range:
-            primes_seq = list()
-            p1, p2, p3 = (self.p1 + (self.p1_step * k)), self.p2 + (self.p2_step * k), self.p3 + (self.p3_step * k)
-            a = (p1 - (2 * (p2)) + p3) / 2.
-            b = (p3 - p1) / 2.
-            c = p2
-            f = offset(a, b)
-            a0 = abs(a)
-            b0 = -abs(b + 2 * a * f)
-            if a <= 0:
-                c0 = -(c + a * f)
-            else:
-                c0 = c + a * f
-            yp = 1
-            yn = 0
-            possible_prime = p1p2p3(a0, b0, c0, yp)
-            while isprime(possible_prime):
-                primes_seq.append(possible_prime)
-                yp += 1
-                p_previous_prime = previous_prime
-                previous_prime = possible_prime
-                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a0, b0, c0, yp): break
-                possible_prime = p1p2p3(a0, b0, c0, yp)
-            primes_seq.append(possible_prime)
-            primes_seq.reverse()
-            possible_prime = p1p2p3(a0, b0, c0, yn)
-            while isprime(possible_prime):
-                primes_seq.append(possible_prime)
-                yn -= 1
-                p_previous_prime = previous_prime
-                previous_prime = possible_prime
-                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a0, b0, c0, yn): break
-                possible_prime = p1p2p3(a0, b0, c0, yn)
-            primes_seq.append(possible_prime)
-            if len(primes_seq) > min_size:
-                big_seq.append(primes_seq)
-                abc_seq.append([a0, b0, c0])
-                offset_seq.append(offset(a0, b0))
-                yv_seq.append(y_vertex(a0, b0))
-        return yv_seq, offset_seq, abc_seq, big_seq
-
-
-"""
-c = Paraboctys(41,43,45)
-for i in c(3):
-    print(i())
-s = SequenceSeeker(41,43,45)
-yv_list, f_list, abc_list, pr_list = s()
-print('yv: {}\nf: {}\nabc: {}\nsequence: {}'.format(yv_list, f_list, abc_list, pr_list))
-s = SequenceSeeker(1,1,1)
-yv_list, f_list, abc_list, pr_list = s(4)
-print('yv: {}\nf: {}\nabc: {}\nsequence: {}'.format(yv_list, f_list, abc_list, pr_list))
-m = pr_list[0]
-n = len(pr_list[0])
-print(m)
-print(n)"""
+    def cg_type(self):
+        return header_type(self._result)
