@@ -52,7 +52,7 @@ class SequenceSeeker():
                 ypos += 1
                 possible_prime = p1p2p3(a, b, c, ypos)
             """aqui vamos acrescentar o primeiro elemento composto que limita a sequencia de primos em y positivo"""
-            primes_seq.append(possible_prime)
+            first_primes_seq.append(possible_prime)
 
             if (len(first_primes_seq)-2) >= min_size:
                 big_seq.append(first_primes_seq)
