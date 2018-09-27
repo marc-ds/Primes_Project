@@ -79,7 +79,7 @@ else:
         yv_txt = '<td class="y_vertex" id="{}" >yv={:1.4g}</td>'
 
         print('<tr class="sequence_seeker_header">')
-        print('<td class="formula" id="x" >x={}y&acute;2{:+}y{:+}</th>'.format(a,b,c))
+        print('<td class="formula" id="x" >x={}y&circ;2{:+}y{:+}</th>'.format(a,b,c))
 
         yv = yv_seq[i]
         if yv < 0:
