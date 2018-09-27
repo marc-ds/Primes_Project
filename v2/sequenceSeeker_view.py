@@ -179,6 +179,60 @@ else:
                 print(*result, sep='*', end='')
                 print('</td>')
 
+        abc = abc0_seq[i]
+        a = int(abc[0])
+        b = int(abc[1])
+        c = int(abc[2])
+        delta = int(b ** 2 - 4 * a * c)
+        sqrtdelta = sqrt(abs(delta))
+        c_g = sqrtdelta - int(sqrtdelta)
+
+        delta_txt = '<td class="delta" id="{}" >&Delta;={:d}</th>'
+        c_g_txt = '<td class="c_g" id="{}" >CG={:.4g}</th>'
+        yv_txt = '<td class="y_vertex" id="{}" >yv&ordm;={:1.4g}</td>'
+        off_txt = '<td class="offset" id="{}" >f&ordm;={:1.4g}</th>'
+
+        print('<tr class="sequence_seeker_header">')
+        print('<td class="formula" id="x" >x={}y&circ;2{:+}y{:+}</th>'.format(a, b, c))
+
+        yv = yv_seq[i]
+        if yv < 0:
+            print(yv_txt.format('negative', yv))
+        elif yv > 0:
+            print(yv_txt.format('positive', yv))
+        elif yv == 0:
+            print(yv_txt.format('zero', yv))
+        else:
+            print(yv_txt.format('vertex', yv))
+
+        f = off_seq[i]
+        if f < 0:
+            print(off_txt.format('negative', f))
+        elif f > 0:
+            print(off_txt.format('positive', f))
+        elif f == 0:
+            print(off_txt.format('zero', f))
+        else:
+            print(off_txt.format('no', f))
+
+        if delta < 0:
+            print(delta_txt.format('negative', delta))
+        elif delta > 0:
+            print(delta_txt.format('positive', delta))
+        elif delta == 0:
+            print(delta_txt.format('zero', delta))
+        else:
+            print(delta_txt.format('no', delta))
+
+        if c_g < 0:
+            print(c_g_txt.format('negative', c_g))
+        elif c_g > 0:
+            print(c_g_txt.format('positive', c_g))
+        elif c_g == 0:
+            print(c_g_txt.format('zero', c_g))
+        else:
+            print(c_g_txt.format('no', c_g))
+
         print('</tr>')
 
 print('</body>')
