@@ -123,8 +123,12 @@ else:
         length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
         print('<td class="qtd_primes" id="qtd_primes" >#P1st Seq={}'.format(length))
 
-        for i in first.itens():
-            print('<td class="first" id="composite">{}</td>'.format(*i))
+        composite = list()
+        for i, x in first.itens():
+            tag = '{}^{}'.format(i, x)
+            composite.append(tag)
+
+        print('<td class="first" id="composite">{}</td>'.format(*composite, sep='+'))
 
         for result in big_seq[i]:
             if abs(result) is 1:
