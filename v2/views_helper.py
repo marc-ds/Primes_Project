@@ -23,7 +23,48 @@ def print_table(obj, f0=False, inv=False):
                 else:
                     print('<td class="{}" id="data">{}</td>'.format(item.type(), item()))
 
-def show_table(bbuster_obj, name, f0=False, inv=False):
+def print_density(bbuster_obj, den_range):
+    pos_list = list()
+    neg_list = list()
+    print('<tr id="den_pos_abs" class="density">')
+    print('<th id="den_pos_abs">#Primes y&gt;0 </th>')
+    for item in bbuster_obj(0):
+        pos_list.append(item.density_pos(den_range))
+        print('<td class="density" id="density">{:.2f}</td>'.format(pos_list[-1]))
+    print('</tr>')
+
+    print('<tr id="den_pos_rel" class="density">')
+    print('<th id="den_pos_rel">%Primes y&gt;0 </th>')
+    for i in range(0, 4):
+        print('<td class="density" id="density">{:.2f}%</td>'.format((pos_list[i] / float(den_range)) * 100))
+    print('</tr>')
+
+    print('<tr id="density_neg" class="density">')
+    print('<th id="density_neg">#Primes y&le;0</th>')
+    for item in bbuster_obj(0):
+        neg_list.append(item.density_neg(den_range))
+        print('<td class="density" id="density">{:.2f}</td>'.format(neg_list[-1]))
+    print('</tr>')
+
+    print('<tr id="den_neg_rel" class="density">')
+    print('<th id="den_neg_rel">%Primes y&gt;0 </th>')
+    for i in range(0, 4):
+        print('<td class="density" id="density">{:.2f}%</td>'.format((neg_list[i] / float(den_range)) * 100))
+    print('</tr>')
+
+    print('<tr id="den_total_abs" class="density">')
+    print('<th id="den_total_abs">#Primes total</th>')
+    for i in range(0, 4):
+        print('<td class="density" id="density">{:.2f}</td>'.format(neg_list[i] + pos_list[i]))
+    print('</tr>')
+
+    print('<tr id="den_total_rel" class="density">')
+    print('<th id="den_total_rel">%Primes total</th>')
+    for i in range(0, 4):
+        print('<td class="density" id="density">{:.2f}%</td>'.format(((neg_list[i] + pos_list[i]) / (float(den_range)*2)) * 100))
+    print('</tr>')
+
+def show_table(bbuster_obj, name, den_range, f0=False, inv=False):
 
     if f0:
 
@@ -73,6 +114,8 @@ def show_table(bbuster_obj, name, f0=False, inv=False):
 
         print_table(bbuster_obj, f0, inv)
 
+        if den_range: print_density(bbuster_obj, den_range)
+
 
     else:
         """Start if f0 is not true"""
@@ -120,6 +163,8 @@ def show_table(bbuster_obj, name, f0=False, inv=False):
         print('</tr>')
 
         print_table(bbuster_obj, f0, inv)
+
+        if den_range: print_density(bbuster_obj, den_range)
 
     print('</tr>')
     print('</table>')

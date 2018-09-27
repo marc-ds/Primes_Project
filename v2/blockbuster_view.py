@@ -34,6 +34,7 @@ if "p1a" not in form or "p2a" not in form or "p3a" not in form:
     print('P3 value = <input type="text" name="p3d" value="0" /></div>')
     print('y initial&nbsp;&nbsp; = <input type="text" name="y_start" value="-20" /></div>')
     print('y final &nbsp;&nbsp;&nbsp;&nbsp;= <input type="text" name="y_end" value="20" /></div>')
+    print('Density range = <input type="text" name="den_range" value="0" /></div>')
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
     print('<h1 id="sequence_seeker">Please fill the fields</h1>')
     print('</body>')
@@ -53,6 +54,7 @@ else:
     p1d = float(form["p1d"].value)
     p2d = float(form["p2d"].value)
     p3d = float(form["p3d"].value)
+    den_range = int(form["den_range"].value)
     y_start = int(form["y_start"].value)
     y_end = int(form["y_end"].value)
 
@@ -71,6 +73,7 @@ else:
     print('P3 value = <input type="text" name="p3d" value="{:g}" /></div>'.format(p3d))
     print('Y initial&nbsp; = <input type="text" name="y_start" value="{}" /></div>'.format(y_start))
     print('Y final&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = <input type="text" name="y_end" value="{}" /></div>'.format(y_end))
+    print('Density range = <input type="text" name="den_range" value="{}" /></div>'.format(den_range))
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
 
     bbuster = Blockbuster(y_start, y_end)
@@ -80,13 +83,13 @@ else:
     bbuster.add(p1d, p2d, p3d)
 
     print('<div id="container_table">')
-    show_table(bbuster,'blockbuster')
-    show_table(bbuster,'blockbuster-inv', False, True)
+    show_table(bbuster,'blockbuster', den_range)
+    show_table(bbuster,'blockbuster-inv', den_range, False, True)
     print('</div>')
 
     print('<div id="container_table">')
-    show_table(bbuster,'blockbuster0', True)
-    show_table(bbuster,'blockbuster0-inv', True, True)
+    show_table(bbuster,'blockbuster0',den_range, True)
+    show_table(bbuster,'blockbuster0-inv',den_range, True, True)
     print('</div>')
 
     print('</body>')

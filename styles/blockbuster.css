@@ -84,7 +84,7 @@ tr#y_vertex, tr#offset, tr#y0_vertex, tr#offset0 {
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-tr#a, tr#b, tr#c, tr#a0, tr#b0, tr#c0, th#delta, th#c_g, tr.density, tr.sequence_seeker_header {
+tr#a, tr#b, tr#c, tr#a0, tr#b0, tr#c0, th#delta, th#c_g, .density, tr.sequence_seeker_header {
 	background-color:gray;
 	color: white;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;

@@ -49,6 +49,12 @@ def header_type(value):
     else:
         return 'zero'
 
+def density(a,b,c,y_range):
+    primes = int(0)
+    for y in y_range:
+        if isprime(p1p2p3(a,b,c,y)): primes+=1
+    return primes
+
 class P1P2P3:
     """by P1, P2 and P3 set the values of a, b, c, delta, C.G.,
     y_vertex and offset, when called return f(x) = ay^2 + by + c"""
@@ -87,6 +93,18 @@ class P1P2P3:
     def when_f0(self):
         """return the value of f(x) = ay^2 + by + c when offset is 0"""
         return self._result0
+
+    def density_pos(self, yn):
+        return density(self.a, self.b, self.c, range(1, yn+1))
+
+    def density_neg(self, yn):
+        return density(self.a, self.b, self.c, range(-yn+1, 1))
+
+    def density_pos0(self, yn):
+        return density(self.a0, self.b0, self.c0, range(1, yn + 1))
+
+    def density_neg0(self, yn):
+        return density(self.a0, self.b0, self.c0, range(-yn + 1, 1))
 
     def type(self, y0=False):
         """return if the number are abs(one), composite, prime or a perfect sqrt"""
