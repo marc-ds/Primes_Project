@@ -3,7 +3,8 @@ from main_controller import *
 class Blockbuster():
     """return an iterable with n P1P2P3 objects where n is the number of P1P2P3 asked (**kwarg) on given y"""
     def __init__(self, y_start, y_stop):
-        self.y_range = range(y_start, y_stop+1)
+        self.y_range = range(y_stop, y_start-1, -1)
+        self.y_range_inv = range(y_start, y_stop+1)
         self.p_data = list()
 
     def __call__(self, y):

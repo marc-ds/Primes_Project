@@ -110,13 +110,13 @@ else:
             print('<td class="sequences_table" id="delta_sqrt">&Delta; {:.4g}</td>'.format(delta))
         else:
             print('<td class="sequences_table" id="delta_composite">&Delta; {:.4g}</td>'.format(delta))
-        if abs(delta) is 1:
+        if abs(c_g) is 1:
             print('<td class="sequences_table" id="c_g_one">C.G. {:.4g}</td>'.format(c_g))
-        elif delta == 0:
+        elif c_g == 0:
             print('<td class="sequences_table" id="c_g_zero">C.G. {:.4g}</td>'.format(c_g))
-        elif isprime(delta):
+        elif isprime(c_g):
             print('<td class="sequences_table" id="c_g_prime">C.G. {:.4g}</td>'.format(c_g))
-        elif not (sqrt(abs(delta)) * 10) % 2:
+        elif not (sqrt(abs(c_g)) * 10) % 2:
             print('<td class="sequences_table" id="c_g_sqrt_round">C.G. {:.4g}</td>'.format(c_g))
         else:
             print('<td class="sequences_table" id="c_g_composite">C.G. {:.4g}</td>'.format(c_g))

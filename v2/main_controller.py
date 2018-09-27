@@ -35,12 +35,16 @@ def data_type(value):
     else: return 'composite'
 
 def header_type(value):
-    if value == 0: return 'zero'
-    elif value > 0: return 'positive'
-    elif value < 0: return 'negative'
+    if value < 0:
+        return 'negative'
+    elif value > 0:
+        return 'positive'
+    else:
+        return 'zero'
 
 class P1P2P3:
-    """by P1, P2 and P3 set the values of a, b, c, y_vertex and offset, when called return f(x) = ay^2 + by + c"""
+    """by P1, P2 and P3 set the values of a, b, c, delta, C.G.,
+    y_vertex and offset, when called return f(x) = ay^2 + by + c"""
     def __init__(self, p1, p2, p3, y):
         """initialize all attributes"""
         self.p1 = int(p1)
@@ -63,6 +67,9 @@ class P1P2P3:
             self.c0 = self.c + self.a * self.offset
         self.y_vertex0 = y_vertex(self.a0, self.b0)
         self.offset0 = offset(self.a0, self.b0)
+        self.delta0 = int(self.b0 ** 2 - 4 * self.a0 * self.c0)
+        sqrtdelta0 = sqrt(abs(self.delta0))
+        self.c_g0 = sqrtdelta0 - int(sqrtdelta0)
         self._result = p1p2p3(self.a, self.b, self.c, self.y)
         self._result0 = p1p2p3(self.a0, self.b0, self.c0, self.y)
 
@@ -79,13 +86,13 @@ class P1P2P3:
         return data_type(self._result)
 
     def yv_type(self):
-        return header_type(self._result)
+        return header_type(self.y_vertex)
 
     def f_type(self):
-        return header_type(self._result)
+        return header_type(self.offset)
 
     def d_type(self):
-        return header_type(self._result)
+        return header_type(self.delta)
 
     def cg_type(self):
-        return header_type(self._result)
+        return header_type(self.c_g)
