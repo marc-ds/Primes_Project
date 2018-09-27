@@ -16,7 +16,6 @@ class SequenceSeeker():
         abc_seq = list()
         yv_seq = list()
         offset_seq = list()
-        previous_prime = int()
         for k in self.k_range:
             primes_seq = list()
             p1, p2, p3 =(self.p1 + (self.p1_step*k)), self.p2 + (self.p2_step*k), self.p3 + (self.p3_step*k)
@@ -27,7 +26,7 @@ class SequenceSeeker():
             yneg = 0
             possible_prime = p1p2p3(a, b, c, ypos)
             while isprime(possible_prime):
-                if a == b and b == c: break;
+                if self.p1 == self.p2 and self.p2 == self.p3: break;
                 primes_seq.append(possible_prime)
                 ypos += 1
                 possible_prime = p1p2p3(a, b, c, ypos)
@@ -35,7 +34,7 @@ class SequenceSeeker():
             primes_seq.reverse()
             possible_prime = p1p2p3(a, b, c, yneg)
             while isprime(possible_prime):
-                if a == b and b == c: break;
+                if self.p1 == self.p2 and self.p2 == self.p3: break;
                 primes_seq.append(possible_prime)
                 yneg -= 1
                 possible_prime = p1p2p3(a, b, c, yneg)
