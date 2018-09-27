@@ -34,7 +34,7 @@ if "p1a" not in form or "p2a" not in form or "p3a" not in form:
     print('P3 value = <input type="text" name="p3d" value="0" /></div>')
     print('y initial&nbsp;&nbsp; = <input type="text" name="y_start" value="-20" /></div>')
     print('y final &nbsp;&nbsp;&nbsp;&nbsp;= <input type="text" name="y_end" value="20" /></div>')
-    print('Density range = <input type="text" name="den_range" value="0" /></div>')
+    print('Density = <input type="text" name="den_range" value="0" /></div>')
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
     print('<h1 id="sequence_seeker">Please fill the fields</h1>')
     print('</body>')
@@ -43,8 +43,8 @@ if "p1a" not in form or "p2a" not in form or "p3a" not in form:
 else:
 
     p1a = float(form["p1a"].value)
-    p2a = float(form["p2b"].value)
-    p3a = float(form["p3c"].value)
+    p2a = float(form["p2a"].value)
+    p3a = float(form["p3a"].value)
     p1b = float(form["p1b"].value)
     p2b = float(form["p2b"].value)
     p3b = float(form["p3b"].value)
@@ -71,9 +71,9 @@ else:
     print('<div id="p_value">P1 value = <input type="text" name="p1d" value="{:g}" />'.format(p1d))
     print('P2 value &nbsp;= <input type="text" name="p2d" value="{:g}" />'.format(p2d))
     print('P3 value = <input type="text" name="p3d" value="{:g}" /></div>'.format(p3d))
-    print('Y initial&nbsp; = <input type="text" name="y_start" value="{}" /></div>'.format(y_start))
-    print('Y final&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = <input type="text" name="y_end" value="{}" /></div>'.format(y_end))
-    print('Density range = <input type="text" name="den_range" value="{}" /></div>'.format(den_range))
+    print('y initial&nbsp;&nbsp; = <input type="text" name="y_start" value="{}" /></div>'.format(y_start))
+    print('y final&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = <input type="text" name="y_end" value="{}" /></div>'.format(y_end))
+    print('Density&nbsp;&nbsp; = <input type="text" name="den_range" value="{}" /></div>'.format(den_range))
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
 
     bbuster = Blockbuster(y_start, y_end)
