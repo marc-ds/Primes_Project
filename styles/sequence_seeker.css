@@ -36,7 +36,7 @@ table#sequence_seeker {
 	font-family: "Avenir Black","Courrier new", monospace;
 	float: left;
 	margin: 10px;
-	text-align: center;
+	text-align: left;
 }
 
 .y_vertex, .delta, .offset, .c_g {
@@ -54,28 +54,8 @@ td.formula {
 	min-width: 110px;
 }
 
-td.y_vertex {
-	min-width: 55px;
-}
-
-td.offset {
-	min-width: 22;
-}
-
-td.delta {
-	min-width: 40px;
-}
-
-td.c_g {
-	min-width: 55x;
-}
-
-td.a, td.b, td.c {
-	min-width: 60px
-}
-
 #qtd_primes {
-	min-width: 80px;
+	min-width: 87px;
 }
 
 #negative {
@@ -92,23 +72,27 @@ td.a, td.b, td.c {
 	background-color:#538DD5;
 	color:white;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	text-align: center
 }
 
 #one {
 	background-color:#00B0F0;
 	color: white;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	text-align: center
 }
 
 #sqrt_round {
 	background-color:#FFFF00;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	text-align: center
 }
 
 #composite {
 	background-color:#FCD5B4;
 	color: black;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	text-align: center
 }
 
 #zero, tr#y0 th {
