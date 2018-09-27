@@ -7,17 +7,19 @@ from sympy import factorint
 cgitb.enable()
 form = cgi.FieldStorage()
 
+print('Content-type: text/html\r\n\r')
+print('<html>')
+print('<head>')
+print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seeker.css">')
+print('<title>Sequence Seeker</title>')
+print('</head>')
+print('<body>')
+
+
 
 
 if "p1" not in form or "p2" not in form or "p3" not in form:
 
-    print('Content-type: text/html\r\n\r')
-    print('<html>')
-    print('<head>')
-    print('<link rel="stylesheet" type="text/css" href="/styles/style.css">')
-    print('<title>Sequences table</title>')
-    print('</head>')
-    print('<body>')
     print('<form action="/v2/sequenceSeeker_view.py" method="post" id="sequence_seeker">')
     print('<div id="p_value">P1 initial value = <input type="text" name="p1" value="" />')
     print('P2 initial value &nbsp;= <input type="text" name="p2" value="" />')
@@ -43,13 +45,6 @@ else:
     k = int(form["k"].value)
     min_size = int(form["min_size"].value)
 
-    print('Content-type: text/html\r\n\r')
-    print('<html>')
-    print('<head>')
-    print('<link rel="stylesheet" type="text/css" href="/styles/style.css">')
-    print('<title>Sequences table</title>')
-    print('</head>')
-    print('<body>')
     print('<form action="/v2/sequenceSeeker_view.py" method="post" id="sequence_seeker">')
     print('<div id="p_value">P1 initial value = <input type="text" name="p1" value="{:g}" />'.format(p1))
     print('P2 initial value &nbsp;= <input type="text" name="p2" value="{:g}" />'.format(p2))
@@ -72,26 +67,26 @@ else:
         first = factorint(int(big_seq[i].pop(0)))
         last = factorint(int(big_seq[i].pop()))
         print('<tr class="sequence_seeker_header">')
-        yv_txt = '<td class="sequence_seeker" id="{}" >y_vertex: {:1.4g}</td>'
+        yv_txt = '<td class="y_vertex" id="{}" >y_vertex: {:1.4g}</td>'
         yv = yv_seq[i]
         if yv < 0:
-            print(yv_txt.format('y_vertex_negative', yv))
+            print(yv_txt.format('negative', yv))
         elif yv > 0:
-            print(yv_txt.format('y_vertex_positive', yv))
+            print(yv_txt.format('positive', yv))
         elif yv == 0:
-            print(yv_txt.format('y_vertex_zero', yv))
+            print(yv_txt.format('zero', yv))
         else:
-            print(yv_txt.format('no_y_vertex', yv))
-        off_txt = '<td class="sequence_seeker" id="{}" >offset: {:1.4g}</th>'
+            print(yv_txt.format('vertex', yv))
+        off_txt = '<td class="offset" id="{}" >offset: {:1.4g}</th>'
         f = off_seq[i]
         if f < 0:
-            print(off_txt.format('offset_negative', f))
+            print(off_txt.format('negative', f))
         elif f > 0:
-            print(off_txt.format('offset_positive', f))
+            print(off_txt.format('positive', f))
         elif f == 0:
-            print(off_txt.format('offset_zero', f))
+            print(off_txt.format('zero', f))
         else:
-            print(off_txt.format('no_offset', f))
+            print(off_txt.format('no', f))
         abc = abc_seq[i]
         a = abc[0]
         b = abc[1]
@@ -100,86 +95,86 @@ else:
         sqrtdelta = sqrt(abs(delta))
         c_g = sqrtdelta - int(sqrtdelta)
 
-        if abs(delta) is 1:
-            print('<td class="sequences_table" id="delta_one">&Delta; {:.4g}</td>'.format(delta))
-        elif delta == 0:
-            print('<td class="sequences_table" id="delta_zero">&Delta; {:.4g}</td>'.format(delta))
-        elif isprime(delta):
-            print('<td class="sequences_table" id="delta_prime">&Delta; {:.4g}</td>'.format(delta))
-        elif not (sqrt(abs(delta)) * 10) % 2:
-            print('<td class="sequences_table" id="delta_sqrt">&Delta; {:.4g}</td>'.format(delta))
-        else:
-            print('<td class="sequences_table" id="delta_composite">&Delta; {:.4g}</td>'.format(delta))
-        if abs(c_g) is 1:
-            print('<td class="sequences_table" id="c_g_one">C.G. {:.4g}</td>'.format(c_g))
-        elif c_g == 0:
-            print('<td class="sequences_table" id="c_g_zero">C.G. {:.4g}</td>'.format(c_g))
-        elif isprime(c_g):
-            print('<td class="sequences_table" id="c_g_prime">C.G. {:.4g}</td>'.format(c_g))
-        elif not (sqrt(abs(c_g)) * 10) % 2:
-            print('<td class="sequences_table" id="c_g_sqrt_round">C.G. {:.4g}</td>'.format(c_g))
-        else:
-            print('<td class="sequences_table" id="c_g_composite">C.G. {:.4g}</td>'.format(c_g))
+        delta_txt = '<td class="delta" id="{}" >&Delta; {:d}</th>'
+        c_g_txt = '<td class="c_g" id="{}" >C.G. {:.4g}</th>'
 
-        print('<td class="sequence_seeker" id="a" >a: {:g}</th>'.format(a))
-        print('<td class="sequence_seeker" id="b" >b: {:g}</th>'.format(b))
-        print('<td class="sequence_seeker" id="c" >c: {:g}</th>'.format(c))
+        if delta < 0:
+            print(delta_txt.format('negative', delta))
+        elif delta > 0:
+            print(delta_txt.format('positive', delta))
+        elif delta == 0:
+            print(delta_txt.format('zero', delta))
+        else:
+            print(delta_txt.format('no', delta))
+
+        if c_g < 0:
+            print(c_g_txt.format('negative', c_g))
+        elif c_g > 0:
+            print(c_g_txt.format('positive', c_g))
+        elif c_g == 0:
+            print(c_g_txt.format('zero', c_g))
+        else:
+            print(c_g_txt.format('no', c_g))
+
+        print('<td class="a" id="a" >a: {:g}</th>'.format(a))
+        print('<td class="b" id="b" >b: {:g}</th>'.format(b))
+        print('<td class="c" id="c" >c: {:g}</th>'.format(c))
         length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
-        print('<td class="sequence_seeker" id="qtd_primes" >#P 1st Seq: {}.'.format(length))
+        print('<td class="qtd_primes" id="qtd_primes" >#P 1st Seq: {}.'.format(length))
 
         for result in first.items():
             if abs(result[0]) is 1:
-                print('<td class="sequences_table" id="one">', end='')
+                print('<td class="first" id="one">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             elif result[0] == 0:
-                print('<td class="sequences_table" id="zero">', end='')
+                print('<td class="first" id="zero">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             elif isprime(result[0]):
-                print('<td class="sequences_table" id="prime">', end='')
+                print('<td class="first" id="prime">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             elif not (sqrt(abs(result[0])) * 10) % 2:
-                print('<td class="sequences_table" id="sqrt_round">', end='')
+                print('<td class="first" id="sqrt_round">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             else:
-                print('<td class="sequences_table" id="composite">', end='')
+                print('<td class="first" id="composite">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
 
         for result in big_seq[i]:
             if abs(result) is 1:
-                print('<td class="sequences_table" id="one">{}</td>'.format(result))
+                print('<td class="data" id="one">{}</td>'.format(result))
             elif result == 0:
-                print('<td class="sequences_table" id="zero">{}</td>'.format(result))
+                print('<td class="data" id="zero">{}</td>'.format(result))
             elif isprime(result):
-                print('<td class="sequences_table" id="prime">{}</td>'.format(result))
+                print('<td class="data" id="prime">{}</td>'.format(result))
             elif not (sqrt(abs(result)) * 10) % 2:
-                print('<td class="sequences_table" id="sqrt_round">{}</td>'.format(result))
+                print('<td class="data" id="sqrt_round">{}</td>'.format(result))
             else:
-                print('<td class="sequences_table" id="composite">{}</td>'.format(result))
+                print('<td class="data" id="composite">{}</td>'.format(result))
 
         for result in last.items():
             if abs(result[0]) is 1:
-                print('<td class="sequences_table" id="one">', end='')
+                print('<td class="last" id="one">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             elif result[0] == 0:
-                print('<td class="sequences_table" id="zero">', end='')
+                print('<td class="last" id="zero">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             elif isprime(result[0]):
-                print('<td class="sequences_table" id="prime">', end='')
+                print('<td class="last" id="prime">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             elif not (sqrt(abs(result[0])) * 10) % 2:
-                print('<td class="sequences_table" id="sqrt_round">', end='')
+                print('<td class="last" id="sqrt_round">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             else:
-                print('<td class="sequences_table" id="composite">', end='')
+                print('<td class="last" id="composite">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
 
@@ -189,26 +184,26 @@ else:
         first = factorint(int(big0_seq[i].pop(0)))
         last = factorint(int(big0_seq[i].pop()))
         print('<tr class="sequence_seeker_header">')
-        yv_txt = '<td class="sequence_seeker" id="{}" >y_vertex&ordm: {:1.4g}</td>'
+        yv_txt = '<td class="y_vertex" id="{}" >y_vertex&ordm: {:1.4g}</td>'
         yv = yv0_seq[i]
         if yv < 0:
-            print(yv_txt.format('y_vertex_negative', yv))
+            print(yv_txt.format('negative', yv))
         elif yv > 0:
-            print(yv_txt.format('y_vertex_positive', yv))
+            print(yv_txt.format('positive', yv))
         elif yv == 0:
-            print(yv_txt.format('y_vertex_zero', yv))
+            print(yv_txt.format('zero', yv))
         else:
-            print(yv_txt.format('no_y_vertex', yv))
-        off_txt = '<td class="sequence_seeker" id="{}" >offset&ordm: {:1.4g}</th>'
+            print(yv_txt.format('no', yv))
+        off_txt = '<td class="offset" id="{}" >offset&ordm: {:d}</th>'
         f = off0_seq[i]
         if f < 0:
-            print(off_txt.format('offset_negative', f))
+            print(off_txt.format('negative', f))
         elif f > 0:
-            print(off_txt.format('offset_positive', f))
+            print(off_txt.format('positive', f))
         elif f == 0:
-            print(off_txt.format('offset_zero', f))
+            print(off_txt.format('zero', f))
         else:
-            print(off_txt.format('no_offset', f))
+            print(off_txt.format('no', f))
         abc = abc0_seq[i]
         a = abc[0]
         b = abc[1]
@@ -216,77 +211,86 @@ else:
         delta = int(b**2-4*a*c)
         sqrtdelta = sqrt(abs(delta))
         c_g = sqrtdelta - int(sqrtdelta)
+        delta_txt = '<td class="delta" id="{}" >&Delta;&ordm: {:d}</th>'
+        c_g_txt = '<td class="c_g" id="{}" >C.G.&ordm: {:.4g}</th>'
 
-        if abs(delta) is 1:
-            print('<td class="sequences_table" id="one">&Delta;&ordm {:.4g}</td>'.format(delta))
+        if delta < 0:
+            print(delta_txt.format('negative', delta))
+        elif delta > 0:
+            print(delta_txt.format('positive', delta))
         elif delta == 0:
-            print('<td class="sequences_table" id="zero">&Delta;&ordm {:.4g}</td>'.format(delta))
-        elif isprime(delta):
-            print('<td class="sequences_table" id="prime">&Delta;&ordm {:.4g}</td>'.format(delta))
-        elif not (sqrt(abs(delta)) * 10) % 2:
-            print('<td class="sequences_table" id="sqrt_round">&Delta;&ordm {:.4g}</td>'.format(delta))
+            print(delta_txt.format('zero', delta))
         else:
-            print('<td class="sequences_table" id="composite">&Delta;&ordm {:.4g}</td>'.format(delta))
-        if abs(delta) is 1:
-            print('<td class="sequences_table" id="one">C.G. {:.4g}</td>'.format(c_g))
-        elif delta == 0:
-            print('<td class="sequences_table" id="zero">C.G. {:.4g}</td>'.format(c_g))
-        elif isprime(delta):
-            print('<td class="sequences_table" id="prime">C.G. {:.4g}</td>'.format(c_g))
-        elif not (sqrt(abs(delta)) * 10) % 2:
-            print('<td class="sequences_table" id="sqrt_round">C.G. {:.4g}</td>'.format(c_g))
-        else:
-            print('<td class="sequences_table" id="composite">C.G. {:.4g}</td>'.format(c_g))
+            print(delta_txt.format('no', delta))
 
-        print('<td class="sequence_seeker" id="a" >a&ordm: {:g}</th>'.format(a))
-        print('<td class="sequence_seeker" id="b" >b&ordm: {:g}</th>'.format(b))
-        print('<td class="sequence_seeker" id="c" >c&ordm: {:g}</th>'.format(c))
+        if c_g < 0:
+            print(c_g_txt.format('negative', c_g))
+        elif c_g > 0:
+            print(c_g_txt.format('positive', c_g))
+        elif c_g == 0:
+            print(c_g_txt.format('zero', c_g))
+        else:
+            print(c_g_txt.format('no', c_g))
+
+        print('<td class="a" id="a" >a&ordm: {:g}</th>'.format(a))
+        print('<td class="b" id="b" >b&ordm: {:g}</th>'.format(b))
+        print('<td class="c" id="c" >c&ordm: {:g}</th>'.format(c))
         length = len(big0_seq[i]) - big0_seq[i].count(1) - big0_seq[i].count(-1)
-        print('<td class="sequence_seeker" id="qtd_primes" >#P 1st Seq: {}.'.format(length))
+        print('<td class="qtd_primes" id="qtd_primes" >#P 1st Seq: {}.'.format(length))
 
         for result in first.items():
             if abs(result[0]) is 1:
-                print('<td class="sequences_table" id="one">', end=''); print(*result, sep='*', end='');print('</td>')
+                print('<td class="first" id="one">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
             elif result[0] == 0:
-                print('<td class="sequences_table" id="zero">', end=''); print(*result, sep='*', end='');print('</td>')
+                print('<td class="first" id="zero">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
             elif isprime(result[0]):
-                print('<td class="sequences_table" id="prime">', end=''); print(*result, sep='*', end='');print('</td>')
+                print('<td class="first" id="prime">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
             elif not (sqrt(abs(result[0])) * 10) % 2:
-                print('<td class="sequences_table" id="sqrt_round">', end=''); print(*result, sep='*', end='');print('</td>')
+                print('<td class="first" id="sqrt_round">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
             else:
-                print('<td class="sequences_table" id="composite">', end=''); print(*result, sep='*', end='');print('</td>')
+                print('<td class="first" id="composite">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
 
         for result in big0_seq[i]:
             if abs(result) is 1:
-                print('<td class="sequences_table" id="one">{}</td>'.format(result))
+                print('<td class="first" id="one">{}</td>'.format(result))
             elif result == 0:
-                print('<td class="sequences_table" id="zero">{}</td>'.format(result))
+                print('<td class="first" id="zero">{}</td>'.format(result))
             elif isprime(result):
-                print('<td class="sequences_table" id="prime">{}</td>'.format(result))
+                print('<td class="first" id="prime">{}</td>'.format(result))
             elif not (sqrt(abs(result)) * 10) % 2:
-                print('<td class="sequences_table" id="sqrt_round">{}</td>'.format(result))
+                print('<td class="first" id="sqrt_round">{}</td>'.format(result))
             else:
-                print('<td class="sequences_table" id="composite">{}</td>'.format(result))
+                print('<td class="first" id="composite">{}</td>'.format(result))
 
         for result in last.items():
             if abs(result[0]) is 1:
-                print('<td class="sequences_table" id="one">', end='')
+                print('<td class="first" id="one">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             elif result[0] == 0:
-                print('<td class="sequences_table" id="zero">', end='')
+                print('<td class="first" id="zero">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             elif isprime(result[0]):
-                print('<td class="sequences_table" id="prime">', end='')
+                print('<td class="first" id="prime">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             elif not (sqrt(abs(result[0])) * 10) % 2:
-                print('<td class="sequences_table" id="sqrt_round">', end='')
+                print('<td class="first" id="sqrt_round">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
             else:
-                print('<td class="sequences_table" id="composite">', end='')
+                print('<td class="first" id="composite">', end='')
                 print(*result, sep='*', end='')
                 print('</td>')
 

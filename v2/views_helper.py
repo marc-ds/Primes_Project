@@ -2,7 +2,9 @@
 def show_table(bbuster_obj, name, f0='no', inv='no'):
 
     if f0 == 'f0':
+
         print('<table id="{}">'.format(name))
+
         print('<tr id="y_vertex">')
         print('<th id="y_vertex"> y_vertex&ordm; </th>')
         for item in bbuster_obj.y_vertex():
