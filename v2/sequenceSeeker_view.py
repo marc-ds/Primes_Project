@@ -59,7 +59,6 @@ else:
 
     calc = SequenceSeeker(p1,p2,p3,p1_step,p2_step,p3_step,k)
     yv_seq, off_seq, abc_seq, big_seq = calc(min_size)
-    yv0_seq, off0_seq, abc0_seq, big0_seq = calc.when_f0(min_size)
     print('<h1 id=sequence_seeker >{} sequences found.</h1>'.format(len(big_seq)))
     print('<table id=sequence_seeker>')
 
