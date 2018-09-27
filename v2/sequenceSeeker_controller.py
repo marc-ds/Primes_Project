@@ -91,7 +91,7 @@ class SequenceSeeker():
                 if p_previous_prime == previous_prime and previous_prime == p1p2p3(a0, b0, c0, yn): break
                 possible_prime = p1p2p3(a0, b0, c0, yn)
             primes_seq.append(possible_prime)
-            if len(primes_seq) > min_size:
+            if (len(primes_seq)-1) > min_size:
                 big_seq.append(primes_seq)
                 abc_seq.append([a0, b0, c0])
                 offset_seq.append(offset(a0, b0))
