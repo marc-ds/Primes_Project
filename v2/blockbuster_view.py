@@ -81,12 +81,12 @@ else:
 
     print('<div id="container_table">')
     show_table(bbuster,'blockbuster')
-    show_table(bbuster,'blockbuster-inv', 'no', 'inv')
+    show_table(bbuster,'blockbuster-inv', False, True)
     print('</div>')
 
     print('<div id="container_table">')
-    show_table(bbuster,'blockbuster0', 'f0')
-    show_table(bbuster,'blockbuster0-inv', 'f0', 'inv')
+    show_table(bbuster,'blockbuster0', True)
+    show_table(bbuster,'blockbuster0-inv', True, True)
     print('</div>')
 
     print('</body>')

@@ -34,6 +34,13 @@ def data_type(value):
     elif not (sqrt(abs(value))*10)%2: return 'sqrt_round'
     else: return 'composite'
 
+def data_typey0(value):
+    if abs(value) is 1: return 'y0_one'
+    elif value is 0: return 'zero'
+    elif isprime(value): return 'y0_prime'
+    elif not (sqrt(abs(value))*10)%2: return 'y0_sqrt_round'
+    else: return 'y0_composite'
+
 def header_type(value):
     if value < 0:
         return 'negative'
@@ -81,9 +88,20 @@ class P1P2P3:
         """return the value of f(x) = ay^2 + by + c when offset is 0"""
         return self._result0
 
-    def type(self):
+    def type(self, y0=False):
         """return if the number are abs(one), composite, prime or a perfect sqrt"""
-        return data_type(self._result)
+        if y0:
+            return data_typey0(self._result)
+        else:
+            return data_type(self._result)
+
+    def type0(self, y0=False):
+        """return if the number when f0 are
+        abs(one), composite, prime or a perfect sqrt"""
+        if y0:
+            return data_typey0(self._result0)
+        else:
+            return data_type(self._result0)
 
     def yv_type(self):
         return header_type(self.y_vertex)
@@ -96,3 +114,15 @@ class P1P2P3:
 
     def cg_type(self):
         return header_type(self.c_g)
+
+    def yv_type0(self):
+        return header_type(self.y_vertex0)
+
+    def f_type0(self):
+        return header_type(self.offset0)
+
+    def d_type0(self):
+        return header_type(self.delta0)
+
+    def cg_type0(self):
+        return header_type(self.c_g0)
