@@ -123,12 +123,27 @@ else:
         length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
         print('<td class="qtd_primes" id="qtd_primes" >#P1st Seq={}'.format(length))
 
-        composite = list()
-        for i, x in first.itens():
-            tag = '{}^{}'.format(i, x)
-            composite.append(tag)
-
-        print('<td class="first" id="composite">{}</td>'.format(*composite, sep='+'))
+        for result in first.items():
+            if abs(result[0]) is 1:
+                print('<td class="first" id="one">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
+            elif result[0] == 0:
+                print('<td class="first" id="zero">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
+            elif isprime(result[0]):
+                print('<td class="first" id="prime">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
+            elif not (sqrt(abs(result[0])) * 10) % 2:
+                print('<td class="first" id="sqrt_round">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
+            else:
+                print('<td class="first" id="composite">', end='')
+                print(*result, sep='*', end='')
+                print('</td>')
 
         for result in big_seq[i]:
             if abs(result) is 1:
