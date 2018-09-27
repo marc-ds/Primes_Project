@@ -44,18 +44,22 @@ table#sequence_seeker {
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-#a, #b, #c, #qtd_primes {
+#a, #b, #c, #qtd_primes, .formula {
 	background-color:gray;
 	color: white;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
+td.formula {
+	min-width: 110px;
+}
+
 td.y_vertex {
-	min-width: 75px;
+	min-width: 55px;
 }
 
 td.offset {
-	min-width: 50px;
+	min-width: 22;
 }
 
 td.delta {
@@ -63,7 +67,7 @@ td.delta {
 }
 
 td.c_g {
-	min-width: 60px;
+	min-width: 55x;
 }
 
 td.a, td.b, td.c {

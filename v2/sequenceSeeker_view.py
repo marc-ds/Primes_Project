@@ -79,7 +79,7 @@ else:
         yv_txt = '<td class="y_vertex" id="{}" >yv={:1.4g}</td>'
 
         print('<tr class="sequence_seeker_header">')
-        print('<td class="formula" id="x" >x={}y&tilde;2{:+}y{:+}</th>'.format(a,b,c))
+        print('<td class="formula" id="x" >x={}y&acute;2{:+}y{:+}</th>'.format(a,b,c))
 
         yv = yv_seq[i]
         if yv < 0:
@@ -121,7 +121,7 @@ else:
             print(c_g_txt.format('no', c_g))
 
         length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
-        print('<td class="qtd_primes" id="qtd_primes" >#P 1st Seq: {}.'.format(length))
+        print('<td class="qtd_primes" id="qtd_primes" >#P1st Seq={}'.format(length))
 
         for result in first.items():
             if abs(result[0]) is 1:
