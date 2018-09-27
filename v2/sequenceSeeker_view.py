@@ -124,7 +124,7 @@ else:
         print('<td class="qtd_primes" id="qtd_primes" >#P1st Seq={}'.format(length))
 
         for i in first.itens():
-            print('<td class="first" id="composite">{}</td>'.format(*first.items()))
+            print('<td class="first" id="composite">{}</td>'.format(*i))
 
         for result in big_seq[i]:
             if abs(result) is 1:
