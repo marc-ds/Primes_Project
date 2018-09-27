@@ -1,0 +1,184 @@
+td#a, td#b, td#c {
+	min-width: 60px;
+	text-align: center;
+}
+
+td#qtd_primes {
+	min-width: 80px;
+	text-align: center;
+}
+
+form.setup div {
+    height: 35%;
+    width: 95%;
+}
+
+form.setup input {
+    width: 50px;
+}
+
+p#fill_fields {
+	text-align: center;
+}
+
+form#sequence_seeker, form#blockbuster {
+	width: 690px; 
+	margin: auto
+}
+form#sequence_seeker input, form#blockbuster input {
+	width: 70px;
+	font-size: 0.7em;
+}
+
+form#sequence_seeker input#min_value {
+	width: 45px;
+}
+
+form#sequence_seeker input#submit, form#blockbuster input#submit {
+	height: auto;
+	width: auto;
+	margin-left: 28px;
+}
+
+h1#sequence_seeker {
+	font-size: 1.3em;
+	margin: 5px;
+	margin-top: 0;
+	text-align: center;
+}
+
+h1#sequences_header {
+	font-size:1.5em;
+	font-family: "Avenir Black","Courrier new", monospace;
+}
+
+table#blockbuster, table#blockbuster0, table#blockbuster-inv, table#blockbuster0-inv {
+	background-color:black;
+	font-size:0.8em;
+	font-family: "Avenir Black","Courrier new", monospace;
+	float: left;
+	margin: 10px;
+}
+
+table#blockbuster, table#blockbuster0 {
+}
+
+table#blockbuster-inv, table#blockbuster0-inv {
+}
+
+#container_table {
+	margin:auto;
+	width: 50%
+}
+
+table#blockbuster td, table#blockbuster0 td, table#blockbuster-inv td, table#blockbuster0-inv td {
+  border:0px solid black;
+	min-height: 50px;
+	padding: 0px;
+	text-align: center;
+}
+
+tr#y_vertex, tr#offset, tr#y0_vertex, tr#offset0 {
+	background-color:#E6B8BF;
+	color: #1F497D;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+tr#a, tr#b, tr#c, tr#a0, tr#b0, tr#c0, th#delta, th#c_g, tr.density, tr.sequence_seeker_header {
+	background-color:gray;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.negative {
+	background-color:#F2DCDB;
+	color:red;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-size:0.75em;
+}
+
+.positive {
+	background-color:#DCE6F1;
+	color:blue;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-size:0.75em;
+}
+
+.prime {
+	background-color:#538DD5;
+	color:white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.one {
+	background-color:#00B0F0;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.sqrt_round {
+	background-color:#FFFF00;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.composite {
+	background-color:#FCD5B4;
+	color: black;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.zero, tr#y0 th {
+	background-color:red;
+	color:white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-weight: bold;
+}
+
+.y {
+	background-color:#E6B8BF;
+	color: #1F497D;
+}
+
+tr#y1 th, tr#y-1 th {
+	background-color:#F2DCDB;
+	color: #1F497D;
+}
+
+td#blockhole {
+	background-color:black;
+	color:red;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.y0_prime, td#y0_prime, td#y0_prime0 {
+	background-color:#8DB4E2;
+	color:white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.y0_one, td#y0_one, td#y0_one0 {
+	background-color:#92CDDC;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.y0_sqrt_round, td#y0_sqrt_round, td#y0_sqrt_round0 {
+	background-color:#D8E4BC;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.y0_composite, td#y0_composite, td#y0_composite0 {
+	background-color:#FDE9D9;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+tr.density {
+	background-color:gray;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-size:0.8em;
+}
+
+td.sequence_seeker {
+	text-align: left
+}

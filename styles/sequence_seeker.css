@@ -1,0 +1,115 @@
+form#sequence_seeker, form#blockbuster {
+	width: 690px; 
+	margin: auto;
+	font-size: 0.8em;
+}
+form#sequence_seeker input, form#blockbuster input {
+	width: 70px;
+	font-size: 0.8em;
+	margin: 2px;
+}
+
+form#sequence_seeker input#min_value {
+	width: 45px;
+}
+
+form#sequence_seeker input#submit, form#blockbuster input#submit {
+	height: auto;
+	width: auto;
+	margin-left: 28px;
+}
+
+h1#sequence_seeker {
+	font-size: 1.2em;
+	margin: 2px;
+	font-family: "Avenir Black","Courrier new", monospace;
+	text-align: center;
+}
+
+p#fill_fields {
+	text-align: center;
+}
+
+table#sequence_seeker {
+	background-color:black;
+	font-size:0.8em;
+	font-family: "Avenir Black","Courrier new", monospace;
+	float: left;
+	margin: 10px;
+	text-align: center;
+}
+
+.y_vertex, .delta, .offset, .c_g {
+	font-size:0.75em;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+#a, #b, #c, #qtd_primes {
+	background-color:gray;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+td.y_vertex {
+	min-width: 75px;
+}
+
+td.offset {
+	min-width: 50px;
+}
+
+td.delta {
+	min-width: 40px;
+}
+
+td.c_g {
+	min-width: 60px;
+}
+
+td.a, td.b, td.c {
+	min-width: 60px
+}
+
+#qtd_primes {
+	min-width: 80px;
+}
+
+#negative {
+	background-color:#F2DCDB;
+	color:red;
+}
+
+#positive {
+	background-color:#DCE6F1;
+	color:blue;
+}
+
+#prime {
+	background-color:#538DD5;
+	color:white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+#one {
+	background-color:#00B0F0;
+	color: white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+#sqrt_round {
+	background-color:#FFFF00;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+#composite {
+	background-color:#FCD5B4;
+	color: black;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+#zero, tr#y0 th {
+	background-color:red;
+	color:white;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-weight: bold;
+}
