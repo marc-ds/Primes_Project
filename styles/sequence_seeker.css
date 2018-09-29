@@ -49,7 +49,8 @@ table#sequence_seeker {
 		text-align: center;
 }
 
-td.poly {
+td.poly, td.poly0 {
+	min-width: 80px;
 }
 
 td.y_vertex {
