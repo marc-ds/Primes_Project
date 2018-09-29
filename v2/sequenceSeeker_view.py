@@ -29,7 +29,6 @@ if "p1" not in form or "p2" not in form or "p3" not in form:
     print('<div class="others" id="k">Columns range = <input type="text" name="k" value="100" />')
     print('Minimum size of first sequences = <input type="text" name="min_size" value="7" id="min_value"/>')
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
-    print('<h1 id="sequence_seeker">Please fill the fields</h1>')
     print('</body>')
     print('</html>')
 
@@ -89,25 +88,31 @@ else:
         par_type = x_obj.par_type
 
         poly_txt = '<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'
-        yv_txt = '<td class="y_vertex" id="{}" >y_vertex&nbsp;&nbsp;{:1.4g}</td>'
-        off_txt = '<td class="offset" id="{}" >offset&nbsp;&nbsp;{:1.4g}</th>'
-        delta_txt = '<td class="delta" id="{}" >&Delta;&nbsp;&nbsp;{:d}</th>'
-        c_g_txt = '<td class="c_g" id="{}" >CG&nbsp;&nbsp;{:.4g}</th>'
+        yv_txt = '<td class="y_vertex" id="{}" >y_v={:1.4g}</td>'
+        off_txt = '<td class="offset" id="{}" >f={:1.4g}</th>'
+        delta_txt = '<td class="delta" id="{}" >&Delta;={:d}</th>'
+        c_g_txt = '<td class="c_g" id="{}" >CG={:.4g}</th>'
         len_txt = '<td class="qtd_primes" id="qtd_primes" >#P 1st Seq: {}'
         par_type_txt = '<td class="par_type" >{}</td>'
 
         poly_txt0 = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'
-        yv_txt0 = '<td class="y_vertex" id="{}" >y_vertex&ordm;&nbsp;{:1.4g}</td>'
-        off_txt0 = '<td class="offset" id="{}" >offset&ordm;&nbsp;{:1.4g}</th>'
-        delta_txt0 = '<td class="delta" id="{}" >&Delta;&ordm;&nbsp;{:d}</th>'
-        c_g_txt0 = '<td class="c_g" id="{}" >CG&ordm;&nbsp;{:.4g}</th>'
+        yv_txt0 = '<td class="y_vertex" id="{}" >y_v&ordm;={:1.4g}</td>'
+        off_txt0 = '<td class="offset" id="{}" >f&ordm;={:1.4g}</th>'
+        delta_txt0 = '<td class="delta" id="{}" >&Delta;&ordm;={:d}</th>'
+        c_g_txt0 = '<td class="c_g" id="{}" >CG&ordm;={:.4g}</th>'
 
         print('<tr class="sequence_seeker_header">')
         print(poly_txt.format(a,b,c))
+        print(poly_txt0.format(a0, b0, c0))
         print(yv_txt.format(x_obj.yv_type(), yv))
+        print(yv_txt0.format(header_type(yv0), yv0))
         print(off_txt.format(header_type(f), f))
+        print(off_txt0.format(header_type(f0), f0))
         print(delta_txt.format(header_type(delta), delta))
+        print(delta_txt0.format(header_type(delta0), delta0))
         print(c_g_txt.format(header_type(delta), c_g))
+        print(c_g_txt0.format(header_type(delta0), c_g0))
+        print(par_type_txt.format(par_type))
         print(len_txt.format(length))
 
 
@@ -130,15 +135,6 @@ else:
         for value, exponent in last.items():
             print('<td class="last" id="composite">{:}&circ;{}</td>'.format(value, exponent), end='')
 
-        print('</tr>')
-
-        print('<tr class="sequence_seeker_header">')
-        print(poly_txt0.format(a0,b0,c0))
-        print(yv_txt0.format(header_type(yv0), yv0))
-        print(off_txt0.format(header_type(f0), f0))
-        print(delta_txt0.format(header_type(delta0), delta0))
-        print(c_g_txt0.format(header_type(delta0), c_g0))
-        print(par_type_txt.format(par_type))
         print('</tr>')
 
 print('</body>')

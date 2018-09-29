@@ -50,23 +50,18 @@ table#sequence_seeker {
 }
 
 td.poly {
-	min-width: 128px;
 }
 
 td.y_vertex {
-	min-width: 60px;
 }
 
 td.offset {
-	min-width: 32px;
 }
 
 td.delta {
-	min-width: 40px;
 }
 
 td.c_g {
-	min-width: 60px;
 }
 
 #qtd_primes {
