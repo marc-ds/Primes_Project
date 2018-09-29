@@ -40,7 +40,7 @@ table#sequence_seeker {
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-.poly, #a, #b, #c, #qtd_primes {
+.poly, .poly0, #a, #b, #c, #qtd_primes {
 	background-color:gray;
 	color: white;
 	font-size:0.8em;

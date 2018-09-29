@@ -94,7 +94,7 @@ else:
         delta_txt = '<td class="delta" id="{}" >&Delta;&nbsp;&nbsp;{:d}</th>'
         c_g_txt = '<td class="c_g" id="{}" >CG&nbsp;&nbsp;{:.4g}</th>'
         len_txt = '<td class="qtd_primes" id="qtd_primes" >#P 1st Seq: {}'
-        par_type_txt = '<td class="par_type" >Type={}</td>'
+        par_type_txt = '<td class="par_type" >{}</td>'
 
         poly_txt0 = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'
         yv_txt0 = '<td class="y_vertex" id="{}" >y_vertex&ordm;&nbsp;{:1.4g}</td>'
@@ -137,7 +137,7 @@ else:
         print(yv_txt0.format(header_type(yv0), yv0))
         print(off_txt0.format(header_type(f0), f0))
         print(delta_txt0.format(header_type(delta0), delta0))
-        print(c_g_txt0.format(header_type(c_g0), c_g0))
+        print(c_g_txt0.format(header_type(delta0), c_g0))
         print(par_type_txt.format(par_type))
         print('</tr>')
 
