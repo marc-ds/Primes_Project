@@ -88,14 +88,14 @@ else:
         par_type = x_obj.par_type
 
         p1_txt = '<td id="{}">p1={:g}</td>'
-        p2_txt = '<td id="{}">p1={:g}</td>'
+        p2_txt = '<td id="{}">p2={:g}</td>'
         p3_txt = '<td id="{}">p3={:g}</td>'
         poly_txt = '<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'
         yv_txt = '<td class="y_vertex" id="{}" >y_v={:1.4g}</td>'
         off_txt = '<td class="offset" id="{}" >f={:1.4g}</th>'
         delta_txt = '<td class="delta" id="{}" >&Delta;={:d}</th>'
         c_g_txt = '<td class="c_g" id="{}" >CG={:.4g}</th>'
-        len_txt = '<td class="qtd_primes" id="qtd_primes" >#P 1st Seq: {}'
+        len_txt = '<td class="qtd_primes" id="qtd_primes" >#P={}'
         par_type_txt = '<td class="par_type" >{}</td>'
 
         poly_txt0 = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'
@@ -105,9 +105,9 @@ else:
         c_g_txt0 = '<td class="c_g" id="{}" >CG&ordm;={:.4g}</th>'
 
         print('<tr class="sequence_seeker_header">')
-        print(p1_txt.format(data_type(int(p1)), p1))
-        print(p2_txt.format(data_type(int(p2)), p2))
-        print(p3_txt.format(data_type(int(p3)), p3))
+        print(p1_txt.format(data_type(int(x_obj.p1)), x_obj.p1))
+        print(p2_txt.format(data_type(int(x_obj.p2)), x_obj.p2))
+        print(p3_txt.format(data_type(int(x_obj.p3)), x_obj.p3))
         print(poly_txt.format(a,b,c))
         print(yv_txt.format(x_obj.yv_type(), yv))
         print(off_txt.format(header_type(f), f))
