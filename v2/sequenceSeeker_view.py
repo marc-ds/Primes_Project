@@ -58,7 +58,7 @@ else:
     calc = SequenceSeeker(p1,p2,p3,p1_step,p2_step,p3_step,k)
     big_seq = sorted(calc(min_size), reverse=True, key=len)
 
-    print('<h1 id=sequence_seeker >{} first sequences with {} or more elements found.</h1>'.format(len(big_seq), min_size))
+    print('<h1 id=sequence_seeker >{} sequences with {} primes or more elements found.</h1>'.format(len(big_seq), min_size))
     print('<table id=sequence_seeker>')
 
     for i in range(0, len(big_seq)):
