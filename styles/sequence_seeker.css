@@ -36,10 +36,13 @@ table#sequence_seeker {
 }
 
 .y_vertex, .delta, .offset, .c_g, .poly, .poly0, #a, #b, #c, #qtd_primes {
-	background-color:gray;
-	color: white;
 	font-size:0.8em;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+#qtd_primes, .poly {
+	background-color:gray;
+	color: white;
 }
 
 .data, .first, .last {
@@ -68,6 +71,7 @@ td.c_g {
 
 #qtd_primes {
 	min-width: 58px;
+	font-size: 0.9em;
 }
 
 #negative {
