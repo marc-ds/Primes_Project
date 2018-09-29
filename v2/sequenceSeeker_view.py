@@ -22,12 +22,13 @@ if "p1" not in form or "p2" not in form or "p3" not in form:
     print('<form action="/v2/sequenceSeeker_view.py" method="post" id="sequence_seeker">')
     print('<div id="p_value">P1 initial value = <input type="text" name="p1" value="" />')
     print('P2 initial value &nbsp;= <input type="text" name="p2" value="" />')
-    print('P3 initial value = <input type="text" name="p3" value="" /></div>')
+    print('P3 initial value &nbsp;= <input type="text" name="p3" value="" /></div>')
     print('<div id="p_step">P1 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p1_step" value="0" />')
     print('P2 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p2_step" value="0" />')
     print('P3 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p3_step" value="1" /></div>')
     print('<div class="others" id="k">Columns range = <input type="text" name="k" value="100" />')
-    print('Minimum size of first sequences = <input type="text" name="min_size" value="7" id="min_value"/>')
+    print('Min. #P 1st seq &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= '
+          '<input type="text" name="min_size" value="7" id="min_value"/>')
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
     print('</body>')
     print('</html>')
@@ -51,7 +52,7 @@ else:
     print('P2 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p2_step" value="{:g}" />'.format(p2_step))
     print('P3 step value &nbsp;&nbsp;= <input type="text" name="p3_step" value="{:g}" /></div>'.format(p3_step))
     print('<div class="others" id="k">Columns range = <input type="text" name="k" value="{}" />'.format(k))
-    print('Min. #P 1st seq &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;='
+    print('Min. #P 1st seq &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= '
           '<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
 
@@ -99,7 +100,7 @@ else:
         par_type_txt = '<td class="par_type" >{}</td>'
 
         poly_txt0 = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'
-        yv_txt0 = '<td class="y_vertex" id="{}" >y_v&ordm;={:1.4g}</td>'
+        yv_txt0 = '<td class="y_vertex" id="{}" >y&ordm;_v={:1.4g}</td>'
         off_txt0 = '<td class="offset" id="{}" >f&ordm;={:1.4g}</th>'
         delta_txt0 = '<td class="delta" id="{}" >&Delta;&ordm;={:d}</th>'
         c_g_txt0 = '<td class="c_g" id="{}" >CG&ordm;={:.4g}</th>'
