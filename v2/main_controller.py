@@ -148,6 +148,6 @@ class P1P2P3:
 
     def par_type(self):
         if self.y_vertex0 == 0: return'SUB'
-        elif self.y_vertex0 < 0.5 and self.y_vertex0 > 0: return 'DES'
-        elif self.y_vertex0 == 0.5: return 'ACC'
+        elif self.y_vertex0 < 0.5 and self.y_vertex0 > 0: return 'ACC'
+        elif self.y_vertex0 == 0.5: return 'DES'
         else: return 'none'

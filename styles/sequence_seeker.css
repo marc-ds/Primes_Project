@@ -1,16 +1,15 @@
 form#sequence_seeker, form#blockbuster {
 	float:left;
 	margin-right: 5px;
-	font-size: 0.8em;
+	font-size: 0.6em;
 }
 form#sequence_seeker input, form#blockbuster input {
 	width: 70px;
-	font-size: 0.8em;
-	margin: 2px;
+	font-size: 0.9em;
 }
 
 form#sequence_seeker input#min_value {
-	width: 45px;
+	width: 48px;
 }
 
 form#sequence_seeker input#submit, form#blockbuster input#submit {
@@ -18,7 +17,7 @@ form#sequence_seeker input#submit, form#blockbuster input#submit {
 }
 
 h1#sequence_seeker {
-	font-size: 1.2em;
+	font-size: 1em;
 	font-family: "Avenir Black","Courrier new", monospace;
 }
 
@@ -29,22 +28,24 @@ p#fill_fields {
 table#sequence_seeker {
 	background-color:black;
   margin-top: 50px;
-	font-size:0.7em;
-	font-family: "Avenir Black","Courrier new", monospace;
+	font-size:0.6em;
 	float: left;
 	position: absolute;
-}
-
-.y_vertex, .delta, .offset, .c_g, .poly, .poly0, #a, #b, #c, #qtd_primes {
-	font-size:0.8em;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-#qtd_primes, .poly {
+.y_vertex, .delta, .offset, .c_g, .poly, .poly0, #a, #b, #c, #qtd_primes {
+}
+
+#qtd_primes, .poly, td.poly0 {
 	background-color:gray;
 	color: white;
 }
 
+#qtd_primes {
+	background-color: greenyellow;
+	color: black;
+}
 .data, .first, .last {
 		text-align: center;
 }
@@ -66,8 +67,7 @@ td.c_g {
 }
 
 #qtd_primes {
-	min-width: 58px;
-	font-size: 0.9em;
+	min-width: 51px;
 }
 
 #negative {
@@ -83,29 +83,24 @@ td.c_g {
 #prime {
 	background-color:#538DD5;
 	color:white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
 #one, .par_type {
 	background-color:#00B0F0;
 	color: white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
 #sqrt_round {
 	background-color:#FFFF00;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
 #composite, .poly0 {
 	background-color:#FCD5B4;
 	color: black;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-#zero, tr#y0 th {
+#zero {
 	background-color:red;
 	color:white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 	font-weight: bold;
 }
