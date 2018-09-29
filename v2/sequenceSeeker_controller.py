@@ -12,6 +12,8 @@ class SequenceSeeker():
         self.k_range = range(-int(k), int(k)+1)  # set the range of columns to -k >= 0 <= k
 
     def __call__(self, min_size=3):
+        """Return the 1st prime sequence with elements >= min_size,
+        the first composite for y positive (index 0) and y negative(index -2) and the X obj (index -1)"""
         big_seq = list()
 
         for k in self.k_range:

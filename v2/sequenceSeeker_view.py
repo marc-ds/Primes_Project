@@ -55,11 +55,10 @@ else:
     print('#P 1st seq &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
 
-
     calc = SequenceSeeker(p1,p2,p3,p1_step,p2_step,p3_step,k)
     big_seq = sorted(calc(min_size), reverse=True, key=len)
-    print('<h1 id=sequence_seeker >{} sequences found.</h1>'.format(len(big_seq)))
 
+    print('<h1 id=sequence_seeker >{} first sequences with {} or more elements found.</h1>'.format(len(big_seq), min_size))
     print('<table id=sequence_seeker>')
 
     for i in range(0, len(big_seq)):
@@ -77,7 +76,6 @@ else:
         sqrtdelta = sqrt(abs(delta))
         c_g = sqrtdelta - int(sqrtdelta)
         length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
-        par_type = x_obj.par_type
 
         yv0 = x_obj.y_vertex0
         f0 = x_obj.offset0
@@ -87,6 +85,7 @@ else:
         delta0 = x_obj.delta0
         sqrtdelta0 = sqrt(abs(delta0))
         c_g0 = sqrtdelta - int(sqrtdelta0)
+        par_type = x_obj.par_type
 
         poly_txt = '<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'
         yv_txt = '<td class="y_vertex" id="{}" >y_vertex&nbsp;&nbsp;{:1.4g}</td>'
@@ -115,7 +114,7 @@ else:
             print('<td class="first" id="composite">{:}&circ;{}</td>'.format(value, exponent), end='')
 
 
-        for result in big_seq[i]:
+        for result in sequence:
             if abs(result) is 1:
                 print('<td class="data" id="one">{}</td>'.format(result))
             elif result == 0:
