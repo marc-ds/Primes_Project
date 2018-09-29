@@ -1,6 +1,6 @@
 form#sequence_seeker, form#blockbuster {
-	width: 690px; 
-	margin: auto;
+	float:left;
+	margin-right: 5px;
 	font-size: 0.8em;
 }
 form#sequence_seeker input, form#blockbuster input {
@@ -14,16 +14,12 @@ form#sequence_seeker input#min_value {
 }
 
 form#sequence_seeker input#submit, form#blockbuster input#submit {
-	height: auto;
-	width: auto;
-	margin-left: 28px;
+	float: right;
 }
 
 h1#sequence_seeker {
 	font-size: 1.2em;
-	margin: 2px;
 	font-family: "Avenir Black","Courrier new", monospace;
-	text-align: center;
 }
 
 p#fill_fields {
@@ -32,11 +28,11 @@ p#fill_fields {
 
 table#sequence_seeker {
 	background-color:black;
+  margin-top: 50px;
 	font-size:0.8em;
 	font-family: "Avenir Black","Courrier new", monospace;
 	float: left;
-	margin: 10px;
-	text-align: left;
+	position: absolute;
 }
 
 .y_vertex, .delta, .offset, .c_g {
@@ -44,17 +40,39 @@ table#sequence_seeker {
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-#a, #b, #c, #qtd_primes, .formula {
+.poly, #a, #b, #c, #qtd_primes {
 	background-color:gray;
 	color: white;
+	font-size:0.8em;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-td.formula {
+.data {
+		text-align: center;
+}
+
+td.poly {
+	min-width: 110px;
+}
+
+td.y_vertex {
+	min-width: 75px;
+}
+
+td.offset {
+	min-width: 50px;
+}
+
+td.delta {
+	min-width: 40px;
+}
+
+td.c_g {
+	min-width: 60px;
 }
 
 #qtd_primes {
-	min-width: 87px;
+	min-width: 58px;
 }
 
 #negative {
@@ -71,27 +89,23 @@ td.formula {
 	background-color:#538DD5;
 	color:white;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-	text-align: center
 }
 
-#one {
+#one, .par_type {
 	background-color:#00B0F0;
 	color: white;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-	text-align: center
 }
 
 #sqrt_round {
 	background-color:#FFFF00;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-	text-align: center
 }
 
-#composite {
+#composite, .poly0 {
 	background-color:#FCD5B4;
 	color: black;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-	text-align: center
 }
 
 #zero, tr#y0 th {
