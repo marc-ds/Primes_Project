@@ -60,9 +60,9 @@ class P1P2P3:
     y_vertex and offset, when called return f(x) = ay^2 + by + c"""
     def __init__(self, p1, p2, p3, y):
         """initialize all attributes"""
-        self.p1 = int(p1)
-        self.p2 = int(p2)
-        self.p3 = int(p3)
+        self.p1 = p1
+        self.p2 = p2
+        self.p3 = p3
         self.y = int(y)
         self.a = (self.p1-(2*self.p2)+self.p3)/2.
         self.b = (self.p3-self.p1)/2.

@@ -52,7 +52,8 @@ else:
     print('P2 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p2_step" value="{:g}" />'.format(p2_step))
     print('P3 step value &nbsp;&nbsp;= <input type="text" name="p3_step" value="{:g}" /></div>'.format(p3_step))
     print('<div class="others" id="k">Columns range = <input type="text" name="k" value="{}" />'.format(k))
-    print('#P 1st seq &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
+    print('Min. #P 1st seq &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;='
+          '<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
 
     calc = SequenceSeeker(p1,p2,p3,p1_step,p2_step,p3_step,k)

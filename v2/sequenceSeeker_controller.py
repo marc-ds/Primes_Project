@@ -3,12 +3,12 @@ from main_controller import *
 class SequenceSeeker():
     """Seek first primes sequences of given P1, P2, P3, p_steps and columns range (k) greater than min_size"""
     def __init__(self, p1, p2, p3, p1_step=0, p2_step=0, p3_step=1, k=10):
-        self.p1 = int(p1)
-        self.p2 = int(p2)
-        self.p3 = int(p3)
-        self.p1_step = int(p1_step)
-        self.p2_step = int(p2_step)
-        self.p3_step = int(p3_step)
+        self.p1 = p1
+        self.p2 = p2
+        self.p3 = p3
+        self.p1_step = p1_step
+        self.p2_step = p2_step
+        self.p3_step = p3_step
         self.k_range = range(-int(k), int(k)+1)  # set the range of columns to -k >= 0 <= k
 
     def __call__(self, min_size=3):
