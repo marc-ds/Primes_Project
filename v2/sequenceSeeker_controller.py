@@ -9,7 +9,7 @@ class SequenceSeeker():
         self.p1_step = int(p1_step)
         self.p2_step = int(p2_step)
         self.p3_step = int(p3_step)
-        self.k_range = range(-int(k)+1, int(k)+1)  # set the range of columns to -k >= 0 <= k
+        self.k_range = range(-int(k), int(k)+1)  # set the range of columns to -k >= 0 <= k
 
     def __call__(self, min_size=3):
         big_seq = list()
@@ -21,8 +21,8 @@ class SequenceSeeker():
             a = (p1 - (2 * (p2)) + p3) / 2.
             b = (p3 - p1) / 2.
             c = p2
-            yp = 1
-            yn = 0
+            yp = 0
+            yn = -1
 
             possible_prime = p1p2p3(a, b, c, yp)
             while isprime(possible_prime):

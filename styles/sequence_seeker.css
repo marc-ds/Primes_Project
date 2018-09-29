@@ -29,38 +29,33 @@ p#fill_fields {
 table#sequence_seeker {
 	background-color:black;
   margin-top: 50px;
-	font-size:0.8em;
+	font-size:0.7em;
 	font-family: "Avenir Black","Courrier new", monospace;
 	float: left;
 	position: absolute;
 }
 
-.y_vertex, .delta, .offset, .c_g {
-	font-size:0.75em;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-}
-
-.poly, .poly0, #a, #b, #c, #qtd_primes {
+.y_vertex, .delta, .offset, .c_g, .poly, .poly0, #a, #b, #c, #qtd_primes {
 	background-color:gray;
 	color: white;
 	font-size:0.8em;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-.data {
+.data, .first, .last {
 		text-align: center;
 }
 
 td.poly {
-	min-width: 110px;
+	min-width: 128px;
 }
 
 td.y_vertex {
-	min-width: 75px;
+	min-width: 60px;
 }
 
 td.offset {
-	min-width: 50px;
+	min-width: 32px;
 }
 
 td.delta {

@@ -128,7 +128,7 @@ else:
                 print('<td class="data" id="composite">{}</td>'.format(result))
 
         for value, exponent in last.items():
-            print('<td class="first" id="composite">{:}&circ;{}</td>'.format(value, exponent), end='')
+            print('<td class="last" id="composite">{:}&circ;{}</td>'.format(value, exponent), end='')
 
         print('</tr>')
 
