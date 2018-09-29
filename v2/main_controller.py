@@ -85,6 +85,7 @@ class P1P2P3:
         self.c_g0 = sqrtdelta0 - int(sqrtdelta0)
         self._result = p1p2p3(self.a, self.b, self.c, self.y)
         self._result0 = p1p2p3(self.a0, self.b0, self.c0, self.y)
+        self.par_type = self.par_type()
 
     def __call__(self):
         """return the value of f(x) = ay^2 + by + c"""
@@ -144,3 +145,9 @@ class P1P2P3:
 
     def cg_type0(self):
         return header_type(self.c_g0)
+
+    def par_type(self):
+        if self.y_vertex0 == 0: return'SUB'
+        elif self.y_vertex0 < 0.5 and self.y_vertex0 > 0: return 'DES'
+        elif self.y_vertex0 == 0.5: return 'ACC'
+        else: return 'none'
