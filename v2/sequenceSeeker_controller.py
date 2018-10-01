@@ -12,8 +12,8 @@ class SequenceSeeker():
         self.p3_step = int(p3_step)
         self.kp3_range = range(-(int(kp3*p3_step)), int(kp3*p3_step) + 1, int(p3_step) or 1)  # set the range of columns
         self.kp2_range = range(-(int(kp2*p2_step)), int(kp2*p2_step) + 1, int(p2_step) or 1)  # to -k*step >=0<= k*step
-        #self.kp1_range = range(-(int(kp1*p1_step)), int(kp1*p1_step) + 1, p1_step or 1)  # and p step
-        self.kp1_range = range(-101, 102, 1)
+        self.kp1_range = range(-(int(kp1*p1_step)), int(kp1*p1_step) + 1, p1_step or 1)  # and p step
+        #self.kp1_range = range(-101, 102, 1)
 
         """pos_primes = list(sieve.primerange(0, kp2+1))
         neg_primes = [i * -1 for i in pos_primes]
