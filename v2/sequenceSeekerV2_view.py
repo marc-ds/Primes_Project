@@ -102,7 +102,8 @@ else:
         x02 = x_obj.x02
         x03 = x_obj.x03
         par_type = x_obj.par_type
-        length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
+        len_all = len(big_seq[i])
+        len_primes = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
 
         p1_txt = '<td id="{}">p1={:g}</td>'
         p2_txt = '<td id="{}">p2={:g}</td>'
@@ -121,7 +122,8 @@ else:
         x01_txt = '<td id="{}">x&ordm;1={:g}</td>'
         x02_txt = '<td id="{}">x&ordm;2={:g}</td>'
         x03_txt = '<td id="{}">x&ordm;3={:g}</td>'
-        len_txt = '<td class="qtd_primes" id="qtd_primes" >#P={}'
+        lpr_txt = '<td class="qtd_primes" id="qtd_primes" >#P={}'
+        lal_txt = '<td class="qtd_primes" id="qtd_primes" >#Q={}'
         par_type_txt = '<td class="{pt}" >{pt}</td>'
 
         print('<tr class="sequence_seeker_header">')
@@ -141,8 +143,10 @@ else:
         print(x01_txt.format(data_type(int(x01)), x01))
         print(x02_txt.format(data_type(int(x02)),x02))
         print(x03_txt.format(data_type(int(x03)),x03))
+        print(lpr_txt.format(len_primes))
+        print(lal_txt.format(len_all))
         print(par_type_txt.format(pt=par_type))
-        print(len_txt.format(length))
+
 
 
         for value, exponent in first.items():

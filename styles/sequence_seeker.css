@@ -41,6 +41,11 @@ table#sequence_seeker td {
 	border: 1px solid black;
 }
 
+table#sequence_seeker tr:hover, td:hover {
+	border: none;
+	border: 2px solid yellow;
+}
+
 #qtd_primes, .poly, td.poly0 {
 	background-color:gray;
 	color: white;
