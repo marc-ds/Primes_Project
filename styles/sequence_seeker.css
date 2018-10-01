@@ -71,7 +71,7 @@ td.c_g {
 }
 
 #qtd_primes {
-	background-color: yellow;
+	background-color: gold;
 }
 
 #negative, .SUB {
@@ -95,16 +95,16 @@ td.c_g {
 }
 
 .DES {
-	background-color: yellowgreen
+	background-color: yellowgreen;
 }
 
 .ACC {
-	background-color: green
+	background-color: green;
 }
 
 .SUB {
 	background-color: greenyellow;
-	color: blueviolet
+	color: black;
 }
 #sqrt_round {
 	background-color:#FFFF00;
