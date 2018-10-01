@@ -85,9 +85,12 @@ class P1P2P3:
         self.delta0 = (self.b0 ** 2 - (4 * self.a0 * self.c0))
         sqrtdelta0 = sqrt(abs(int(self.delta0)))
         self.c_g0 = sqrtdelta0 - int(sqrtdelta0)
+        self.x01 = self.a0 - self.b0 + self.c0
+        self.x02 = self.c0
+        self.x03 = self.a0 + self.b0 + self.c0
+        self.par_type = self.par_type()
         self._result = p1p2p3(self.a, self.b, self.c, self.y)
         self._result0 = p1p2p3(self.a0, self.b0, self.c0, self.y)
-        self.par_type = self.par_type()
 
     def __call__(self):
         """return the value of f(x) = ay^2 + by + c"""

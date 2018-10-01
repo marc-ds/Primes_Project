@@ -85,9 +85,9 @@ else:
         delta0 = x_obj.delta0
         sqrtdelta0 = sqrt(abs(delta0))
         c_g0 = sqrtdelta - int(sqrtdelta0)
-        x01 = a0 - b0 + c0
-        x02 = c0
-        x03 = a0 + b0 + c0
+        x01 = x_obj.x01
+        x02 = x_obj.x02
+        x03 = x_obj.x03
         par_type = x_obj.par_type
         length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
 
