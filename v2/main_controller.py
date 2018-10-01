@@ -69,19 +69,21 @@ class P1P2P3:
         self.c = self.p2
         self.y_vertex = y_vertex(self.a, self.b)
         self.offset = offset(self.a, self.b)
-        self.delta = int(self.b ** 2 - 4 * self.a * self.c)
+        self.delta = int(self.b ** 2 - (4 * self.a * self.c))
         sqrtdelta = sqrt(abs(self.delta))
         self.c_g = sqrtdelta - int(sqrtdelta)
+
         self.a0 = abs(self.a)
-        self.b0 = -abs(self.b + 2 * self.a * self.offset)
+        self.b0 = -abs(self.b + (2 * self.a * self.offset))
         if self.a <= 0:
-            self.c0 = -(self.c + self.a * self.offset)
-        else:
-            self.c0 = self.c + self.a * self.offset
+            self.c0 = -(self.c + self.a * (self.offset**2) + (self.b * self.offset))
+        elif self.a > 0:
+            self.c0 = (self.c + self.a * (self.offset**2) + (self.b * self.offset))
+
         self.y_vertex0 = y_vertex(self.a0, self.b0)
         self.offset0 = offset(self.a0, self.b0)
-        self.delta0 = int(self.b0 ** 2 - 4 * self.a0 * self.c0)
-        sqrtdelta0 = sqrt(abs(self.delta0))
+        self.delta0 = (self.b0 ** 2 - (4 * self.a0 * self.c0))
+        sqrtdelta0 = sqrt(abs(int(self.delta0)))
         self.c_g0 = sqrtdelta0 - int(sqrtdelta0)
         self._result = p1p2p3(self.a, self.b, self.c, self.y)
         self._result0 = p1p2p3(self.a0, self.b0, self.c0, self.y)

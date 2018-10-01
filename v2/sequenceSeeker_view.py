@@ -76,7 +76,6 @@ else:
         delta = x_obj.delta
         sqrtdelta = sqrt(abs(delta))
         c_g = sqrtdelta - int(sqrtdelta)
-        length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
 
         yv0 = x_obj.y_vertex0
         f0 = x_obj.offset0
@@ -86,24 +85,31 @@ else:
         delta0 = x_obj.delta0
         sqrtdelta0 = sqrt(abs(delta0))
         c_g0 = sqrtdelta - int(sqrtdelta0)
+        x01 = a0 - b0 + c0
+        x02 = c0
+        x03 = a0 + b0 + c0
         par_type = x_obj.par_type
+        length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
 
         p1_txt = '<td id="{}">p1={:g}</td>'
         p2_txt = '<td id="{}">p2={:g}</td>'
         p3_txt = '<td id="{}">p3={:g}</td>'
         poly_txt = '<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'
-        yv_txt = '<td class="y_vertex" id="{}" >y_v={:1.4g}</td>'
+        yv_txt = '<td class="y_vertex" id="{}" >yv={:1.4g}</td>'
         off_txt = '<td class="offset" id="{}" >f={:1.4g}</th>'
         delta_txt = '<td class="delta" id="{}" >&Delta;={:d}</th>'
         c_g_txt = '<td class="c_g" id="{}" >CG={:.4g}</th>'
-        len_txt = '<td class="qtd_primes" id="qtd_primes" >#P={}'
-        par_type_txt = '<td class="par_type" >{}</td>'
 
         poly_txt0 = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'
-        yv_txt0 = '<td class="y_vertex" id="{}" >y&ordm;_v={:1.4g}</td>'
-        off_txt0 = '<td class="offset" id="{}" >f&ordm;={:1.4g}</th>'
-        delta_txt0 = '<td class="delta" id="{}" >&Delta;&ordm;={:d}</th>'
+        yv_txt0 = '<td class="y_vertex" id="{}" >y&ordm;v={:1.4g}</td>'
+        off_txt0 = '<td class="offset" id="{}" >f&ordm;={}</th>'
+        delta_txt0 = '<td class="delta" id="{}" >&Delta;&ordm;={:.0f}</th>'
         c_g_txt0 = '<td class="c_g" id="{}" >CG&ordm;={:.4g}</th>'
+        x01_txt = '<td id="{}">x&ordm;1={:g}</td>'
+        x02_txt = '<td id="{}">x&ordm;2={:g}</td>'
+        x03_txt = '<td id="{}">x&ordm;3={:g}</td>'
+        len_txt = '<td class="qtd_primes" id="qtd_primes" >#P={}'
+        par_type_txt = '<td class="{pt}" >{pt}</td>'
 
         print('<tr class="sequence_seeker_header">')
         print(p1_txt.format(data_type(int(x_obj.p1)), x_obj.p1))
@@ -119,12 +125,15 @@ else:
         print(off_txt0.format(header_type(f0), f0))
         print(delta_txt0.format(header_type(delta0), delta0))
         print(c_g_txt0.format(header_type(delta0), c_g0))
-        print(par_type_txt.format(par_type))
+        print(x01_txt.format(data_type(int(x01)), x01))
+        print(x02_txt.format(data_type(int(x02)),x02))
+        print(x03_txt.format(data_type(int(x03)),x03))
+        print(par_type_txt.format(pt=par_type))
         print(len_txt.format(length))
 
 
         for value, exponent in first.items():
-            print('<td class="first" id="composite">{:}&circ;{}</td>'.format(value, exponent), end='')
+            print('<td class="first" id="composite">{:}^{}</td>'.format(value, exponent), end='')
 
 
         for result in sequence:
@@ -140,7 +149,7 @@ else:
                 print('<td class="data" id="composite">{}</td>'.format(result))
 
         for value, exponent in last.items():
-            print('<td class="last" id="composite">{:}&circ;{}</td>'.format(value, exponent), end='')
+            print('<td class="last" id="composite">{:}^{}</td>'.format(value, exponent), end='')
 
         print('</tr>')
 
