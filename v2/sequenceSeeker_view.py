@@ -97,7 +97,7 @@ else:
         poly_txt = '<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'
         yv_txt = '<td class="y_vertex" id="{}" >yv={:1.4g}</td>'
         off_txt = '<td class="offset" id="{}" >f={:1.4g}</th>'
-        delta_txt = '<td class="delta" id="{}" >&Delta;={:d}</th>'
+        delta_txt = '<td class="delta" id="{}" >&Delta;={:.0f}</th>'
         c_g_txt = '<td class="c_g" id="{}" >CG={:.4g}</th>'
 
         poly_txt0 = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'

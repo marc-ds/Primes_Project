@@ -69,8 +69,8 @@ class P1P2P3:
         self.c = self.p2
         self.y_vertex = y_vertex(self.a, self.b)
         self.offset = offset(self.a, self.b)
-        self.delta = int(self.b ** 2 - (4 * self.a * self.c))
-        sqrtdelta = sqrt(abs(self.delta))
+        self.delta = (self.b ** 2 - (4 * self.a * self.c))
+        sqrtdelta = sqrt(abs(int(self.delta)))
         self.c_g = sqrtdelta - int(sqrtdelta)
 
         self.a0 = abs(self.a)

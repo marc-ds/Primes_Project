@@ -19,7 +19,7 @@ class SequenceSeeker():
         for k in self.k_range:
             primes_seq = list()
             p1, p2, p3 =(self.p1 + (self.p1_step*k)), self.p2 + (self.p2_step*k), self.p3 + (self.p3_step*k)
-            if p1 == p2 and p2 == p3: break;  # Prevent infinite loop checking if p1, p2 and p3 are the same
+            if p1 == p2 and p2 == p3: continue;  # Prevent infinite loop checking if p1, p2 and p3 are the same
             a = (p1 - (2 * (p2)) + p3) / 2.
             b = (p3 - p1) / 2.
             c = p2
@@ -44,7 +44,7 @@ class SequenceSeeker():
             primes_seq.append(possible_prime)
             primes_seq.append(P1P2P3(p1,p2,p3,0))  # Append the X object to return the sequence info
 
-            if len(primes_seq)-2 > min_size:
+            if len(primes_seq)-3 >= min_size:
                 big_seq.append(primes_seq)
 
         return big_seq
