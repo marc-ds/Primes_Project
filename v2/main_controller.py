@@ -294,9 +294,8 @@ class X:
 
 def range_primes_above(value=-10, k=10):
     current = value
-    end = value + k - 1
-
-    yield value
+    end = value + k
+    value -= 1
 
     while current <= end:
         if value >= 1:

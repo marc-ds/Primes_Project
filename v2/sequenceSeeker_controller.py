@@ -44,9 +44,11 @@ def kp_range(p_value, x_range):
 
 class SequenceSeekerV3:
 
-    def __init__(self, p1, p2, p3, kp2, kp3):
+    def __init__(self, p1, kp2, kp3):
 
         self.p1 = p1
+        p2 = abs(p1)
+        p3 = abs(p1)
         self.p2_range = list(range_primes_above(p2, kp2))
         self.p3_range = list(range_primes_above(p3, kp3))
 
@@ -119,7 +121,7 @@ class SequenceSeekerV2:
                 primes_seq = list()
                 p1, p2, p3 = (self.p1, k2, k3)
                 if p1 == p2 and p2 == p3: continue;  # Prevent infinite loop checking if p1, p2 and p3 are the same
-                a = (p1 - (2 * (p2)) + p3) / 2.
+                a = (p1 - (2 * p2) + p3) / 2.
                 b = (p3 - p1) / 2.
                 c = p2
                 possible_prime = p1p2p3(a, b, c, 0)
