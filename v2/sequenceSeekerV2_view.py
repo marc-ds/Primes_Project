@@ -10,70 +10,73 @@ cgitb.enable()
 form = cgi.FieldStorage()
 
 print('Content-type: text/html\r\n\r')
-print('<html>')
-print('<head>')
-print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seeker.css">')
-print('<title>Sequence Seeker</title>')
-print('</head>')
-print('<body>')
 
 if "p1" not in form or "p2" not in form or "p3" not in form:
 
-    print('<form action="/v2/sequenceSeekerV2_view.py" method="post" id="sequence_seeker">')
+    print('<html>')
+    print('<head>')
+    print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seeker.css">')
+    print('<script src="js.js"></script>')
+    print('<title>Sequence Seeker</title>')
+    print('</head>')
+    print('<body>')
+    print('<form action="javascript:sendform()" method="post" id="sequence_seeker">')
     print('<div id="p_value">P1 initial value &nbsp;= <input type="text" name="p1" value="1" />')
-    print('P2 initial value &nbsp;= <input type="text" name="p2" value="1" />')
-    print('P3 initial value &nbsp;= <input type="text" name="p3" value="1" /></div>')
-    print('<div id="p_step">') #P1 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p1_step" value="0" />
+    print('P2 initial value &nbsp;= <input type="text" name="p2" value="59" />')
+    print('P3 initial value &nbsp;= <input type="text" name="p3" value="59" /></div>')
+    """print('<div id="p_step">') #P1 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p1_step" value="0" />
     print('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
           '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
           '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
           '&nbsp;&nbsp;&nbsp;P2 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p2_step" value="2" />')
-    print('P3 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p3_step" value="2" /></div>')
+    print('P3 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p3_step" value="2" /></div>')"""
     print('<div class="others" id="k">Min. #P 1st seq = '
-          '<input type="text" name="min_size" value="7" id="min_value"/>')
+          '<input type="text" name="min_size" value="20" id="min_value"/>')
     print('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
           'Col. range p2&nbsp;&nbsp;&nbsp; = <input type="text" name="kp2" value="1000" />')
     print('Col. range p3&nbsp;&nbsp;&nbsp; = <input type="text" name="kp3" value="1000" />')
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
-    print('</body>')
-    print('</html>')
+    print('<span id="loader">Loading...</span>')
 
 else:
 
     p1 = float(form["p1"].value)
     p2 = float(form["p2"].value)
     p3 = float(form["p3"].value)
-    p1_step = 0
-    p2_step = int(form["p2_step"].value)
-    p3_step = int(form["p3_step"].value)
-    kp1 = 0
+    #p1_step = 0
+    #p2_step = int(form["p2_step"].value)
+    #p3_step = int(form["p3_step"].value)
+    #kp1 = 0
     kp2 = int(form["kp2"].value)
     kp3 = int(form["kp3"].value)
     min_size = int(form["min_size"].value)
 
-    print('<form action="/v2/sequenceSeekerV2_view.py" method="post" id="sequence_seeker">')
+    print('<form action="javascript:sendform()" method="post" id="sequence_seeker">')
     print('<div id="p_value">P1 initial value&nbsp; = <input type="text" name="p1" value="{:g}" />'.format(p1))
     print('P2 initial value&nbsp; = <input type="text" name="p2" value="{:g}" />'.format(p2))
     print('P3 initial value&nbsp; = <input type="text" name="p3" value="{:g}" /></div>'.format(p3))
-    print('<div id="p_step">')
+    """print('<div id="p_step">')
     print('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
           '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
           '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
           '&nbsp;&nbsp;&nbsp;P2 step value&nbsp;&nbsp;&nbsp; = '
           '<input type="text" name="p2_step" value="{:g}" />'.format(p2_step))
-    print('P3 step value&nbsp;&nbsp;&nbsp; = <input type="text" name="p3_step" value="{:g}" /></div>'.format(p3_step))
+    print('P3 step value&nbsp;&nbsp;&nbsp; = <input type="text" name="p3_step" value="{:g}" /></div>'.format(p3_step))"""
     print('<div class="others" id="k">Min. #P 1st seq = '
           '<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
     print('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
           'Col. range p2&nbsp;&nbsp;&nbsp; = <input type="text" name="kp2" value="{}" />'.format(kp2))
     print('Col. range p3&nbsp;&nbsp;&nbsp; = <input type="text" name="kp3" value="{}" />'.format(kp3))
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
+    print('<span id="loader">Loading...</span>')
 
-    calc = SequenceSeeker(p1,p2,p3,p1_step,p2_step,p3_step,kp3,kp2,kp1)
-    big_seq = sorted(calc(min_size), reverse=True, key=len)
+    calc = SequenceSeeker(p1,p2,p3,kp3,kp2)
 
-    print('<h1 id=sequence_seeker >{} sequences with {} primes or more elements found.</h1>'.format(len(big_seq), min_size))
-    print('<table id=sequence_seeker>')
+    big_seq = sorted(calc(min_size), key=get_obj)
+    big_seq.sort(reverse=True, key=len)
+
+    #   print('<h1 id=sequence_seeker >{} sequences with {} primes or more elements found.</h1>'.format(len(big_seq), min_size))
+    print('<table id="sequence_seeker" class="table_sequence_seeker" >')
 
     for i in range(0, len(big_seq)):
         sequence = big_seq[i]
@@ -122,32 +125,31 @@ else:
         x01_txt = '<td id="{}">x&ordm;1={:g}</td>'
         x02_txt = '<td id="{}">x&ordm;2={:g}</td>'
         x03_txt = '<td id="{}">x&ordm;3={:g}</td>'
+        lal_txt = '<td class="qtd_primes" id="qtd_primes" >#E={}'
         lpr_txt = '<td class="qtd_primes" id="qtd_primes" >#P={}'
-        lal_txt = '<td class="qtd_primes" id="qtd_primes" >#Q={}'
         par_type_txt = '<td class="{pt}" >{pt}</td>'
 
         print('<tr class="sequence_seeker_header">')
+        print('<td class="line">{}</td>'.format(i+1))
         print(p1_txt.format(data_type(int(x_obj.p1)), x_obj.p1))
         print(p2_txt.format(data_type(int(x_obj.p2)), x_obj.p2))
         print(p3_txt.format(data_type(int(x_obj.p3)), x_obj.p3))
         print(poly_txt.format(a,b,c))
         print(yv_txt.format(x_obj.yv_type(), yv))
         print(off_txt.format(header_type(f), f))
-        print(delta_txt.format(header_type(delta), delta))
-        print(c_g_txt.format(header_type(delta), c_g))
+        print(x01_txt.format(data_type(int(x01)), x01))
+        print(x02_txt.format(data_type(int(x02)), x02))
+        print(x03_txt.format(data_type(int(x03)), x03))
+        #print(delta_txt.format(header_type(delta), delta))
+        #print(c_g_txt.format(header_type(delta), c_g))
         print(poly_txt0.format(a0, b0, c0))
         print(yv_txt0.format(header_type(yv0), yv0))
         print(off_txt0.format(header_type(f0), f0))
         print(delta_txt0.format(header_type(delta0), delta0))
         print(c_g_txt0.format(header_type(delta0), c_g0))
-        print(x01_txt.format(data_type(int(x01)), x01))
-        print(x02_txt.format(data_type(int(x02)),x02))
-        print(x03_txt.format(data_type(int(x03)),x03))
         print(lpr_txt.format(len_primes))
         print(lal_txt.format(len_all))
         print(par_type_txt.format(pt=par_type))
-
-
 
         for value, exponent in first.items():
             print('<td class="first" id="composite">{:}^{}</td>'.format(value, exponent), end='')
@@ -169,6 +171,6 @@ else:
             print('<td class="last" id="composite">{:}^{}</td>'.format(value, exponent), end='')
 
         print('</tr>')
-
+    print('</table>')
 print('</body>')
 print('</html>')
