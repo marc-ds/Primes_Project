@@ -29,7 +29,6 @@ if "p1" not in form or "p2" not in form or "p3" not in form:
           'Col. range p2&nbsp;&nbsp;&nbsp; = <input type="text" name="kp2" value="1000" />')
     print('Col. range p3&nbsp;&nbsp;&nbsp; = <input type="text" name="kp3" value="1000" />')
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
-    print('<h1 id=sequence_seeker >P2 and P3 initial must be greater than 2</h1>')
     print('<span id="loader">Loading...</span>')
 
     print('<table id="sequence_seeker" class="table_sequence_seeker" >')
@@ -54,7 +53,7 @@ else:
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
     print('<span id="loader">Loading...</span>')
 
-    calc = SequenceSeekerV3(p1, p2, p3, kp3, kp2)
+    calc = SequenceSeekerV3(p1, p2, p3, kp2, kp3)
 
     big_seq = sorted(calc(min_size), key=get_obj)
     big_seq.sort(reverse=True, key=len)
@@ -73,17 +72,14 @@ else:
         b = x_obj.b
         c = x_obj.c
         delta = x_obj.delta
-        sqrtdelta = sqrt(abs(delta))
-        c_g = sqrtdelta - int(sqrtdelta)
-
+        c_g = x_obj.c_g
         yv0 = x_obj.y_vertex0
         f0 = x_obj.offset0
         a0 = x_obj.a0
         b0 = x_obj.b0
         c0 = x_obj.c0
         delta0 = x_obj.delta0
-        sqrtdelta0 = sqrt(abs(delta0))
-        c_g0 = sqrtdelta - int(sqrtdelta0)
+        c_g0 = x_obj.c_g0
         x01 = x_obj.x01
         x02 = x_obj.x02
         x03 = x_obj.x03

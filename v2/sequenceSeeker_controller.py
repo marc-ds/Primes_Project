@@ -42,29 +42,26 @@ def kp_range(p_value, x_range):
         return final_range
 
 
-#class sequenceSeekerV3:
+class SequenceSeekerV3:
 
-    #def __init__(self, obj_x, kp3=100, kp2=100):
-class sequenceSeekerV3:
-
-    def __init__(self, p1, p2, p3, k):
+    def __init__(self, p1, p2, p3, kp2, kp3):
 
         self.p1 = p1
-        self.p2 = p2
-        self.p3 = p3
-        self.kp2_range = range_primes_above(p2, k)
-        self.kp3_range = range_primes_above(p3, k)
+        self.p2_range = list(range_primes_above(p2, kp2))
+        self.p3_range = list(range_primes_above(p3, kp3))
 
     def __call__(self, min_size):
         big_seq = list()
 
-        for k2 in self.kp2_range:
+        for kp2 in self.p2_range:
 
-            for k3 in self.kp3_range:
+            for kp3 in self.p3_range:
                 primes_seq = list()
-                p1, p2, p3 = (self.p1, k2, k3)
+                p1 = self.p1
+                p2 = kp2
+                p3 = kp3
                 if p1 == p2 and p2 == p3: continue;  # Prevent infinite loop checking if p1, p2 and p3 are the same
-                a = (p1 - (2 * (p2)) + p3) / 2.
+                a = (p1 - (2 * p2) + p3) / 2.
                 b = (p3 - p1) / 2.
                 c = p2
                 possible_prime = p1p2p3(a, b, c, 0)
@@ -92,7 +89,7 @@ class sequenceSeekerV3:
                     possible_prime = p1p2p3(a, b, c, yn)
 
                 primes_seq.append(possible_prime)
-                primes_seq.append(P1P2P3(p1, p2, p3, 0))  # Append the X object to return the sequence info
+                primes_seq.append(X(p1, p2, p3))  # Append the X object to return the sequence info
 
                 if len(primes_seq) - 3 >= min_size:
                     big_seq.append(primes_seq)

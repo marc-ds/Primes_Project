@@ -219,8 +219,8 @@ class X:
         self.x02 = self.c0
         self.x03 = self.a0 + self.b0 + self.c0
         self.par_type = self.par_type()
-        self.xv = -self.delta/4 * a
-        self.lr = 1/self.xv
+        #self.xv = -self.delta/(4 * abs(self.a))
+        #self.lr = 1/abs(self.xv)
 
     def __call__(self, y):
         """return the value of f(x) = ay^2 + by + c"""

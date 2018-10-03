@@ -21,7 +21,7 @@ function sendform() {
 function sendformv3() {
     var formElement = document.querySelector("form");
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/v2/sequenceSeekerV2_view.py");
+    xhr.open("POST", "/v2/sequenceSeekerV3_view.py");
     xhr.timeout = 4294967295;
 
     function set_loader() {document.getElementById("loader").style.visibility='visible';}
