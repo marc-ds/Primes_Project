@@ -72,7 +72,7 @@ class SequenceSeeker():
         big_seq = list()
 
         for k2 in self.kp2_range:
-            #if not isprime(k2): continuesieve.primerange(0,100)
+
             for k3 in self.kp3_range:
                 primes_seq = list()
                 p1, p2, p3 = (self.p1, k2, k3)
