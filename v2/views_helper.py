@@ -1,6 +1,4 @@
-
 def print_table(obj, f0=False, inv=False):
-
     if inv:
         y_range = obj.y_range_inv
     else:
@@ -10,7 +8,7 @@ def print_table(obj, f0=False, inv=False):
         print('<tr id="y{:d}" class="y">'.format(y))
         print('<th class="y"> {} </th>'.format(y))
 
-        if y >= -1 and y <=1:
+        if -1 <= y <= 1:
             for item in obj(y):
                 if f0:
                     print('<td class="{}" id="data">{}</td>'.format(item.type0(True), item.when_f0()))
@@ -22,6 +20,7 @@ def print_table(obj, f0=False, inv=False):
                     print('<td class="{}" id="data">{}</td>'.format(item.type0(), item.when_f0()))
                 else:
                     print('<td class="{}" id="data">{}</td>'.format(item.type(), item()))
+
 
 def print_density(bbuster_obj, den_range):
     pos_list = list()
@@ -61,11 +60,12 @@ def print_density(bbuster_obj, den_range):
     print('<tr id="den_total_rel" class="density">')
     print('<th id="den_total_rel">%Primes total</th>')
     for i in range(0, 4):
-        print('<td class="density" id="density">{:.2g}%</td>'.format(((neg_list[i] + pos_list[i]) / (float(den_range)*2)) * 100))
+        print('<td class="density" id="density">{:.2g}%</td>'.format(
+            ((neg_list[i] + pos_list[i]) / (float(den_range) * 2)) * 100))
     print('</tr>')
 
-def show_table(bbuster_obj, name, den_range, f0=False, inv=False):
 
+def show_table(bbuster_obj, name, den_range, f0=False, inv=False):
     if f0:
 
         print('<table id="{}">'.format(name))

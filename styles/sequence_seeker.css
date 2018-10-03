@@ -1,12 +1,7 @@
-#loader{
-	visibility: hidden;
-	position: relative;
-}
-
 form#sequence_seeker, form#blockbuster {
 	float:left;
 	margin-right: 5px;
-	font-size: 8pt;
+	font-size: 0.6em;
 }
 form#sequence_seeker input, form#blockbuster input {
 	width: 70px;
@@ -31,7 +26,8 @@ p#fill_fields {
 }
 
 table#sequence_seeker {
-	font-size: 0.9em;
+  margin-top: 50px;
+	font-size:0.6em;
 	float: left;
 	position: absolute;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;

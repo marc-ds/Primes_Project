@@ -19,16 +19,10 @@ if "p1" not in form or "p2" not in form or "p3" not in form:
     print('<title>Sequence Seeker</title>')
     print('</head>')
     print('<body>')
-    print('<form action="javascript:sendform()" method="post" id="sequence_seeker">')
+    print('<form action="javascript:sendformv3()" method="post" id="sequence_seeker">')
     print('<div id="p_value">P1 initial value &nbsp;= <input type="text" name="p1" value="1" />')
     print('P2 initial value &nbsp;= <input type="text" name="p2" value="59" />')
     print('P3 initial value &nbsp;= <input type="text" name="p3" value="59" /></div>')
-    """print('<div id="p_step">') #P1 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p1_step" value="0" />
-    print('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-          '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-          '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-          '&nbsp;&nbsp;&nbsp;P2 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p2_step" value="2" />')
-    print('P3 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p3_step" value="2" /></div>')"""
     print('<div class="others" id="k">Min. #P 1st seq = '
           '<input type="text" name="min_size" value="20" id="min_value"/>')
     print('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -36,10 +30,9 @@ if "p1" not in form or "p2" not in form or "p3" not in form:
     print('Col. range p3&nbsp;&nbsp;&nbsp; = <input type="text" name="kp3" value="1000" />')
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
     print('<h1 id=sequence_seeker >P2 and P3 initial must be greater than 2</h1>')
-    print('<table id="sequence_seeker" class="table_sequence_seeker" >')
-
     print('<span id="loader">Loading...</span>')
 
+    print('<table id="sequence_seeker" class="table_sequence_seeker" >')
 else:
 
     p1 = float(form["p1"].value)
@@ -49,11 +42,10 @@ else:
     kp3 = int(form["kp3"].value)
     min_size = int(form["min_size"].value)
 
-    print('<form action="javascript:sendform()" method="post" id="sequence_seeker">')
+    print('<form action="javascript:sendformv3()" method="post" id="sequence_seeker">')
     print('<div id="p_value">P1 initial value&nbsp; = <input type="text" name="p1" value="{:g}" />'.format(p1))
     print('P2 initial value&nbsp; = <input type="text" name="p2" value="{:g}" />'.format(p2))
     print('P3 initial value&nbsp; = <input type="text" name="p3" value="{:g}" /></div>'.format(p3))
-
     print('<div class="others" id="k">Min. #P 1st seq = '
           '<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
     print('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -62,7 +54,7 @@ else:
     print('<input type="submit" value="Generate" id="submit"/></div></form>')
     print('<span id="loader">Loading...</span>')
 
-    calc = SequenceSeekerV2(p1, p2, p3, kp3, kp2)
+    calc = SequenceSeekerV3(p1, p2, p3, kp3, kp2)
 
     big_seq = sorted(calc(min_size), key=get_obj)
     big_seq.sort(reverse=True, key=len)
@@ -159,6 +151,6 @@ else:
             print('<td class="last" id="composite">{:}^{}</td>'.format(value, exponent), end='')
 
         print('</tr>')
-    print('</table>')
+print('</table>')
 print('</body>')
 print('</html>')

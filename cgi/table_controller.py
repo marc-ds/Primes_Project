@@ -1,5 +1,35 @@
 from project_lib import *
 import gmpy2
+
+
+def c_line():
+    return c_line
+
+
+def b_line():
+    return b_line
+
+
+def a_line():
+    return a_line
+
+
+def p3_range():
+    return p3_range
+
+
+def p2_range():
+    return p2_range
+
+
+def p1_range():
+    return p1_range
+
+
+def p_range():
+    return p_range
+
+
 class table_generator():
 
     def __init__(self, p1_init, p2_init, p3_init, p1_step, p2_step, p3_step, k):
@@ -13,24 +43,24 @@ class table_generator():
         self.p3_high = p3_init + (p3_step * (k))
         self.p2_high = p2_init + (p2_step * (k))
         self.p1_high = p1_init + (p1_step * (k))
-        self.p_range = range(0, (k*2)+1)
+        self.p_range = range(0, (k * 2) + 1)
 
         self.p1_range = list()
-        if p1_step is 0 :
+        if p1_step is 0:
             for i in self.p_range:
                 self.p1_range.append(self.p1_low)
         else:
             for i in self.p_range:
                 self.p1_range.append(self.p1_low + (self.p1_step * i))
         self.p2_range = list()
-        if p2_step is 0 :
+        if p2_step is 0:
             for i in self.p_range:
                 self.p2_range.append(self.p2_low)
         else:
             for i in self.p_range:
                 self.p2_range.append(self.p2_low + (self.p2_step * i))
         self.p3_range = list()
-        if p3_step is 0 :
+        if p3_step is 0:
             for i in self.p_range:
                 self.p3_range.append(self.p3_low)
         else:
@@ -54,24 +84,12 @@ class table_generator():
                 p3 = self.p3_low
             else:
                 p3 = self.p3_range[i]
-            a,b,c = abc_set(p1, p2, p3)
+            a, b, c = abc_set(p1, p2, p3)
             self.a_line.append(a)
             self.b_line.append(b)
             self.c_line.append(c)
-    
-    def p_range():
-        return p_range
 
-    def p1_range():
-        return p1_range
-    
-    def p2_range():
-        return p2_range
-    
-    def p3_range():
-        return p3_range
-
-    def yv_line(self, line): #return a list with (k*2)+1 size. list[0] = lower value
+    def yv_line(self, line):  # return a list with (k*2)+1 size. list[0] = lower value
         for i in self.p_range:
             line.append(y_vertex(self.a_line[i], self.b_line[i], self.c_line[i]))
         return line
@@ -80,15 +98,6 @@ class table_generator():
         for i in self.p_range:
             line.append(offset(self.a_line[i], self.b_line[i], self.c_line[i]))
         return line
-
-    def a_line():
-        return a_line
-
-    def b_line():
-        return b_line
-
-    def c_line():
-        return c_line
 
     def table_line(self, line, y):
         for i in self.p_range:
@@ -100,15 +109,17 @@ class table_generator():
         neg_primes_list = list()
         total_primes_list = list()
         for i in self.p_range:
-            pos_primes= int(0) #primes bigger than 0
-            neg_primes= int(0) #primes smaller or equal 0
+            pos_primes = int(0)  # primes bigger than 0
+            neg_primes = int(0)  # primes smaller or equal 0
             total_primes = int(0)
             a, b, c = self.a_line[i], self.b_line[i], self.c_line[i]
             for y in range(yn, -yn, -1):
                 if isprime(abs(p1p2p3(a, b, c, y))):
                     total_primes += 1
-                    if y > 0: pos_primes += 1
-                    else: neg_primes += 1
+                    if y > 0:
+                        pos_primes += 1
+                    else:
+                        neg_primes += 1
             pos_primes_list.append(pos_primes)
             neg_primes_list.append(neg_primes)
             total_primes_list.append(total_primes)
@@ -138,6 +149,7 @@ class table_generator():
                 big_seq.append(primes_seq)
         return big_seq
 
+
 def fixed_generator(p1a, p2a, p3a, p1b, p2b, p3b, p1c, p2c, p3c, p1d, p2d, p3d, ya, yb):
     yv_line = list()
     f_line = list()
@@ -145,10 +157,10 @@ def fixed_generator(p1a, p2a, p3a, p1b, p2b, p3b, p1c, p2c, p3c, p1d, p2d, p3d, 
     b_line = list()
     c_line = list()
     full_table = list()
-    aa,ba,ca = abc_set(p1a, p2a, p3a)
-    ab,bb,cb = abc_set(p1b, p2b, p3b)
-    ac,bc,cc = abc_set(p1c, p2c, p3c)
-    ad,bd,cd = abc_set(p1d, p2d, p3d)
+    aa, ba, ca = abc_set(p1a, p2a, p3a)
+    ab, bb, cb = abc_set(p1b, p2b, p3b)
+    ac, bc, cc = abc_set(p1c, p2c, p3c)
+    ad, bd, cd = abc_set(p1d, p2d, p3d)
     a_line.append(aa)
     a_line.append(ab)
     a_line.append(ac)
@@ -169,7 +181,7 @@ def fixed_generator(p1a, p2a, p3a, p1b, p2b, p3b, p1c, p2c, p3c, p1d, p2d, p3d, 
     f_line.append(offset(ab, bb, cb))
     f_line.append(offset(ac, bc, cc))
     f_line.append(offset(ad, bd, cd))
-    for y in range(yb, ya-1, -1):
+    for y in range(yb, ya - 1, -1):
         table_line = list()
         table_line.append(p1p2p3(aa, ba, ca, y))
         table_line.append(p1p2p3(ab, bb, cb, y))

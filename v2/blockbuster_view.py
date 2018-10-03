@@ -19,7 +19,6 @@ print('<form action="/v2/blockbuster_view.py" method="post" id="blockbuster">')
 
 if "p1a" not in form or "p2a" not in form or "p3a" not in form:
 
-
     print('<div id="p_value">P1 value = <input type="text" name="p1a" value="0" />')
     print('P2 value &nbsp;= <input type="text" name="p2a" value="0" />')
     print('P3 value = <input type="text" name="p3a" value="0" /></div>')
@@ -58,7 +57,6 @@ else:
     y_start = int(form["y_start"].value)
     y_end = int(form["y_end"].value)
 
-
     print('<div id="p_value">P1 value = <input type="text" name="p1a" value="{:g}" />'.format(p1a))
     print('P2 value &nbsp;= <input type="text" name="p2a" value="{:g}" />'.format(p2a))
     print('P3 value = <input type="text" name="p3a" value="{:g}" /></div>'.format(p3a))
@@ -83,13 +81,13 @@ else:
     bbuster.add(p1d, p2d, p3d)
 
     print('<div id="container_table">')
-    show_table(bbuster,'blockbuster', den_range)
-    show_table(bbuster,'blockbuster-inv', den_range, False, True)
+    show_table(bbuster, 'blockbuster', den_range)
+    show_table(bbuster, 'blockbuster-inv', den_range, False, True)
     print('</div>')
 
     print('<div id="container_table">')
-    show_table(bbuster,'blockbuster0',den_range, True)
-    show_table(bbuster,'blockbuster0-inv',den_range, True, True)
+    show_table(bbuster, 'blockbuster0', den_range, True)
+    show_table(bbuster, 'blockbuster0-inv', den_range, True, True)
     print('</div>')
 
     print('</body>')
