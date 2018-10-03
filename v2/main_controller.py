@@ -294,16 +294,15 @@ class X:
 
 def range_primes_above(value=-10, k=10):
     current = value
-    end = value + k -1
+    end = value + k
+    value -= 1
 
     while current <= end:
-        if value > 2:
+        if value >= 1:
             value = sp.nextprime(value)
-        elif value == 1:
-            value = 1
         elif value < -2:
             value = -sp.prevprime(abs(value))
-        elif value <= -1 < 0:
+        elif value == -2:
             value = -1
         elif value == -1:
             value = 1
@@ -321,7 +320,7 @@ def range_primes_below(value=-10, k=10):
     while current <= end:
         if value > 2:
             value = sp.prevprime(value)
-        elif 0 >= value <= -1:
+        elif value <= -1:
             value = -sp.nextprime(abs(value))
         elif value == 2:
             value = 1
