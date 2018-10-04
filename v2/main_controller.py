@@ -27,7 +27,7 @@ def offset(a, b):
 
 def isprime(num):
     if abs(num) is 1: return 1
-    return is_prime(abs(num))
+    return is_prime(abs(int(num)))
 
 
 def p1p2p3(a, b, c, y):
@@ -292,22 +292,14 @@ class X:
             return 'none'
 
 
-def range_primes_above(value=-10, k=10):
-    current = value
-    end = value + k
-    value -= 1
-
-    while current <= end:
-        if value >= 1:
-            value = sp.nextprime(value)
-        elif value < -2:
-            value = -sp.prevprime(abs(value))
-        elif value == -2:
-            value = -1
-        elif value == -1:
-            value = 1
-
-        current += 1
+def rpup_positive(value, k):
+    if not isprime(value):
+        exit()
+    yield value
+    i=1
+    while i < k:
+        value = sp.nextprime(value)
+        i += 1
         yield value
 
 

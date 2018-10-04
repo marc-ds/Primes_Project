@@ -42,63 +42,6 @@ def kp_range(p_value, x_range):
         return final_range
 
 
-class SequenceSeekerV3:
-
-    def __init__(self, p1, kp2, kp3):
-
-        self.p1 = p1
-        p2 = abs(p1)
-        p3 = abs(p1)
-        self.p2_range = list(range_primes_above(p2, kp2))
-        self.p3_range = list(range_primes_above(p3, kp3))
-
-    def __call__(self, min_size):
-        big_seq = list()
-
-        for kp2 in self.p2_range:
-
-            for kp3 in self.p3_range:
-                primes_seq = list()
-                p1 = self.p1
-                p2 = kp2
-                p3 = kp3
-                if p1 == p2 and p2 == p3: continue;  # Prevent infinite loop checking if p1, p2 and p3 are the same
-                a = (p1 - (2 * p2) + p3) / 2.
-                b = (p3 - p1) / 2.
-                c = p2
-                possible_prime = p1p2p3(a, b, c, 0)
-                if isprime(possible_prime):
-                    primes_seq.append(possible_prime)
-                else:
-                    continue
-                yp = 1
-                yn = -1
-                y_step = 1
-
-                possible_prime = p1p2p3(a, b, c, yp)
-                while isprime(possible_prime):
-                    primes_seq.append(possible_prime)
-                    yp += y_step
-                    possible_prime = p1p2p3(a, b, c, yp)
-
-                primes_seq.append(possible_prime)  # Append the first composite after the prime sequence
-                primes_seq.reverse()  # Make the composite first element and sort the list in Pn sequence
-
-                possible_prime = p1p2p3(a, b, c, yn)
-                while isprime(possible_prime):
-                    primes_seq.append(possible_prime)
-                    yn -= y_step
-                    possible_prime = p1p2p3(a, b, c, yn)
-
-                primes_seq.append(possible_prime)
-                primes_seq.append(X(p1, p2, p3))  # Append the X object to return the sequence info
-
-                if len(primes_seq) - 3 >= min_size:
-                    big_seq.append(primes_seq)
-
-        return big_seq
-
-
 class SequenceSeekerV2:
     """Seek first primes sequences of given P1, P2, P3, and columns range p2 (kp2) and p3 (kp3) greater than min_size.
     The P2 and P3 range will run only by the prime"""
@@ -120,7 +63,7 @@ class SequenceSeekerV2:
             for k3 in self.kp3_range:
                 primes_seq = list()
                 p1, p2, p3 = (self.p1, k2, k3)
-                if p1 == p2 and p2 == p3: continue;  # Prevent infinite loop checking if p1, p2 and p3 are the same
+                if p1 == p2 and p2 == p3: continue;  # Prevent infinite loop checking if p1, p2 and p3 are the same.
                 a = (p1 - (2 * p2) + p3) / 2.
                 b = (p3 - p1) / 2.
                 c = p2
@@ -139,8 +82,8 @@ class SequenceSeekerV2:
                     yp += y_step
                     possible_prime = p1p2p3(a, b, c, yp)
 
-                primes_seq.append(possible_prime)  # Append the first composite after the prime sequence
-                primes_seq.reverse()  # Make the composite first element and sort the list in Pn sequence
+                primes_seq.append(possible_prime)  # Append the first composite after the prime sequence.
+                primes_seq.reverse()  # Make the composite first element and sort the list in Pn sequence.
 
                 possible_prime = p1p2p3(a, b, c, yn)
                 while isprime(possible_prime):
@@ -149,7 +92,7 @@ class SequenceSeekerV2:
                     possible_prime = p1p2p3(a, b, c, yn)
 
                 primes_seq.append(possible_prime)
-                primes_seq.append(P1P2P3(p1, p2, p3, 0))  # Append the X object to return the sequence info
+                primes_seq.append(P1P2P3(p1, p2, p3, 0))  # Append the X object to return the sequence info.
 
                 if len(primes_seq) - 3 >= min_size:
                     big_seq.append(primes_seq)
@@ -167,11 +110,11 @@ class SequenceSeeker:
         self.p1_step = int(p1_step)
         self.p2_step = int(p2_step)
         self.p3_step = int(p3_step)
-        self.kp3_range = range(-(int(kp3 * p3_step)), int(kp3 * p3_step) + 1,
-                               int(p3_step) or 1)  # set the range of columns
-        self.kp2_range = range(-(int(kp2 * p2_step)), int(kp2 * p2_step) + 1,
-                               int(p2_step) or 1)  # to -k*step >=0<= k*step
-        self.kp1_range = range(-(int(kp1 * p1_step)), int(kp1 * p1_step) + 1, p1_step or 1)  # and p step
+        self.kp3_range = range(-(int(kp3 * p3_step)), int(kp3 * p3_step) + 1,  # Set the range of columns to
+                               int(p3_step) or 1)                              # -k * step >= 0 <= k * step
+        self.kp2_range = range(-(int(kp2 * p2_step)), int(kp2 * p2_step) + 1,  # using p*_step as step.
+                               int(p2_step) or 1)
+        self.kp1_range = range(-(int(kp1 * p1_step)), int(kp1 * p1_step) + 1, p1_step or 1)
 
     def __call__(self, min_size=3):
         """Return the 1st prime sequence with elements >= min_size,
@@ -183,8 +126,8 @@ class SequenceSeeker:
                 for k3 in self.kp3_range:
                     primes_seq = list()
                     p1, p2, p3 = (self.p1 + k1, self.p2 + k2, self.p3 + k3)
-                    if p1 == p2 and p2 == p3: continue;  # Prevent infinite loop checking if p1, p2 and p3 are the same
-                    a = (p1 - (2 * (p2)) + p3) / 2.
+                    if p1 == p2 and p2 == p3: continue;  # Prevent infinite loop checking if p1, p2 and p3 are the same.
+                    a = (p1 - (2 * p2) + p3) / 2.
                     b = (p3 - p1) / 2.
                     c = p2
                     possible_prime = p1p2p3(a, b, c, 0)
@@ -202,8 +145,8 @@ class SequenceSeeker:
                         yp += y_step
                         possible_prime = p1p2p3(a, b, c, yp)
 
-                    primes_seq.append(possible_prime)  # Append the first composite after the prime sequence
-                    primes_seq.reverse()  # Make the composite first element and sort the list in Pn sequence
+                    primes_seq.append(possible_prime)  # Append the first composite after the prime sequence.
+                    primes_seq.reverse()  # Make the composite first element and sort the list in Pn sequence.
 
                     possible_prime = p1p2p3(a, b, c, yn)
                     while isprime(possible_prime):
@@ -212,9 +155,75 @@ class SequenceSeeker:
                         possible_prime = p1p2p3(a, b, c, yn)
 
                     primes_seq.append(possible_prime)
-                    primes_seq.append(P1P2P3(p1, p2, p3, 0))  # Append the X object to return the sequence info
+                    primes_seq.append(P1P2P3(p1, p2, p3, 0))  # Append the X object to return the sequence info.
 
                     if len(primes_seq) - 3 >= min_size:
                         big_seq.append(primes_seq)
+
+        return big_seq
+
+
+def x(p1,p2,p3,y):
+    a = (p1 - (2 * p2) + p3) / 2.
+    b = (p3 - p1) / 2.
+    c = p2
+    return (a * (y ** 2)) + (b * y) + c
+
+class SequenceSeekerV3:
+
+    def __init__(self, p1, p2_k, p3_k):
+        """The user set P1 and columns range (k) for P2 (p2_k) and P3 (p3_k)
+        The initial value for P2 and P3 are P1"""
+        self.p1 = p1
+        self.p2_range = list(rpup_positive(abs(p1), p2_k+1))  # P2 range: P1 <= P2 <= P2 + p2_k (P2 columns range)
+        self.p3_k = p3_k
+
+    def __call__(self, min_size):
+        """ Return an list with all sequences, each one with an x object,
+        first positive and first negative composites and the 1st prime sequence in range
+        P1 >= P2+p2_k >= P3+p3_k, where p2_k and p3_k are the P2 and p3 columns range"""
+        big_seq = list()  # This list will archive all valid 1st sequences
+        flag = self.p1
+
+        for p2_i in self.p2_range:  # Start the first loop for p2, starting by P1 value.
+            p3_range = rpup_positive(int(p2_i), self.p3_k+1)
+            flag += 1
+            for p3_i in p3_range:  # Start p3 loop out of actual p2 value, so:
+                primes_seq = list()                                   # P2 <= P3 <= P3+k
+                p1 = self.p1
+                p2 = p2_i
+                p3 = p3_i
+                if p1 == p2 and p2 == p3:  # Prevent infinite loop checking if p1, p2 and p3 are the same.
+                    continue
+                possible_prime = x(p1, p2, p3, 0)
+                if isprime(possible_prime):  # Append the value when in y=0 if is prime, if not, continue to next.
+                    primes_seq.append(possible_prime)
+                else:
+                    continue
+
+                yp = 1      # Set the first value to positives y checks
+                yn = -1     # the fist negative value to negative y check
+                y_step = 1  # and the steps that positives and negative loops.
+
+                possible_prime = x(p1, p2, p3, yp)
+                while isprime(possible_prime):          # While possible prime is true, keep appending
+                    primes_seq.append(possible_prime)   # positives y possible_prime to prime sequence.
+                    yp += y_step
+                    possible_prime = x(p1, p2, p3, yp)
+
+                primes_seq.append(possible_prime)  # Append the first composite after the prime sequence.
+                primes_seq.reverse()  # Make the composite first element and sort the list in Pn sequence.
+
+                possible_prime = x(p1, p2, p3, yn)
+                while isprime(possible_prime):  # Start the loop for negative y values.
+                    primes_seq.append(possible_prime)
+                    yn -= y_step
+                    possible_prime = x(p1, p2, p3, yn)
+
+                primes_seq.append(possible_prime)
+                primes_seq.append(X(p1, p2, p3))  # Append the x object to return the sequence info.
+
+                if len(primes_seq) - 3 >= min_size:  # Check the actual sequence length excluding both
+                    big_seq.append(primes_seq)       # composites and the object x with minimum sequence size.
 
         return big_seq
