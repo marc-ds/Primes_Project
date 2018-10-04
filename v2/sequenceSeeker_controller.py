@@ -177,13 +177,14 @@ class SequenceSeekerV3:
         first positive and first negative composites and the 1st prime sequence in range
         P1 >= P2+p2_k >= P3+p3_k, where p2_k and p3_k are the P2 and p3 columns range"""
         big_seq = list()  # This list will archive all valid 1st sequences
-        flag = self.p1
+        flag = 0
 
         for p2_i in self.p2_range:  # Start the first loop for p2, starting by P1 value.
             p3_range = rpup_positive(int(p2_i), self.p3_k+1)
-            flag += 1
+
             for p3_i in p3_range:  # Start p3 loop out of actual p2 value, so:
-                primes_seq = list()                                   # P2 <= P3 <= P3+k
+                primes_seq = list()                         # P2 <= P3 <= P3+k
+                flag += 1
                 p1 = self.p1
                 p2 = p2_i
                 p3 = p3_i
@@ -195,8 +196,8 @@ class SequenceSeekerV3:
                 else:
                     continue
 
-                yp = 1      # Set the first value to positives y checks
-                yn = -1     # the fist negative value to negative y check
+                yp = 1      # Set the first value to positives y checks and
+                yn = -1     # the first negative value to negative y check
                 y_step = 1  # and the steps that positives and negative loops.
 
                 possible_prime = x(p1, p2, p3, yp)
@@ -215,10 +216,10 @@ class SequenceSeekerV3:
                     possible_prime = x(p1, p2, p3, yn)
 
                 primes_seq.append(possible_prime)
-                primes_seq.append(X(p1, p2, p3))  # Append the x object to return the sequence info.
 
-                if len(primes_seq) - 3 >= min_size:  # Check the actual sequence length excluding both
-                    big_seq.append(primes_seq)       # composites and the object x with minimum sequence size.
+                if len(primes_seq) - 2 >= min_size:   # Check the actual sequence length excluding both
+                    primes_seq.append(flag)           # composites and the object x with minimum sequence size.
+                    primes_seq.append(X(p1, p2, p3))  # Append the x object to return the sequence info.
+                    big_seq.append(primes_seq)
 
         return big_seq
-

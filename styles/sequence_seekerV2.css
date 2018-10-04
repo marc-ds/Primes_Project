@@ -48,6 +48,13 @@ table#sequence_seeker tr:hover, td:hover {
 	border: 2px solid yellow;
 }
 
+.generation_line {
+	background-color: powderblue
+}
+
+.print_line {
+	background-color: orange
+}
 .poly, td.poly0 {
 	background-color:gray;
 	color: white;
