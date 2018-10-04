@@ -20,13 +20,12 @@ if "p1" not in form:
     print('</head>')
     print('<body>')
     print('<form action="javascript:sendformv3()" method="post" id="sequence_seeker" name="collect_data_form" >')
-    print('<div id="p_value">P1 initial value &nbsp;= <input type="text" name="p1" value="1" />')
-    print('Col. range p2 = <input type="text" name="kp2" value="1000" />')
-    print('Col. range p3 = <input type="text" name="kp3" value="1000" /></div>')
-    print('<div class="others" id="k">Min. #P 1st seq = '
-          '<input type="text" name="min_size" value="20" id="min_value"/>')
-    print('<input type="submit" value="Generate" id="submit"/></div></form>')
+    print('<div id="p_value">P1=<input type="text" name="p1" value="2" />')
+    print('P1<=P2<=P<input type="text" name="kp2" value="1000" />')
+    print('P2<=P3<=P<input type="text" name="kp3" value="1000" />')
+    print('#P>=<input type="text" name="min_size" value="20" id="min_value"/>')
     print('<span id="loader">Loading...</span>')
+    print('<input type="submit" value="Generate" id="submit"/></form></div>')
 
     print('<table id="sequence_seeker" class="table_sequence_seeker" >')
 else:
@@ -37,13 +36,12 @@ else:
     min_size = int(form["min_size"].value)
 
     print('<form action="javascript:sendformv3()" method="post" id="sequence_seeker">')
-    print('<div id="p_value">P1 initial value&nbsp; = <input type="text" name="p1" value="{:g}" />'.format(p1))
-    print('P1 Col. range  = <input type="text" name="kp2" value="{}" />'.format(kp2))
-    print('P2 Col. range  = <input type="text" name="kp3" value="{}" /></div>'.format(kp3))
-    print('<div class="others" id="k">Min. #P 1st seq = '
-          '<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
-    print('<input type="submit" value="Generate" id="submit"/></div></form>')
+    print('<div id="p_value">P1=<input type="text" name="p1" value="{:g}" />'.format(p1))
+    print('P1<=P2<=P<input type="text" name="kp2" value="{}" />'.format(kp2))
+    print('P2<=P3<=P<input type="text" name="kp3" value="{}" />'.format(kp3))
+    print('#P>=<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
     print('<span id="loader">Loading...</span>')
+    print('<input type="submit" value="Generate" id="submit"/></form></div>')
 
     calc = SequenceSeekerV3(p1, kp2, kp3)
 
@@ -99,14 +97,14 @@ else:
         x01_txt = '<td class="{}">x&ordm;1={:g}</td>'
         x02_txt = '<td class="{}">x&ordm;2={:g}</td>'
         x03_txt = '<td class="{}">x&ordm;3={:g}</td>'
-        xv_txt = '<td class="xv {}">xv={:.0f}</td>'
-        lr_txt = '<td class="lr {}">LR={:.0f}</td>'
-        xvlr_txt = '<td class="xvlr {}">-xv*LR={:.0f}</td>'
-        y0vp_xv_lr_txt = '<td class="y0vp_xv_lr_txt {}">y&ordm;v+xv*LR={:.0f}</td>'
-        y0vm_xv_lr_txt = '<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={:.0f}</td>'
-        y0v_2_txt = '<td class="y0v_2 {}">(y&ordm;v)^2={:.0f}</td>'
+        xv_txt = '<td class="xv {}">xv={:.4g}</td>'
+        lr_txt = '<td class="lr {}">LR={:.4g}</td>'
+        xvlr_txt = '<td class="xvlr {}">-xv*LR={:.4g}</td>'
+        y0vp_xv_lr_txt = '<td class="y0vp_xv_lr {}">y&ordm;v+xv*LR={:.4g}</td>'
+        y0vm_xv_lr_txt = '<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={:.4g}</td>'
+        y0v_2_txt = '<td class="y0v_2 {}">(y&ordm;v)^2={:.4g}</td>'
         c0_a_txt = '<td class="c0_a {}">c&ordm;/a={:.0f}</td>'
-        y0v_2c0a_txt = '<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={:.0f}</td>'
+        y0v_2c0a_txt = '<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={:.4g}</td>'
         q_elements_txt = '<td class="qtd_elements">#E={}'
         q_prime_txt = '<td class="qtd_primes">#P={}'
         par_type_txt = '<td class="{pt}">{pt}</td>'
@@ -119,43 +117,61 @@ else:
         print(poly_txt.format(a, b, c))
         print(yv_txt.format(x_obj.yv_type(), yv))
         print(f_txt.format(header_ctype(f), f))
+
         print(x01_txt.format(data_ctype(int(x01)), x01))
         print(x02_txt.format(data_ctype(int(x02)), x02))
         print(x03_txt.format(data_ctype(int(x03)), x03))
+
         print(poly0_txt.format(a0, b0, c0))
         print(y0v_txt.format(header_ctype(yv0), yv0))
         print(f0_txt.format(header_ctype(f0), f0))
         print(delta_txt.format(header_ctype(delta), delta))
         print(c_g_txt.format(header_ctype(delta), c_g))
+
         print(xv_txt.format(header_ctype(xv), xv))
         print(lr_txt.format(header_ctype(lr), lr))
-        print(xvlr_txt.format(header_ctype(xvlr), xvlr))
+        print(xvlr_txt.format(header_ctype(xvlr, True), xvlr))
         print(y0vp_xv_lr_txt.format(header_ctype(y0vp_xv_lr), y0vp_xv_lr))
         print(y0vm_xv_lr_txt.format(header_ctype(y0vm_xv_lr), y0vm_xv_lr))
         print(y0v_2_txt.format(header_ctype(y0v_2), y0v_2))
         print(c0_a_txt.format(header_ctype(c0_a), c0_a))
-        print(y0v_2c0a_txt.format(header_ctype(y0v_2c0a), y0v_2c0a))
+        print(y0v_2c0a_txt.format(header_ctype(y0v_2c0a, True), y0v_2c0a))
         print(q_elements_txt.format(len_all))
         print(q_prime_txt.format(len_primes))
         print(par_type_txt.format(pt=par_type))
 
+        print('<td class="first composite">')
+        flag = len(first)
         for value, exponent in first.items():
-            print('<td class="first composite">{:}^{}</td>'.format(value, exponent), end='')
+            flag-=1
+            if flag > 0:
+                print('{:}^{}*'.format(value, exponent), end='')
+            else:
+                print('{:}^{}'.format(value, exponent), end='')
+        print('</td>')
 
         for result in sequence:
             if abs(result) is 1:
-                print('<td class="data one">{}</td>'.format(result))
+                print('<td class="data one">{:g}</td>'.format(result))
             elif result == 0:
-                print('<td class="data zero">{}</td>'.format(result))
+                print('<td class="data zero">{:0g}</td>'.format(result))
             elif isprime(result):
-                print('<td class="data prime">{}</td>'.format(result))
+                print('<td class="data prime">{:0g}</td>'.format(result))
             elif not (sqrt(abs(result)) * 10) % 2:
-                print('<td class="data sqrt_round">{}</td>'.format(result))
+                print('<td class="data sqrt_round">{:0g}</td>'.format(result))
             else:
-                print('<td class="data composite">{}</td>'.format(result))
+                print('<td class="data composite">{:2g}</td>'.format(result))
 
+        print('<td class="last composite">')
+        flag = len(last)
         for value, exponent in last.items():
-            print('<td class="last composite">{:}^{}</td>'.format(value, exponent), end='')
+            flag -= 1
+            if flag > 0:
+                print('{:}^{}*'.format(value, exponent), end='')
+            else:
+                print('{:}^{}'.format(value, exponent), end='')
+        print('</td>')
+
         print('</tr>')
 print('</table>')
 print('</body>')

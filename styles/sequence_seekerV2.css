@@ -1,6 +1,7 @@
 #loader{
 	visibility: hidden;
-	position: relative;
+  margin-top: 5px;
+	float: right;
 }
 
 form#sequence_seeker, form#blockbuster {
@@ -53,13 +54,26 @@ table#sequence_seeker tr:hover, td:hover {
 }
 
 .y0vm_xv_lr {
-	min-width: 65px
+	min-width: 75px
 }
+
 .xvlr{
+	min-width: 65px;
+}
+
+.y0v_2 {
 	min-width: 45px;
+}
+
+.y0vp_xv_lr {
+	min-width: 75px;
 }
 .data, .first, .last {
 	text-align: center;
+}
+
+.first, last {
+	min-width: 65px;
 }
 
 td.poly, td.poly0 {
@@ -68,7 +82,7 @@ td.poly, td.poly0 {
 }
 
 .y0v_2c0a {
-	min-width: 65px;
+	min-width: 75px;
 }
 
 .qtd_primes, .qtd_elements {
@@ -80,11 +94,19 @@ td.poly, td.poly0 {
 	color:red;
 }
 
+.negative_dark {
+	background-color: #e2b7b6;
+	color: red;
+}
+
 .positive {
   background-color:#DCE6F1;
 	color:blue;
 }
-
+.positive_dark {
+	background-color: #98b0d5;
+	color: blue;
+}
 .prime {
 	background-color:#538DD5;
 	color:white;

@@ -10,6 +10,7 @@ def roundz(f):
     else:
         return int(floor(f)) + 1
 
+
 def isprime(num):
     """Return true to 1 , -1 and any prime, even the negatives."""
     if abs(num) is 1: return 1
@@ -19,11 +20,13 @@ def isprime(num):
 def x_abc(a, b, c, y):
     return int((a * (y ** 2)) + (b * y) + c)
 
-def x(p1,p2,p3,y):
+
+def x(p1, p2, p3, y):
     a = (p1 - (2 * p2) + p3) / 2.
     b = (p3 - p1) / 2.
     c = p2
     return (a * (y ** 2)) + (b * y) + c
+
 
 def y_vertex(a, b):
     if a != 0:
@@ -31,11 +34,13 @@ def y_vertex(a, b):
     else:
         return 00
 
+
 def offset(a, b):
     if a != 0:
         return roundz(y_vertex(a, b))
     else:
         return 00
+
 
 def data_ctype(value):
     if abs(value) is 1:
@@ -64,23 +69,33 @@ def data_ctypey0(value):
         return 'y0_composite'
 
 
-def header_ctype(value):
-    if value < 0:
-        return 'negative'
-    elif value > 0:
-        return 'positive'
+def header_ctype(value, dark=False):
+    if not dark:
+        if value < 0:
+            return 'negative'
+        elif value > 0:
+            return 'positive'
+        else:
+            return 'zero'
     else:
-        return 'zero'
+        if value < 0:
+            return 'negative_dark'
+        elif value > 0:
+            return 'positive_dark'
+        else:
+            return 'zero'
+
 
 def rpup_positive(value, k):
     if not isprime(value):
         exit()
     yield value
-    i=1
-    while i < k:
+    i = 1
+    while i < k - 1:
         value = sp.nextprime(value)
         i += 1
         yield value
+
 
 def density(a, b, c, y_range):
     primes = int(0)
@@ -205,11 +220,14 @@ class X:
         self.p1 = p1
         self.p2 = p2
         self.p3 = p3
+
         self.a = (self.p1 - (2 * self.p2) + self.p3) / 2.
         self.b = (self.p3 - self.p1) / 2.
         self.c = self.p2
+
         self.y_vertex = y_vertex(self.a, self.b)
         self.offset = offset(self.a, self.b)
+
         self.delta = (self.b ** 2 - (4 * self.a * self.c))
         sqrtdelta = sqrt(abs(int(self.delta)))
         self.c_g = sqrtdelta - int(sqrtdelta)
@@ -223,28 +241,29 @@ class X:
 
         self.y0_vertex = y_vertex(self.a0, self.b0)
         self.offset0 = offset(self.a0, self.b0)
-        self.delta0 = (self.b0 ** 2 - (4 * self.a0 * self.c0))
-        sqrtdelta0 = sqrt(abs(int(self.delta0)))
-        self.c_g0 = sqrtdelta0 - int(sqrtdelta0)
+
         self.x01 = self.a0 - self.b0 + self.c0
         self.x02 = self.c0
         self.x03 = self.a0 + self.b0 + self.c0
-        self.par_type = self.par_type()
+
         self.x_y0 = x(p1, p2, p3, 0)
         self.y0v_2 = self.y0_vertex ** 2
+
         if self.a != 0:
-            self.xv = -self.delta/(4 * abs(self.a))
-            self.lr = 1 / abs(self.xv)
+            self.xv = (-1 * self.delta) / (4 * abs(self.a))
+            self.lr = 1 / abs(self.a)
             self.c0_a = self.c0 / abs(self.a)
-            self.y0v_2c0a = (self.y0v_2 - self.c0)/self.a
+            self.y0v_2c0a = (self.y0v_2 - self.c0) / self.a
         else:
             self.xv = 00
             self.lr = 00
             self.c0_a = 00
             self.y0v_2c0a = 00
+
         self.xvlr = -self.xv * self.lr
         self.y0vp_xv_lr = self.y0_vertex - self.xv + self.lr
         self.y0vm_xv_lr = self.y0_vertex + self.xv + self.lr
+        self.par_type = self.par_type()
 
     def __call__(self, y):
         """return the value of f(x) = ay^2 + by + c"""
@@ -298,12 +317,6 @@ class X:
 
     def f_type0(self):
         return header_ctype(self.offset0)
-
-    def d_type0(self):
-        return header_ctype(self.delta0)
-
-    def cg_type0(self):
-        return header_ctype(self.c_g0)
 
     def par_type(self):
         if self.y0_vertex == 0:
