@@ -38,9 +38,6 @@ table#sequence_seeker {
 	border-collapse: collapse;
 }
 
-.y_vertex, .delta, .offset, .c_g, .poly, .poly0, #a, #b, #c, #qtd_primes {
-}
-
 table#sequence_seeker td {
 	border: 1px solid black;
 }
@@ -50,21 +47,20 @@ table#sequence_seeker tr:hover, td:hover {
 	border: 2px solid yellow;
 }
 
-#qtd_primes, .poly, td.poly0 {
+.poly, td.poly0 {
 	background-color:gray;
 	color: white;
 }
 
-#qtd_primes {
-	background-color: greenyellow;
-	color: black;
-}
+td.poly0 {}
+
 .data, .first, .last {
 		text-align: center;
 }
 
 td.poly, td.poly0 {
-	min-width: 80px;
+	min-width: 100px;
+	border-right-width: 9px;
 }
 
 td.y_vertex {
@@ -79,26 +75,26 @@ td.delta {
 td.c_g {
 }
 
-#qtd_primes {
+.qtd_primes, .qtd_elements {
 	background-color: gold;
 }
 
-#negative, .SUB {
+.negative {
 	background-color:#F2DCDB;
 	color:red;
 }
 
-#positive {
-	background-color:#DCE6F1;
+.positive {
+  background-color:#DCE6F1;
 	color:blue;
 }
 
-#prime {
+.prime {
 	background-color:#538DD5;
 	color:white;
 }
 
-#one {
+.one {
 	background-color:#00B0F0;
 	color: white;
 }
@@ -113,19 +109,20 @@ td.c_g {
 
 .SUB {
 	background-color: greenyellow;
-	color: black;
+	color:red;
 }
-#sqrt_round {
+
+.sqrt_round {
 	background-color:#FFFF00;
 	color: black;
 }
 
-#composite, .poly0 {
+.composite {
 	background-color:#FCD5B4;
 	color: black;
 }
 
-#zero {
+.zero {
 	background-color:red;
 	color:white;
 	font-weight: bold;

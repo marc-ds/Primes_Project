@@ -20,4 +20,4 @@ class Paraboctys():
             p1 = self.p1 + (self.p1_step * i)
             p2 = self.p2 + self.p2_step * i
             p3 = self.p3 + (self.p3_step * i)
-            yield P1P2P3(p1, p2, p3, y)
+            yield X_Pn(p1, p2, p3, y)

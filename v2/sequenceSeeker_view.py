@@ -4,7 +4,7 @@ import cgitb
 from math import sqrt
 from sequenceSeeker_controller import *
 from sympy import factorint
-from main_controller import header_type
+from main_controller import header_ctype
 
 cgitb.enable()
 form = cgi.FieldStorage()
@@ -112,22 +112,22 @@ else:
         par_type_txt = '<td class="{pt}" >{pt}</td>'
 
         print('<tr class="sequence_seeker_header">')
-        print(p1_txt.format(data_type(int(x_obj.p1)), x_obj.p1))
-        print(p2_txt.format(data_type(int(x_obj.p2)), x_obj.p2))
-        print(p3_txt.format(data_type(int(x_obj.p3)), x_obj.p3))
+        print(p1_txt.format(data_ctype(int(x_obj.p1)), x_obj.p1))
+        print(p2_txt.format(data_ctype(int(x_obj.p2)), x_obj.p2))
+        print(p3_txt.format(data_ctype(int(x_obj.p3)), x_obj.p3))
         print(poly_txt.format(a,b,c))
         print(yv_txt.format(x_obj.yv_type(), yv))
-        print(off_txt.format(header_type(f), f))
-        print(delta_txt.format(header_type(delta), delta))
-        print(c_g_txt.format(header_type(delta), c_g))
+        print(off_txt.format(header_ctype(f), f))
+        print(delta_txt.format(header_ctype(delta), delta))
+        print(c_g_txt.format(header_ctype(delta), c_g))
         print(poly_txt0.format(a0, b0, c0))
-        print(yv_txt0.format(header_type(yv0), yv0))
-        print(off_txt0.format(header_type(f0), f0))
-        print(delta_txt0.format(header_type(delta0), delta0))
-        print(c_g_txt0.format(header_type(delta0), c_g0))
-        print(x01_txt.format(data_type(int(x01)), x01))
-        print(x02_txt.format(data_type(int(x02)),x02))
-        print(x03_txt.format(data_type(int(x03)),x03))
+        print(yv_txt0.format(header_ctype(yv0), yv0))
+        print(off_txt0.format(header_ctype(f0), f0))
+        print(delta_txt0.format(header_ctype(delta0), delta0))
+        print(c_g_txt0.format(header_ctype(delta0), c_g0))
+        print(x01_txt.format(data_ctype(int(x01)), x01))
+        print(x02_txt.format(data_ctype(int(x02)), x02))
+        print(x03_txt.format(data_ctype(int(x03)), x03))
         print(par_type_txt.format(pt=par_type))
         print(len_txt.format(length))
 

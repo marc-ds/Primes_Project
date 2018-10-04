@@ -4,12 +4,26 @@ import sympy as sp
 
 
 def roundz(f):
-    """round any number .5 to the next bigger int used in offset methods"""
+    """Round any number .5 to the next bigger int used in offset methods"""
     if (f - floor(f)) <= 0.5:
         return int(floor(f))
     else:
         return int(floor(f)) + 1
 
+def isprime(num):
+    """Return true to 1 , -1 and any prime, even the negatives."""
+    if abs(num) is 1: return 1
+    return is_prime(abs(int(num)))
+
+
+def x_abc(a, b, c, y):
+    return int((a * (y ** 2)) + (b * y) + c)
+
+def x(p1,p2,p3,y):
+    a = (p1 - (2 * p2) + p3) / 2.
+    b = (p3 - p1) / 2.
+    c = p2
+    return (a * (y ** 2)) + (b * y) + c
 
 def y_vertex(a, b):
     if a != 0:
@@ -17,24 +31,13 @@ def y_vertex(a, b):
     else:
         return 00
 
-
 def offset(a, b):
     if a != 0:
         return roundz(y_vertex(a, b))
     else:
         return 00
 
-
-def isprime(num):
-    if abs(num) is 1: return 1
-    return is_prime(abs(int(num)))
-
-
-def p1p2p3(a, b, c, y):
-    return int((a * (y ** 2)) + (b * y) + c)
-
-
-def data_type(value):
+def data_ctype(value):
     if abs(value) is 1:
         return 'one'
     elif value is 0:
@@ -47,7 +50,7 @@ def data_type(value):
         return 'composite'
 
 
-def data_typey0(value):
+def data_ctypey0(value):
     """Used to show the right colors ate y=-1, y=0 and y=1"""
     if abs(value) is 1:
         return 'y0_one'
@@ -61,7 +64,7 @@ def data_typey0(value):
         return 'y0_composite'
 
 
-def header_type(value):
+def header_ctype(value):
     if value < 0:
         return 'negative'
     elif value > 0:
@@ -69,15 +72,24 @@ def header_type(value):
     else:
         return 'zero'
 
+def rpup_positive(value, k):
+    if not isprime(value):
+        exit()
+    yield value
+    i=1
+    while i < k:
+        value = sp.nextprime(value)
+        i += 1
+        yield value
 
 def density(a, b, c, y_range):
     primes = int(0)
     for y in y_range:
-        if isprime(p1p2p3(a, b, c, y)): primes += 1
+        if isprime(x_abc(a, b, c, y)): primes += 1
     return primes
 
 
-class P1P2P3:
+class X_Pn:
     """by P1, P2 and P3 set the values of a, b, c, delta, C.G.,
     y_vertex and offset, when called return f(x) = ay^2 + by + c"""
 
@@ -112,8 +124,8 @@ class P1P2P3:
         self.x02 = self.c0
         self.x03 = self.a0 + self.b0 + self.c0
         self.par_type = self.par_type()
-        self._result = p1p2p3(self.a, self.b, self.c, self.y)
-        self._result0 = p1p2p3(self.a0, self.b0, self.c0, self.y)
+        self._result = x_abc(self.a, self.b, self.c, self.y)
+        self._result0 = x_abc(self.a0, self.b0, self.c0, self.y)
 
     def __call__(self):
         """return the value of f(x) = ay^2 + by + c"""
@@ -138,41 +150,40 @@ class P1P2P3:
     def type(self, y0=False):
         """return if the number are abs(one), composite, prime or a perfect sqrt"""
         if y0:
-            return data_typey0(self._result)
+            return data_ctypey0(self._result)
         else:
-            return data_type(self._result)
+            return data_ctype(self._result)
 
     def type0(self, y0=False):
-        """return if the number when f0 are
-        abs(one), composite, prime or a perfect sqrt"""
+        """return if the number when f0 are abs(one), composite, prime or a perfect sqrt"""
         if y0:
-            return data_typey0(self._result0)
+            return data_ctypey0(self._result0)
         else:
-            return data_type(self._result0)
+            return data_ctype(self._result0)
 
     def yv_type(self):
-        return header_type(self.y_vertex)
+        return header_ctype(self.y_vertex)
 
     def f_type(self):
-        return header_type(self.offset)
+        return header_ctype(self.offset)
 
     def d_type(self):
-        return header_type(self.delta)
+        return header_ctype(self.delta)
 
     def cg_type(self):
-        return header_type(self.c_g)
+        return header_ctype(self.c_g)
 
     def yv_type0(self):
-        return header_type(self.y_vertex0)
+        return header_ctype(self.y_vertex0)
 
     def f_type0(self):
-        return header_type(self.offset0)
+        return header_ctype(self.offset0)
 
     def d_type0(self):
-        return header_type(self.delta0)
+        return header_ctype(self.delta0)
 
     def cg_type0(self):
-        return header_type(self.c_g0)
+        return header_ctype(self.c_g0)
 
     def par_type(self):
         if self.y_vertex0 == 0:
@@ -219,16 +230,17 @@ class X:
         self.x02 = self.c0
         self.x03 = self.a0 + self.b0 + self.c0
         self.par_type = self.par_type()
+        self.x_y0 = x(p1, p2, p3, 0)
         #self.xv = -self.delta/(4 * abs(self.a))
         #self.lr = 1/abs(self.xv)
 
     def __call__(self, y):
         """return the value of f(x) = ay^2 + by + c"""
-        return p1p2p3(self.a, self.b, self.c, y)
+        return x_abc(self.a, self.b, self.c, y)
 
     def when_f0(self, y):
         """return the value of f(x) = ay^2 + by + c when offset is 0"""
-        return p1p2p3(self.a0, self.b0, self.c0, y)
+        return x_abc(self.a0, self.b0, self.c0, y)
 
     def density_pos(self, yn):
         return density(self.a, self.b, self.c, range(1, yn + 1))
@@ -245,41 +257,41 @@ class X:
     def type(self, y0=False):
         """return if the number are abs(one), composite, prime or a perfect sqrt"""
         if y0:
-            return data_typey0(self._result)
+            return data_ctypey0(self.x_y0)
         else:
-            return data_type(self._result)
+            return data_ctype(self.x_y0)
 
     def type0(self, y0=False):
         """return if the number when f0 are
         abs(one), composite, prime or a perfect sqrt"""
         if y0:
-            return data_typey0(self._result0)
+            return data_ctypey0(self.x_y0)
         else:
-            return data_type(self._result0)
+            return data_ctype(self.x_y0)
 
     def yv_type(self):
-        return header_type(self.y_vertex)
+        return header_ctype(self.y_vertex)
 
     def f_type(self):
-        return header_type(self.offset)
+        return header_ctype(self.offset)
 
     def d_type(self):
-        return header_type(self.delta)
+        return header_ctype(self.delta)
 
     def cg_type(self):
-        return header_type(self.c_g)
+        return header_ctype(self.c_g)
 
     def yv_type0(self):
-        return header_type(self.y_vertex0)
+        return header_ctype(self.y_vertex0)
 
     def f_type0(self):
-        return header_type(self.offset0)
+        return header_ctype(self.offset0)
 
     def d_type0(self):
-        return header_type(self.delta0)
+        return header_ctype(self.delta0)
 
     def cg_type0(self):
-        return header_type(self.c_g0)
+        return header_ctype(self.c_g0)
 
     def par_type(self):
         if self.y_vertex0 == 0:
@@ -292,18 +304,7 @@ class X:
             return 'none'
 
 
-def rpup_positive(value, k):
-    if not isprime(value):
-        exit()
-    yield value
-    i=1
-    while i < k:
-        value = sp.nextprime(value)
-        i += 1
-        yield value
-
-
-def range_primes_below(value=-10, k=10):
+"""def range_primes_below(value=-10, k=10):
     current = value
     end = value + k -1
 
@@ -327,4 +328,4 @@ def range_primes(value, k):
     above_list = list(range_primes_above(value, k))
     below_list.pop(0)
     below_list.reverse()
-    return below_list + above_list
+    return below_list + above_list"""

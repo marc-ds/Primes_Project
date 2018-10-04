@@ -67,7 +67,7 @@ class SequenceSeekerV2:
                 a = (p1 - (2 * p2) + p3) / 2.
                 b = (p3 - p1) / 2.
                 c = p2
-                possible_prime = p1p2p3(a, b, c, 0)
+                possible_prime = x_abc(a, b, c, 0)
                 if isprime(possible_prime):
                     primes_seq.append(possible_prime)
                 else:
@@ -76,23 +76,23 @@ class SequenceSeekerV2:
                 yn = -1
                 y_step = 1
 
-                possible_prime = p1p2p3(a, b, c, yp)
+                possible_prime = x_abc(a, b, c, yp)
                 while isprime(possible_prime):
                     primes_seq.append(possible_prime)
                     yp += y_step
-                    possible_prime = p1p2p3(a, b, c, yp)
+                    possible_prime = x_abc(a, b, c, yp)
 
                 primes_seq.append(possible_prime)  # Append the first composite after the prime sequence.
                 primes_seq.reverse()  # Make the composite first element and sort the list in Pn sequence.
 
-                possible_prime = p1p2p3(a, b, c, yn)
+                possible_prime = x_abc(a, b, c, yn)
                 while isprime(possible_prime):
                     primes_seq.append(possible_prime)
                     yn -= y_step
-                    possible_prime = p1p2p3(a, b, c, yn)
+                    possible_prime = x_abc(a, b, c, yn)
 
                 primes_seq.append(possible_prime)
-                primes_seq.append(P1P2P3(p1, p2, p3, 0))  # Append the X object to return the sequence info.
+                primes_seq.append(X_Pn(p1, p2, p3, 0))  # Append the X object to return the sequence info.
 
                 if len(primes_seq) - 3 >= min_size:
                     big_seq.append(primes_seq)
@@ -130,7 +130,7 @@ class SequenceSeeker:
                     a = (p1 - (2 * p2) + p3) / 2.
                     b = (p3 - p1) / 2.
                     c = p2
-                    possible_prime = p1p2p3(a, b, c, 0)
+                    possible_prime = x_abc(a, b, c, 0)
                     if isprime(possible_prime):
                         primes_seq.append(possible_prime)
                     else:
@@ -139,35 +139,29 @@ class SequenceSeeker:
                     yn = -1
                     y_step = 1
 
-                    possible_prime = p1p2p3(a, b, c, yp)
+                    possible_prime = x_abc(a, b, c, yp)
                     while isprime(possible_prime):
                         primes_seq.append(possible_prime)
                         yp += y_step
-                        possible_prime = p1p2p3(a, b, c, yp)
+                        possible_prime = x_abc(a, b, c, yp)
 
                     primes_seq.append(possible_prime)  # Append the first composite after the prime sequence.
                     primes_seq.reverse()  # Make the composite first element and sort the list in Pn sequence.
 
-                    possible_prime = p1p2p3(a, b, c, yn)
+                    possible_prime = x_abc(a, b, c, yn)
                     while isprime(possible_prime):
                         primes_seq.append(possible_prime)
                         yn -= y_step
-                        possible_prime = p1p2p3(a, b, c, yn)
+                        possible_prime = x_abc(a, b, c, yn)
 
                     primes_seq.append(possible_prime)
-                    primes_seq.append(P1P2P3(p1, p2, p3, 0))  # Append the X object to return the sequence info.
+                    primes_seq.append(X_Pn(p1, p2, p3, 0))  # Append the X object to return the sequence info.
 
                     if len(primes_seq) - 3 >= min_size:
                         big_seq.append(primes_seq)
 
         return big_seq
 
-
-def x(p1,p2,p3,y):
-    a = (p1 - (2 * p2) + p3) / 2.
-    b = (p3 - p1) / 2.
-    c = p2
-    return (a * (y ** 2)) + (b * y) + c
 
 class SequenceSeekerV3:
 
@@ -227,3 +221,4 @@ class SequenceSeekerV3:
                     big_seq.append(primes_seq)       # composites and the object x with minimum sequence size.
 
         return big_seq
+
