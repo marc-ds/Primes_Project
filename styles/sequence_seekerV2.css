@@ -83,6 +83,14 @@ table#sequence_seeker tr:hover, td:hover {
 	min-width: 65px;
 }
 
+.first {
+	text-align: right;
+}
+
+.last {
+	text-align: left;
+}
+
 td.poly, td.poly0 {
 	min-width: 100px;
 	border-right-width: 9px;
