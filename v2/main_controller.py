@@ -56,7 +56,7 @@ def data_ctype(value):
 
 
 def data_ctypey0(value):
-    """Used to show the right colors ate y=-1, y=0 and y=1"""
+    """Used to show the right colors at y=-1, y=0 and y=1"""
     if abs(value) is 1:
         return 'y0_one'
     elif value is 0:

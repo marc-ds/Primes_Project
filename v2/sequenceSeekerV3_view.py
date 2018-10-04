@@ -21,13 +21,14 @@ if "p1" not in form:
     print('<body>')
     print('<form action="javascript:sendformv3()" method="post" id="sequence_seeker" name="collect_data_form" >')
     print('<div id="p_value">P1=&nbsp;<input type="text" name="p1" value="" />')
-    print('&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="" />)')
-    print('&nbsp;P2<=P3<=P2&nbsp;(<input type="text" name="kp3" value="" />)')
-    print('&nbsp;#P>=&nbsp;<input type="text" name="min_size" value="" id="min_value"/>')
+    print('&nbsp;&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="" />)')
+    print('&nbsp;&nbsp;P2<=P3<=P2&nbsp;(<input type="text" name="kp3" value="" />)')
+    print('&nbsp;&nbsp;#P>=&nbsp;<input type="text" name="min_size" value="" id="min_value"/>')
     print('<span id="loader">Loading...</span>')
     print('<input type="submit" value="Generate" id="submit"/></form></div>')
 
     print('<table id="sequence_seeker" class="table_sequence_seeker" >')
+
 else:
 
     p1 = float(form["p1"].value)
@@ -59,12 +60,15 @@ else:
 
         yv = x_obj.y_vertex
         f = x_obj.offset
+
         a = x_obj.a
         b = x_obj.b
         c = x_obj.c
+
         delta = x_obj.delta
         c_g = x_obj.c_g
         yv0 = x_obj.y0_vertex
+
         f0 = x_obj.offset0
         a0 = x_obj.a0
         b0 = x_obj.b0

@@ -188,6 +188,7 @@ class SequenceSeekerV3:
                 p1 = self.p1
                 p2 = p2_i
                 p3 = p3_i
+
                 if p1 == p2 and p2 == p3:  # Prevent infinite loop checking if p1, p2 and p3 are the same.
                     continue
                 possible_prime = x(p1, p2, p3, 0)
