@@ -52,10 +52,12 @@ table#sequence_seeker tr:hover, td:hover {
 	color: white;
 }
 
-td.poly0 {}
+.y0vm_xv_lr {
+	min-width: 65px
+}
 
 .data, .first, .last {
-		text-align: center;
+	text-align: center;
 }
 
 td.poly, td.poly0 {
@@ -63,16 +65,8 @@ td.poly, td.poly0 {
 	border-right-width: 9px;
 }
 
-td.y_vertex {
-}
-
-td.offset {
-}
-
-td.delta {
-}
-
-td.c_g {
+.y0v_2c0a {
+	min-width: 65px;
 }
 
 .qtd_primes, .qtd_elements {

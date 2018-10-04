@@ -65,16 +65,22 @@ else:
         c = x_obj.c
         delta = x_obj.delta
         c_g = x_obj.c_g
-        yv0 = x_obj.y_vertex0
+        yv0 = x_obj.y0_vertex
         f0 = x_obj.offset0
         a0 = x_obj.a0
         b0 = x_obj.b0
         c0 = x_obj.c0
-        delta0 = x_obj.delta0
-        c_g0 = x_obj.c_g0
         x01 = x_obj.x01
         x02 = x_obj.x02
         x03 = x_obj.x03
+        y0v_2 = x_obj.y0v_2
+        xv = x_obj.xv
+        lr = x_obj.lr
+        c0_a = x_obj.c0_a
+        y0v_2c0a = x_obj.y0v_2c0a
+        xvlr = x_obj.xvlr
+        y0vp_xv_lr = x_obj.y0vp_xv_lr
+        y0vm_xv_lr = x_obj.y0vm_xv_lr
         par_type = x_obj.par_type
         len_all = len(big_seq[i])
         len_primes = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
@@ -84,18 +90,23 @@ else:
         p3_txt = '<td class="{}">P3={:g}</td>'
         poly_txt = '<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'
         yv_txt = '<td class="{} y_vertex">yv={:1.4g}</td>'
-        off_txt = '<td class="{} offset">f={:1.4g}</th>'
-        delta_txt = '<td class="delta {}">&Delta;={:.0f}</th>'
-        c_g_txt = '<td class="c_g {}" >CG={:.4g}</th>'
-
-        poly_txt0 = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'
-        yv_txt0 = '<td class="y_vertex {}">y&ordm;v={:1.4g}</td>'
-        off_txt0 = '<td class="offset {}">f&ordm;={}</th>'
-        delta_txt0 = '<td class="delta {}">&Delta;&ordm;={:.0f}</th>'
-        c_g_txt0 = '<td class="c_g {}">CG&ordm;={:.4g}</th>'
+        f_txt = '<td class="{} offset">f={:1.4g}</td>'
+        poly0_txt = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'
+        y0v_txt = '<td class="y_vertex {}">y&ordm;v={:1.4g}</td>'
+        f0_txt = '<td class="offset {}">f&ordm;={}</td>'
+        delta_txt = '<td class="delta {}">&Delta;={:.0f}</td>'
+        c_g_txt = '<td class="c_g {}" >CG={:.4g}</td>'
         x01_txt = '<td class="{}">x&ordm;1={:g}</td>'
         x02_txt = '<td class="{}">x&ordm;2={:g}</td>'
         x03_txt = '<td class="{}">x&ordm;3={:g}</td>'
+        xv_txt = '<td class="xv {}">xv={:.0f}</td>'
+        lr_txt = '<td class="lr {}">LR={:.0f}</td>'
+        xvlr_txt = '<td class="xvlr {}">-xv*LR={:.0f}</td>'
+        y0vp_xv_lr_txt = '<td class="y0vp_xv_lr_txt {}">y&ordm;v+xv*LR={:.0f}</td>'
+        y0vm_xv_lr_txt = '<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={:.0f}</td>'
+        y0v_2_txt = '<td class="y0v_2 {}">(y&ordm;v)^2={:.0f}</td>'
+        c0_a_txt = '<td class="c0_a {}">c&ordm;/a={:.0f}</td>'
+        y0v_2c0a_txt = '<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={:.0f}</td>'
         q_elements_txt = '<td class="qtd_elements">#E={}'
         q_prime_txt = '<td class="qtd_primes">#P={}'
         par_type_txt = '<td class="{pt}">{pt}</td>'
@@ -107,15 +118,23 @@ else:
         print(p3_txt.format(data_ctype(int(x_obj.p3)), x_obj.p3))
         print(poly_txt.format(a, b, c))
         print(yv_txt.format(x_obj.yv_type(), yv))
-        print(off_txt.format(header_ctype(f), f))
+        print(f_txt.format(header_ctype(f), f))
         print(x01_txt.format(data_ctype(int(x01)), x01))
         print(x02_txt.format(data_ctype(int(x02)), x02))
         print(x03_txt.format(data_ctype(int(x03)), x03))
-        print(poly_txt0.format(a0, b0, c0))
-        print(yv_txt0.format(header_ctype(yv0), yv0))
-        print(off_txt0.format(header_ctype(f0), f0))
-        print(delta_txt0.format(header_ctype(delta0), delta0))
-        print(c_g_txt0.format(header_ctype(delta0), c_g0))
+        print(poly0_txt.format(a0, b0, c0))
+        print(y0v_txt.format(header_ctype(yv0), yv0))
+        print(f0_txt.format(header_ctype(f0), f0))
+        print(delta_txt.format(header_ctype(delta), delta))
+        print(c_g_txt.format(header_ctype(delta), c_g))
+        print(xv_txt.format(header_ctype(xv), xv))
+        print(lr_txt.format(header_ctype(lr), lr))
+        print(xvlr_txt.format(header_ctype(xvlr), xvlr))
+        print(y0vp_xv_lr_txt.format(header_ctype(y0vp_xv_lr), y0vp_xv_lr))
+        print(y0vm_xv_lr_txt.format(header_ctype(y0vm_xv_lr), y0vm_xv_lr))
+        print(y0v_2_txt.format(header_ctype(y0v_2), y0v_2))
+        print(c0_a_txt.format(header_ctype(c0_a), c0_a))
+        print(y0v_2c0a_txt.format(header_ctype(y0v_2c0a), y0v_2c0a))
         print(q_elements_txt.format(len_all))
         print(q_prime_txt.format(len_primes))
         print(par_type_txt.format(pt=par_type))

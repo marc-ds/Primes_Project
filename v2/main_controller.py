@@ -221,7 +221,7 @@ class X:
         elif self.a > 0:
             self.c0 = (self.c + self.a * (self.offset ** 2) + (self.b * self.offset))
 
-        self.y_vertex0 = y_vertex(self.a0, self.b0)
+        self.y0_vertex = y_vertex(self.a0, self.b0)
         self.offset0 = offset(self.a0, self.b0)
         self.delta0 = (self.b0 ** 2 - (4 * self.a0 * self.c0))
         sqrtdelta0 = sqrt(abs(int(self.delta0)))
@@ -231,8 +231,20 @@ class X:
         self.x03 = self.a0 + self.b0 + self.c0
         self.par_type = self.par_type()
         self.x_y0 = x(p1, p2, p3, 0)
-        #self.xv = -self.delta/(4 * abs(self.a))
-        #self.lr = 1/abs(self.xv)
+        self.y0v_2 = self.y0_vertex ** 2
+        if self.a != 0:
+            self.xv = -self.delta/(4 * abs(self.a))
+            self.lr = 1 / abs(self.xv)
+            self.c0_a = self.c0 / abs(self.a)
+            self.y0v_2c0a = (self.y0v_2 - self.c0)/self.a
+        else:
+            self.xv = 00
+            self.lr = 00
+            self.c0_a = 00
+            self.y0v_2c0a = 00
+        self.xvlr = -self.xv * self.lr
+        self.y0vp_xv_lr = self.y0_vertex - self.xv + self.lr
+        self.y0vm_xv_lr = self.y0_vertex + self.xv + self.lr
 
     def __call__(self, y):
         """return the value of f(x) = ay^2 + by + c"""
@@ -282,7 +294,7 @@ class X:
         return header_ctype(self.c_g)
 
     def yv_type0(self):
-        return header_ctype(self.y_vertex0)
+        return header_ctype(self.y0_vertex)
 
     def f_type0(self):
         return header_ctype(self.offset0)
@@ -294,11 +306,11 @@ class X:
         return header_ctype(self.c_g0)
 
     def par_type(self):
-        if self.y_vertex0 == 0:
+        if self.y0_vertex == 0:
             return 'SUB'
-        elif self.y_vertex0 < 0.5 > 0:
+        elif self.y0_vertex < 0.5 > 0:
             return 'ACC'
-        elif self.y_vertex0 == 0.5:
+        elif self.y0_vertex == 0.5:
             return 'DES'
         else:
             return 'none'
