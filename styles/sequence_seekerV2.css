@@ -55,7 +55,9 @@ table#sequence_seeker tr:hover, td:hover {
 .y0vm_xv_lr {
 	min-width: 65px
 }
-
+.xvlr{
+	min-width: 45px;
+}
 .data, .first, .last {
 	text-align: center;
 }
