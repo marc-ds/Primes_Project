@@ -1,0 +1,162 @@
+#loader{
+	visibility: hidden;
+  margin-top: 5px;
+	float: right;
+}
+
+form#sequence_seeker, form#blockbuster {
+	float:left;
+	margin-right: 5px;
+	font-size: 8pt;
+}
+form#sequence_seeker input, form#blockbuster input {
+	width: 70px;
+	font-size: 0.9em;
+}
+
+form#sequence_seeker input#min_value {
+	width: 48px;
+}
+
+form#sequence_seeker input#submit, form#blockbuster input#submit {
+	float: right;
+}
+
+h1#sequence_seeker {
+	font-size: 1em;
+	font-family: "Avenir Black","Courrier new", monospace;
+}
+
+p#fill_fields {
+	text-align: center;
+}
+
+table#sequence_seeker {
+	font-size: 0.9em;
+	float: left;
+	position: absolute;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	border-collapse: collapse;
+}
+
+table#sequence_seeker td {
+	border: 1px solid black;
+}
+
+table#sequence_seeker tr:hover, td:hover {
+	border: none;
+	border: 2px solid yellow;
+}
+
+.generation_line {
+	background-color: powderblue
+}
+
+.print_line {
+	background-color: orange
+}
+.poly, td.poly0 {
+	background-color:gray;
+	color: white;
+}
+
+.y0vm_xv_lr {
+	min-width: 75px
+}
+
+.xvlr{
+	min-width: 65px;
+}
+
+.y0v_2 {
+	min-width: 45px;
+}
+
+.y0vp_xv_lr {
+	min-width: 75px;
+}
+.data, .first, .last {
+	text-align: center;
+}
+
+.first, last {
+	min-width: 65px;
+}
+
+.first {
+	text-align: right;
+}
+
+.last {
+	text-align: left;
+}
+
+td.poly, td.poly0 {
+	min-width: 100px;
+	border-right-width: 9px;
+}
+
+.y0v_2c0a {
+	min-width: 75px;
+}
+
+.qtd_primes, .qtd_elements {
+	background-color: gold;
+}
+
+.negative {
+	background-color:#F2DCDB;
+	color:red;
+}
+
+.negative_dark {
+	background-color: #e2b7b6;
+	color: red;
+}
+
+.positive {
+  background-color:#DCE6F1;
+	color:blue;
+}
+.positive_dark {
+	background-color: #98b0d5;
+	color: blue;
+}
+.prime {
+	background-color:#538DD5;
+	color:white;
+}
+
+.one {
+	background-color:#00B0F0;
+	color: white;
+}
+
+.DES {
+	background-color: yellowgreen;
+}
+
+.ACC {
+	background-color: green;
+}
+
+.SUB {
+	background-color: greenyellow;
+	color:red;
+}
+
+.sqrt_round {
+	background-color:#FFFF00;
+	color: black;
+}
+
+.composite {
+	background-color:#FCD5B4;
+	color: black;
+}
+
+.zero {
+	background-color:red;
+	color:white;
+	font-weight: bold;
+}
