@@ -1,59 +1,55 @@
 #loader{
 	visibility: hidden;
-  margin-top: 5px;
-	float: right;
 }
 
-form#sequence_seeker, form#blockbuster {
-	float:left;
-	margin-right: 5px;
+div#p_value {
+}
+
+form#sequence_seeker_form, form#blockbuster {
 	font-size: 8pt;
 }
-form#sequence_seeker input, form#blockbuster input {
+form#sequence_seeker_form input, form#blockbuster input {
 	width: 70px;
 	font-size: 0.9em;
 }
 
-form#sequence_seeker input#min_value {
+form#sequence_seeker_form input#min_value {
 	width: 48px;
 }
 
 form#sequence_seeker input#submit, form#blockbuster input#submit {
-	float: right;
 }
 
-h1#sequence_seeker {
-	font-size: 1em;
-	font-family: "Avenir Black","Courrier new", monospace;
-}
-
-p#fill_fields {
-	text-align: center;
-}
-
-table#sequence_seeker {
+table#sequence_seeker_table {
 	font-size: 0.9em;
 	float: left;
-	position: absolute;
+	margin-top: 10px;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 	border-collapse: collapse;
 }
 
-table#sequence_seeker td {
+table#sequence_seeker_table th {
 	border: 1px solid black;
 }
 
-table#sequence_seeker tr:hover, td:hover {
+tr#header_index th {
+	cursor: pointer;
+}
+table#sequence_seeker_table td {
+	border: 1px solid black;
+}
+
+table#sequence_seeker_table tr:hover, td:hover {
 	border: none;
 	border: 2px solid yellow;
 }
 
 .generation_line {
-	background-color: powderblue
+	background-color: palegreen;
 }
 
 .print_line {
-	background-color: orange
+	background-color: whitesmoke;
 }
 .poly, td.poly0 {
 	background-color:gray;
@@ -61,7 +57,11 @@ table#sequence_seeker tr:hover, td:hover {
 }
 
 .y0vm_xv_lr {
-	min-width: 75px
+	min-width: 85px;
+}
+
+.y0vp_xv_lr {
+	min-width: 80px;
 }
 
 .xvlr{
@@ -69,12 +69,13 @@ table#sequence_seeker tr:hover, td:hover {
 }
 
 .y0v_2 {
-	min-width: 45px;
+	min-width: 60px;
 }
 
-.y0vp_xv_lr {
-	min-width: 75px;
+.y0v_2c0a {
+    min-width: 100px;
 }
+
 .data, .first, .last {
 	text-align: center;
 }
@@ -96,9 +97,6 @@ td.poly, td.poly0 {
 	border-right-width: 9px;
 }
 
-.y0v_2c0a {
-	min-width: 75px;
-}
 
 .qtd_primes, .qtd_elements {
 	background-color: gold;
@@ -159,4 +157,24 @@ td.poly, td.poly0 {
 	background-color:red;
 	color:white;
 	font-weight: bold;
+}
+#loader {
+	  display: inline-block;
+	  position: absolute;
+	  top: 30%;
+	  left: 40%;
+	  z-index: 1;
+    border-top: 20px solid #538DD5;
+    border-right: 20px solid #FCD5B4;
+    border-bottom: 20px solid #538DD5;
+    border-left: 20px solid #FCD5B4;
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
