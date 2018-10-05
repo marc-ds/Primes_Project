@@ -24,12 +24,16 @@ function sendformv3() {
     xhr.open("POST", "/v2/sequenceSeekerV3_view.py");
     xhr.timeout = 4294967295;
 
-    function set_loader() {document.getElementById("loader").style.visibility='visible';}
+    function set_loader() {
+        document.getElementById("loader").style.visibility='visible';
+        document.getElementById("sequence_seeker_table").style.visibility='hidden';
+}
 
     xhr.onload = function () {
 
         document.getElementById("loader").style.visibility='hidden';
-        document.getElementById("sequence_seeker").innerHTML = xhr.responseText;
+        document.getElementById("sequence_seeker_table").style.visibility='visible';
+        document.getElementById("sequence_seeker_form").innerHTML = xhr.responseText;
     };
 
     xhr.send(new FormData(formElement));

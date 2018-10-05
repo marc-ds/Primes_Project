@@ -10,16 +10,15 @@ cgitb.enable()
 print('Content-type: text/html\r\n\r')
 print('<html>')
 print('<head>')
+print('<link rel="import" href="/p1p2pn_form.html">')
 print('<link rel="stylesheet" type="text/css" href="/styles/style.css">')
 print('<title>Sequences table</title>')
 print('</head>')
 print('<body>')
-
 form = cgi.FieldStorage()
 
 if "p1" not in form or "p2" not in form:
-    print("<h1>Error!<h1>")
-    print("<p>Please, fill the mandatory fields</p>")
+    print("<p>Please, fill the fields</p>")
 else:
     #Defining P1, P2, Pn, y and k from user input.
     p1 = float(form["p1"].value)
@@ -33,8 +32,8 @@ else:
     pn_final = pna0+((pn+1)*k)
     pn_range = range(pn_initial, pn_final, k) #Pn range defnition
 
-    print('<h1 id="sequences_header">{0:g},{1:g},Pn TABLE. Black-Hole-Parabola at Pn={2}.</h1>'.format(p1,p2,pna0))
-    print('<button onclick="window.history.back()">Go Back</button><br /><br />')
+    #print('<h1 id="sequences_header">{0:g},{1:g},Pn TABLE. Black-Hole-Parabola at Pn={2}.</h1>'.format(p1,p2,pna0))
+    #print('<button onclick="window.history.back()">Go Back</button><br /><br />')
     print('<table id="sequences_table">') #Starting the table headers
     print('<tr class="sequences_table" id="y_vertex"><th class="sequences_table" id="y_vertex">y_vertex</th>') #y_vertex
     for px in pn_range: 
@@ -166,6 +165,6 @@ else:
     del den_sum
     del den_y0
 
-    print('<br /><button onclick="window.history.back()">Go Back</button><br />')
+    #print('<br /><button onclick="window.history.back()">Go Back</button><br />')
 print('</body>')
 print('</html>')

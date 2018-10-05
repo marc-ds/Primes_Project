@@ -63,7 +63,8 @@ class SequenceSeekerV2:
             for k3 in self.kp3_range:
                 primes_seq = list()
                 p1, p2, p3 = (self.p1, k2, k3)
-                if p1 == p2 and p2 == p3: continue;  # Prevent infinite loop checking if p1, p2 and p3 are the same.
+                if p1 == p2 and p2 == p3:
+                    continue  # Prevent infinite loop checking if p1, p2 and p3 are the same.
                 a = (p1 - (2 * p2) + p3) / 2.
                 b = (p3 - p1) / 2.
                 c = p2
@@ -92,7 +93,7 @@ class SequenceSeekerV2:
                     possible_prime = x_abc(a, b, c, yn)
 
                 primes_seq.append(possible_prime)
-                primes_seq.append(X_Pn(p1, p2, p3, 0))  # Append the X object to return the sequence info.
+                primes_seq.append(XPn(p1, p2, p3, 0))  # Append the X object to return the sequence info.
 
                 if len(primes_seq) - 3 >= min_size:
                     big_seq.append(primes_seq)
@@ -155,7 +156,7 @@ class SequenceSeeker:
                         possible_prime = x_abc(a, b, c, yn)
 
                     primes_seq.append(possible_prime)
-                    primes_seq.append(X_Pn(p1, p2, p3, 0))  # Append the X object to return the sequence info.
+                    primes_seq.append(XPn(p1, p2, p3, 0))  # Append the X object to return the sequence info.
 
                     if len(primes_seq) - 3 >= min_size:
                         big_seq.append(primes_seq)
@@ -169,18 +170,18 @@ class SequenceSeekerV3:
         """The user set P1 and columns range (k) for P2 (p2_k) and P3 (p3_k)
         The initial value for P2 and P3 are P1"""
         self.p1 = p1
-        self.p2_range = list(rpup_positive(abs(p1), p2_k+1))  # P2 range: P1 <= P2 <= P2 + p2_k (P2 columns range)
+        self.p2_range = list(rpup_positive(abs(p1), p2_k))  # P2 range: P1 <= P2 <= P2 + p2_k (P2 columns range)
         self.p3_k = p3_k
 
     def __call__(self, min_size):
         """ Return an list with all sequences, each one with an x object,
         first positive and first negative composites and the 1st prime sequence in range
         P1 >= P2+p2_k >= P3+p3_k, where p2_k and p3_k are the P2 and p3 columns range"""
-        big_seq = list()  # This list will archive all valid 1st sequences
-        flag = 0
+        big_seq = list()  # This list will archive all valid 1st sequences.
+        flag = 0  # Flag to count how much interactions the program do to find that sequence.
 
         for p2_i in self.p2_range:  # Start the first loop for p2, starting by P1 value.
-            p3_range = rpup_positive(int(p2_i), self.p3_k+1)
+            p3_range = rpup_positive(int(p2_i), self.p3_k)
 
             for p3_i in p3_range:  # Start p3 loop out of actual p2 value, so:
                 primes_seq = list()                         # P2 <= P3 <= P3+k
@@ -189,8 +190,15 @@ class SequenceSeekerV3:
                 p2 = p2_i
                 p3 = p3_i
 
-                if p1 == p2 and p2 == p3:  # Prevent infinite loop checking if p1, p2 and p3 are the same.
-                    continue
+                if ((p1 - (2 * p2) + p3) / 2.) == 0:  # Prevent infinite loop checking if p1, p2 and p3 are the same.
+                    if min_size <= 1:
+                        res = x(p1, p2, p3, 0)
+                        primes_seq = [res, res, res, flag, X(p1, p2, p3)]
+                        big_seq.append(primes_seq)
+                        continue
+                    else:
+                        continue
+
                 possible_prime = x(p1, p2, p3, 0)
                 if isprime(possible_prime):  # Append the value when in y=0 if is prime, if not, continue to next.
                     primes_seq.append(possible_prime)

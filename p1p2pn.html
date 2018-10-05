@@ -2,23 +2,23 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/styles/style.css">
 		<title>Sequences table</title>
 	</head>
 	<body style='font-family:"Courier new", monospace;'>
-        <button onclick="window.history.back()">Go Back</button><br />
-		<h1>P1,P2,Pn Sequences table.</h1>
-		<form action="cgi/p1p2pn.cgi" method="get">
-			<div id="p1">P1 value = <input type="text" name="p1" /></div><br />
-			<div id="p2">P2 value = <input type="text" name="p2" /></div><br />
-			<div class="pn" id="pn">Pn range = 
-				<input type="text" name="pn" value="30"/></div><br />
-			<div class="y" id="y">y range from 
-				<input type="text" name="ya" value="-20"/> to 
-				<input type="text" name="yb" value="20"/></div><br />
+    <h1>P1,P2,Pn Sequences table.</h1>
+		<form class="setup" action="cgi/p1p2pn.cgi" method="get" target="_self">
+			<div id="p1">P1 value = <input type="text" name="p1" />
+			P2 value = <input type="text" name="p2" />
+			Pn range =
+				<input type="text" name="pn" value="30"/></div>
+			<div class="y" id="y">y range from
+				<input type="text" name="ya" value="-20"/> to
+				<input type="text" name="yb" value="20"/></div>
 			<div class="k" id="k">k step =
-				<input type="text" name="k" value="2"/></div><br /> 
-			<div class="y_density" id="y_density">Half density range =
-				<input type="text" name="y_density" value="1"/></div><br /> 
+				<input type="text" name="k" value="2"/>
+			Half density range =
+				<input type="text" name="y_density" value="1"/></div>
 
 			<input type="submit" value="Generate" />
 		</form>

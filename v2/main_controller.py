@@ -1,5 +1,5 @@
 from math import floor, sqrt
-from gmpy2 import is_prime
+#from gmpy2 import is_prime
 import sympy as sp
 
 
@@ -13,9 +13,28 @@ def roundz(f):
 
 def isprime(num):
     """Return true to 1 , -1 and any prime, even the negatives."""
-    if abs(num) is 1: return 1
-    return is_prime(abs(int(num)))
+    if abs(num) == 1:
+        return True
+    return sp.isprime(abs(int(num)))
 
+
+def nextprime(value):
+    if value >= 1:
+        return sp.nextprime(value)
+    elif value == (0 or -1):
+        return 1
+    elif value == -2:
+        return -1
+    else:
+        negative = sp.prevprime(-value)
+        return negative * -1
+
+def factorint(value):
+    if value == 1:
+        tmp = [(1,1)]
+        return dict(tmp)
+    else:
+        return sp.factorint(value)
 
 def x_abc(a, b, c, y):
     return int((a * (y ** 2)) + (b * y) + c)
@@ -70,6 +89,7 @@ def data_ctypey0(value):
 
 
 def header_ctype(value, dark=False):
+    value = float(value)
     if not dark:
         if value < 0:
             return 'negative'
@@ -88,13 +108,19 @@ def header_ctype(value, dark=False):
 
 def rpup_positive(value, k):
     if not isprime(value):
-        exit()
+        value = nextprime(value)
     yield value
-    i = 1
+    i = 0
     while i < k - 1:
-        value = sp.nextprime(value)
+        value = nextprime(value)
         i += 1
         yield value
+
+def isinfinity(value):
+    if value == 0:
+        return '&infin;'
+    else:
+        return value
 
 
 def density(a, b, c, y_range):
@@ -104,7 +130,7 @@ def density(a, b, c, y_range):
     return primes
 
 
-class X_Pn:
+class XPn:
     """by P1, P2 and P3 set the values of a, b, c, delta, C.G.,
     y_vertex and offset, when called return f(x) = ay^2 + by + c"""
 

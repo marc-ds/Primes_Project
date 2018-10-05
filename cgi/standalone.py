@@ -4,36 +4,41 @@ from sympy import primefactors
 
 
 def roundz(f):
-    if (f-floor(f)) <= 0.5:
+    if (f - floor(f)) <= 0.5:
         return int(floor(f))
     else:
-        return int(floor(f))+1
+        return int(floor(f)) + 1
+
 
 def isprime(num):
     if abs(num) is 1: return 1
     return gmpy2.is_prime(abs(num))
 
-def abc_set(p1,p2,p3):
-    a = (p1-(2*p2)+p3)/2.
-    b = (p3-p1)/2.
+
+def abc_set(p1, p2, p3):
+    a = (p1 - (2 * p2) + p3) / 2.
+    b = (p3 - p1) / 2.
     c = p2
     return a, b, c
 
-def y_vertex(a,b,c):
-    if a!=0:
-        y_vertex = float(-(b))/float(2*a)
+
+def y_vertex(a, b, c):
+    if a != 0:
+        y_vertex = float(-(b)) / float(2 * a)
     else:
         y_vertex = float(00)
     return y_vertex
 
-def offset(a,b,c):
-    if a!=0:
-        return roundz(-b/float(2*a))
+
+def offset(a, b, c):
+    if a != 0:
+        return roundz(-b / float(2 * a))
     else:
         return 00
 
-def p1p2p3(a,b,c,y):
-    return int((a*(y**2))+(b*y)+c)
+
+def p1p2p3(a, b, c, y):
+    return int((a * (y ** 2)) + (b * y) + c)
 
 
 class table_generator():
@@ -95,17 +100,18 @@ class table_generator():
             self.b_line.append(b)
             self.c_line.append(c)
 
-    def p_range():
+    def p_range(self):
         return p_range
 
-    def p1_range():
+    # noinspection PyMethodMayBeStatic
+    def p1_range(self):
         return p1_range
 
-    def p2_range():
-        return p2_range
+    def p2_range(self):
+        return self.p2_range
 
-    def p3_range():
-        return p3_range
+    def p3_range(self):
+        return self.p3_range
 
     def yv_line(self, line):  # return a list with (k*2)+1 size. list[0] = lower value
         for i in self.p_range:
@@ -117,14 +123,14 @@ class table_generator():
             line.append(offset(self.a_line[i], self.b_line[i], self.c_line[i]))
         return line
 
-    def a_line():
-        return a_line
+    def a_line(self):
+        return self.a_line
 
-    def b_line():
-        return b_line
+    def b_line(self):
+        return self.b_line
 
-    def c_line():
-        return c_line
+    def c_line(self):
+        return self.c_line
 
     def table_line(self, line, y):
         for i in self.p_range:
@@ -170,7 +176,7 @@ class table_generator():
                 yp += 1
                 p_previous_prime = previous_prime
                 previous_prime = possible_prime
-                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yp):break
+                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yp): break
                 possible_prime = p1p2p3(a, b, c, yp)
             primes_seq.append(possible_prime)
             primes_seq.reverse()
@@ -180,14 +186,14 @@ class table_generator():
                 yn -= 1
                 p_previous_prime = previous_prime
                 previous_prime = possible_prime
-                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yn):break
+                if p_previous_prime == previous_prime and previous_prime == p1p2p3(a, b, c, yn): break
                 possible_prime = p1p2p3(a, b, c, yn)
             primes_seq.append(possible_prime)
             if len(primes_seq) > min_size:
                 big_seq.append(primes_seq)
                 abc_seq.append([a, b, c])
-                offset_seq.append(offset(a,b,c))
-                yv_seq.append(y_vertex(a,b,c))
+                offset_seq.append(offset(a, b, c))
+                yv_seq.append(y_vertex(a, b, c))
         return yv_seq, offset_seq, abc_seq, big_seq
 
 
@@ -204,7 +210,7 @@ print()
 step1, step2, step3 = 0, 0, 1
 a, b, c = abc_set(p1,p2,p3)
 min_size = 5"""
-calc = table_generator(p1,p2,int(p3),step1,step2,step3,k)
+calc = table_generator(p1, p2, int(p3), step1, step2, step3, k)
 yv_seq, off_seq, abc_seq, big_seq = calc.primes_sequences(min_size)
 for i in range(0, len(big_seq)):
     first = int(big_seq[i].pop(0))
@@ -217,5 +223,7 @@ for i in range(0, len(big_seq)):
     length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
     l_txt = 'Primes in the above sequence: {}.'.format(length)
     print(yv_txt + off_txt, a_txt + b_txt + c_txt + l_txt)
-    print('({} {})'.format(first,primefactors(first)), end=' '); print(*big_seq[i], sep=' ', end=' '); print('({} {})'.format(last,primefactors(last)))
+    print('({} {})'.format(first, primefactors(first)), end=' ');
+    print(*big_seq[i], sep=' ', end=' ');
+    print('({} {})'.format(last, primefactors(last)))
     print('\n----------------------------------------------------------------------------------------------\n')

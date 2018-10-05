@@ -22,8 +22,9 @@ p#fill_fields {
 }
 
 form#sequence_seeker, form#blockbuster {
-	width: 690px; 
-	margin: auto
+	width: 610px; 
+	margin: auto;
+	font-size: 0.8em;
 }
 form#sequence_seeker input, form#blockbuster input {
 	width: 70px;
@@ -37,7 +38,6 @@ form#sequence_seeker input#min_value {
 form#sequence_seeker input#submit, form#blockbuster input#submit {
 	height: auto;
 	width: auto;
-	margin-left: 28px;
 }
 
 h1#sequence_seeker {
@@ -68,7 +68,7 @@ table#blockbuster-inv, table#blockbuster0-inv {
 
 #container_table {
 	margin:auto;
-	width: 50%
+	width: 65%
 }
 
 table#blockbuster td, table#blockbuster0 td, table#blockbuster-inv td, table#blockbuster0-inv td {
@@ -84,7 +84,7 @@ tr#y_vertex, tr#offset, tr#y0_vertex, tr#offset0 {
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-tr#a, tr#b, tr#c, tr#a0, tr#b0, tr#c0, th#delta, th#c_g, tr.density, tr.sequence_seeker_header {
+tr#a, tr#b, tr#c, tr#a0, tr#b0, tr#c0, th#delta, th#c_g, .density, tr.sequence_seeker_header {
 	background-color:gray;
 	color: white;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
