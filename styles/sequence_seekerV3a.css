@@ -25,7 +25,11 @@ table#sequence_seeker_table {
 	float: left;
 	margin-top: 10px;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-weight: bold;
+	text-align: center;
 	border-collapse: collapse;
+  white-space: nowrap;
+
 }
 
 table#sequence_seeker_table th {
@@ -56,35 +60,33 @@ table#sequence_seeker_table tr:hover, td:hover {
 .poly, td.poly0 {
 	background-color:gray;
 	color: white;
+  text-align: right;
+}
+
+.offset {
+	min-width: 11px
 }
 
 .y0vm_xv_lr {
-	min-width: 85px;
 }
 
 .y0vp_xv_lr {
-	min-width: 80px;
 }
 
 .xvlr{
-	min-width: 65px;
 }
 
 .y0v_2 {
-	min-width: 60px;
 }
 
 .y0v_2c0a {
-    min-width: 100px;
 }
 
 .data, .first, .last {
 	text-align: center;
 }
 
-.first, last {
-	min-width: 65px;
-}
+.first, last {}
 
 .first {
 	text-align: right;
@@ -95,10 +97,7 @@ table#sequence_seeker_table tr:hover, td:hover {
 }
 
 td.poly, td.poly0 {
-	min-width: 100px;
-	border-right-width: 9px;
 }
-
 
 .qtd_primes, .qtd_elements {
 	background-color: gold;

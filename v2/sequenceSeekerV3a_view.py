@@ -14,7 +14,7 @@ if "p1" not in form:
     print('<html>')
     print('<head>')
     print('<script src="https://www.w3schools.com/lib/w3.js"></script>')
-    print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seekerV2.css">')
+    print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seekerV3a.css">')
     print('<script src="js.js"></script>')
     print('<title>Sequence Seeker</title>')
     print('</head>')
@@ -36,6 +36,11 @@ else:
     kp3 = int(form["kp3"].value)
     min_size = int(form["min_size"].value)
 
+    calc = SequenceSeekerV3(p1, kp2, kp3)
+
+    big_seq = sorted(calc(min_size), key=get_obj)
+    big_seq.sort(reverse=True, key=len)
+
     print('<form action="javascript:sendformv3a()" method="post" id="sequence_seeker_form">')
     print('<div id="p_value">P1=&nbsp;<input type="text" name="p1" value="{:g}" />'.format(p1))
     print('&nbsp;&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="{}" />)'.format(kp2))
@@ -43,11 +48,6 @@ else:
     print('&nbsp;&nbsp;#P>=&nbsp;<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
     print('<input type="submit" value="Generate" id="submit"/></form>')
     print('</div>')
-
-    calc = SequenceSeekerV3(p1, kp2, kp3)
-
-    big_seq = sorted(calc(min_size), key=get_obj)
-    big_seq.sort(reverse=True, key=len)
 
     print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
     print('<tr id=header_index >'
@@ -63,19 +63,19 @@ else:
           '<th id="x01">x&ordm;1</th>'
           '<th id="x02">x&ordm;2</th>'
           '<th id="03">x&ordm;3</th>'
-          '<th id="y0">y&ordm;</th>'
+          '<th id="x0">x&ordm;</th>'
           '<th id="y0v">y&ordm;v</th>'
           '<th id="f0">f&ordm;</th>'
           '<th id="dta">&Delta;</th>'
           '<th id="cg">CG</th>'
           '<th id="xv">xv</th>'
           '<th id="lr">LR</th>'
-          '<th id="xvlr">-xv * LR</th>'
-          '<th id="yvxvlr">y&ordm;v + xv * LR </th>'
-          '<th id="y0vxvlr">y&ordm;v - xv * LR</th>'
+          '<th id="xvlr">-xv*LR</th>'
+          '<th id="yvxvlr">y&ordm;v+xv*LR </th>'
+          '<th id="y0vxvlr">y&ordm;v-xv*LR</th>'
           '<th id="y0v2">(y&ordm;v)^2</th>'
           '<th id="c0a">c&ordm;/a</th>'
-          '<th id="y0v2c0a">(y&ordm;v)^2 - c&ordm;/a</th>'
+          '<th id="y0v2c0a">(y&ordm;v)^2-c&ordm;/a</th>'
           '<th onclick=\'w3.sortHTML("#sequence_seeker_table", ".sequence_seeker_header","td:nth-child(25)")\' id="qe">'
           '#E</th>'
           '<th onclick=\'w3.sortHTML("#sequence_seeker_table", ".sequence_seeker_header","td:nth-child(26)")\' id="qp">'
@@ -93,14 +93,14 @@ else:
 
         print('<tr class="sequence_seeker_header">')
         print('<td class="generation_line">{:g}</td>'.format(generation_order))
-        print('<td class="print_line">{:g}</td>'.format(i + 1))
+        print('<td class="print_line">{:02g}</td>'.format(i + 1))
 
         indef = 'undefined'
         infin = '&infin;'
 
-        print('<td class="{}">P1={:g}</td>'.format(data_ctype(int(x_obj.p1)), x_obj.p1))
-        print('<td class="{}">P2={:g}</td>'.format(data_ctype(int(x_obj.p2)), x_obj.p2))
-        print('<td class="{}">P3={:g}</td>'.format(data_ctype(int(x_obj.p3)), x_obj.p3))
+        print('<td class="{}">{:g}</td>'.format(data_ctype(int(x_obj.p1)), x_obj.p1))
+        print('<td class="{}">{:g}</td>'.format(data_ctype(int(x_obj.p2)), x_obj.p2))
+        print('<td class="{}">{:g}</td>'.format(data_ctype(int(x_obj.p3)), x_obj.p3))
 
         a = x_obj.a
         b = x_obj.b
@@ -109,22 +109,22 @@ else:
 
         yv = x_obj.y_vertex
         if a == 0:
-            print('<td class="{} y_vertex">yv={}</td>'.format('infin', infin))
+            print('<td class="{} y_vertex">{}</td>'.format('infin', infin))
         else:
-            print('<td class="{} y_vertex">yv={:.4g}</td>'.format(x_obj.yv_type(), yv))
+            print('<td class="{} y_vertex">{:.4g}</td>'.format(x_obj.yv_type(), yv))
 
         f = x_obj.offset
         if a == 0:
-            print('<td class="{} offset">f={:}</td>'.format('infin', infin))
+            print('<td class="{} offset">{:}</td>'.format('infin', infin))
         else:
-            print('<td class="{} offset">f={:}</td>'.format(header_ctype(f), f))
+            print('<td class="{} offset">{:}</td>'.format(header_ctype(f), f))
 
         x01 = x_obj.x01
         x02 = x_obj.x02
         x03 = x_obj.x03
-        print('<td class="{}">x&ordm;1={:g}</td>'.format(data_ctype(int(x01)), x01))
-        print('<td class="{}">x&ordm;2={:g}</td>'.format(data_ctype(int(x02)), x02))
-        print('<td class="{}">x&ordm;3={:g}</td>'.format(data_ctype(int(x03)), x03))
+        print('<td class="{}">{:g}</td>'.format(data_ctype(int(x01)), x01))
+        print('<td class="{}">{:g}</td>'.format(data_ctype(int(x02)), x02))
+        print('<td class="{}">{:g}</td>'.format(data_ctype(int(x03)), x03))
 
         a0 = x_obj.a0
         b0 = x_obj.b0
@@ -133,75 +133,74 @@ else:
 
         y0v = x_obj.y0_vertex
         if a == 0:
-            print('<td class="y_vertex {}">y&ordm;v={}</td>'.format('infin', infin))
+            print('<td class="y_vertex {}">{}</td>'.format('infin', infin))
         else:
-            print('<td class="y_vertex {}">y&ordm;v={:.4g}</td>'.format(header_ctype(y0v), y0v))
+            print('<td class="y_vertex {}">{:.4g}</td>'.format(header_ctype(y0v), y0v))
 
         f0 = '{:.4g}'.format(x_obj.offset0)
-        print('<td class="offset {}">f&ordm;={}</td>'.format(header_ctype(x_obj.offset0), f0))
+        print('<td class="offset {}">{}</td>'.format(header_ctype(x_obj.offset0), f0))
 
         delta = x_obj.delta
-        print('<td class="delta {}">&Delta;={}</td>'.format(header_ctype(x_obj.delta), delta))
+        print('<td class="delta {}">{:g}</td>'.format(header_ctype(x_obj.delta), delta))
 
         c_g = x_obj.c_g
-        print('<td class="c_g {}" >CG={:.4g}</td>'.format(header_ctype(x_obj.delta), c_g))
+        print('<td class="c_g {}" >{:.4g}</td>'.format(header_ctype(x_obj.delta), c_g))
 
         xv = x_obj.xv
         if a == 0:
-            print('<td class="xv {}">xv={}</td>'.format(indef, indef))
+            print('<td class="xv {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="xv {}">xv={:.4g}</td>'.format(header_ctype(x_obj.xv), xv))
+            print('<td class="xv {}">{:.4g}</td>'.format(header_ctype(x_obj.xv), xv))
 
         lr = x_obj.lr
         if a == 0:
-            print('<td class="lr {}">LR={}</td>'.format(indef, indef))
+            print('<td class="lr {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="lr {}">LR={:.3g}</td>'.format(header_ctype(x_obj.lr), lr))
+            print('<td class="lr {}">{:.3g}</td>'.format(header_ctype(x_obj.lr), lr))
 
         xvlr = x_obj.xvlr
         if a == 0:
-            print('<td class="xvlr {}">-xv*LR={}</td>'.format(indef, indef))
+            print('<td class="xvlr {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="xvlr {}">-xv*LR={:.4g}</td>'.format(header_ctype(x_obj.xvlr, True), xvlr))
+            print('<td class="xvlr {}">{:.4g}</td>'.format(header_ctype(x_obj.xvlr, True), xvlr))
 
         y0vp_xv_lr = x_obj.y0vp_xv_lr
         if a == 0:
-            print('<td class="y0vp_xv_lr {}">y&ordm;v+xv*LR={}</td>'.format(indef, indef))
+            print('<td class="y0vp_xv_lr {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="y0vp_xv_lr {}">y&ordm;v+xv*LR={:.4g}</td>'.format(header_ctype(x_obj.y0vp_xv_lr),
+            print('<td class="y0vp_xv_lr {}">{:.4g}</td>'.format(header_ctype(x_obj.y0vp_xv_lr),
                                                                                 y0vp_xv_lr))
 
         y0vm_xv_lr = x_obj.y0vm_xv_lr
         if a == 0:
-            print('<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={}</td>'.format(indef, indef))
+            print('<td class="y0vm_xv_lr {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={:.4g}</td>'.format(header_ctype(x_obj.y0vm_xv_lr),
+            print('<td class="y0vm_xv_lr {}">{:.4g}</td>'.format(header_ctype(x_obj.y0vm_xv_lr),
                                                                                 y0vm_xv_lr))
 
         y0v_2c0a = x_obj.y0v_2c0a
         if a == 0:
-            print('<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={}</td>'.format(indef, indef))
+            print('<td class="y0v_2c0a {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={:.4g}'
-                  '</td>'.format(header_ctype(x_obj.y0v_2c0a, True), y0v_2c0a))
+            print('<td class="y0v_2c0a {}">{:.4g}</td>'.format(header_ctype(x_obj.y0v_2c0a, True), y0v_2c0a))
 
         c0_a = x_obj.c0_a
         if a == 0:
-            print('<td class="c0_a {}">c&ordm;/a={}</td>'.format(indef, indef))
+            print('<td class="c0_a {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="c0_a {}">c&ordm;/a={:.0f}</td>'.format(header_ctype(x_obj.c0_a), c0_a))
+            print('<td class="c0_a {}">{:.0f}</td>'.format(header_ctype(x_obj.c0_a), c0_a))
 
         y0v_2 = x_obj.y0v_2
         if a == 0:
-            print('<td class="y0v_2 {}">(y&ordm;v)^2={}</td>'.format(indef, indef))
+            print('<td class="y0v_2 {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="y0v_2 {}">(y&ordm;v)^2={:.4g}</td>'.format(header_ctype(x_obj.y0v_2), y0v_2))
+            print('<td class="y0v_2 {}">{:.4g}</td>'.format(header_ctype(x_obj.y0v_2), y0v_2))
 
         len_all = len(big_seq[i])
-        print('<td class="qtd_elements">#E={:g}'.format(len_all))
+        print('<td class="qtd_elements">{:02g}'.format(len_all))
 
         len_primes = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
-        print('<td class="qtd_primes">#P={:g}'.format(len_primes))
+        print('<td class="qtd_primes">{:02g}'.format(len_primes))
 
         par_type = x_obj.par_type
         print('<td class="{pt}">{pt}</td>'.format(pt=par_type))
