@@ -11,6 +11,7 @@ print('Content-type: text/html\r\n\r')
 
 if "p1" not in form:
 
+
     print('<html>')
     print('<head>')
     print('<script src="https://www.w3schools.com/lib/w3.js"></script>')
@@ -24,7 +25,7 @@ if "p1" not in form:
     print('&nbsp;&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="" />)')
     print('&nbsp;&nbsp;P2<=P3<=P2&nbsp;(<input type="text" name="kp3" value="" />)')
     print('&nbsp;&nbsp;#P>=&nbsp;<input type="text" name="min_size" value="" id="min_value"/>')
-    print('<input type="submit" value="Generate" id="submit"/></form>')
+    print('<input type="submit" value="GO" id="submit"/></form>')
     print('</div>')
 
     print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
@@ -46,7 +47,7 @@ else:
     print('&nbsp;&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="{}" />)'.format(kp2))
     print('&nbsp;&nbsp;P2<=P3<=P2&nbsp;(<input type="text" name="kp3" value="{}" />)'.format(kp3))
     print('&nbsp;&nbsp;#P>=&nbsp;<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
-    print('<input type="submit" value="Generate" id="submit"/></form>')
+    print('<input type="submit" value="GO" id="submit"/></form>')
     print('</div>')
 
     print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
@@ -169,14 +170,14 @@ else:
             print('<td class="y0vp_xv_lr {}">{}</td>'.format(indef, indef))
         else:
             print('<td class="y0vp_xv_lr {}">{:.4g}</td>'.format(header_ctype(x_obj.y0vp_xv_lr),
-                                                                                y0vp_xv_lr))
+                                                                 y0vp_xv_lr))
 
         y0vm_xv_lr = x_obj.y0vm_xv_lr
         if a == 0:
             print('<td class="y0vm_xv_lr {}">{}</td>'.format(indef, indef))
         else:
             print('<td class="y0vm_xv_lr {}">{:.4g}</td>'.format(header_ctype(x_obj.y0vm_xv_lr),
-                                                                                y0vm_xv_lr))
+                                                                 y0vm_xv_lr))
 
         y0v_2c0a = x_obj.y0v_2c0a
         if a == 0:

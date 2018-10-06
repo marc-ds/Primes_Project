@@ -29,12 +29,14 @@ def nextprime(value):
         negative = sp.prevprime(-value)
         return negative * -1
 
+
 def factorint(value):
     if value == 1:
         tmp = [(1,1)]
         return dict(tmp)
     else:
         return sp.factorint(value)
+
 
 def x_abc(a, b, c, y):
     return int((a * (y ** 2)) + (b * y) + c)
@@ -115,6 +117,7 @@ def rpup_positive(value, k):
         value = nextprime(value)
         i += 1
         yield value
+
 
 def isinfinity(value):
     if value == 0:

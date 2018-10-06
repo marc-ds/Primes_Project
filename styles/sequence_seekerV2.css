@@ -26,6 +26,7 @@ table#sequence_seeker_table {
 	margin-top: 10px;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 	border-collapse: collapse;
+	white-space: nowrap;
 }
 
 table#sequence_seeker_table th {
@@ -35,6 +36,7 @@ table#sequence_seeker_table th {
 th#pl,th#qe, th#qp, th#type {
 	cursor: pointer;
 }
+
 table#sequence_seeker_table td {
 	border: 1px solid black;
 }
@@ -58,32 +60,8 @@ table#sequence_seeker_table tr:hover, td:hover {
 	color: white;
 }
 
-.y0vm_xv_lr {
-	min-width: 85px;
-}
-
-.y0vp_xv_lr {
-	min-width: 80px;
-}
-
-.xvlr{
-	min-width: 65px;
-}
-
-.y0v_2 {
-	min-width: 60px;
-}
-
-.y0v_2c0a {
-    min-width: 100px;
-}
-
 .data, .first, .last {
 	text-align: center;
-}
-
-.first, last {
-	min-width: 65px;
 }
 
 .first {
@@ -93,12 +71,6 @@ table#sequence_seeker_table tr:hover, td:hover {
 .last {
 	text-align: left;
 }
-
-td.poly, td.poly0 {
-	min-width: 100px;
-	border-right-width: 9px;
-}
-
 
 .qtd_primes, .qtd_elements {
 	background-color: gold;
@@ -162,7 +134,7 @@ td.poly, td.poly0 {
 }
 
 .undefined, .infin {
-	background-color: #a00101;
+	background-color: #9842f4;
 	color: white;
 }
 #loader {
