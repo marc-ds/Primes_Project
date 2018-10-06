@@ -158,6 +158,12 @@ td.poly, td.poly0 {
 	color:white;
 	font-weight: bold;
 }
+
+.infin, .indef {
+	background-color: #421301;
+	color: white;
+}
+
 #loader {
 	  display: inline-block;
 	  position: absolute;

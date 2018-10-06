@@ -9,7 +9,6 @@ form = cgi.FieldStorage()
 
 print('Content-type: text/html\r\n\r')
 
-
 if "p1" not in form:
 
     print('<html>')
@@ -52,112 +51,128 @@ else:
 
     print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
 
-
     for i in range(0, len(big_seq)):
         sequence = big_seq[i]
+
         x_obj = sequence.pop()
         generation_order = sequence.pop()
         first = factorint(int(sequence.pop(0)))
         last = factorint(int(sequence.pop()))
 
-        yv = x_obj.y_vertex
-        f = x_obj.offset
+        print('<tr class="sequence_seeker_header">')
+        print('<td class="generation_line">{:g}</td>'.format(generation_order))
+        print('<td class="print_line">{:g}</td>'.format(i + 1))
+
+        indef = 'indef'
+        infin = '&infin;'
+
+        print('<td class="{}">P1={:g}</td>'.format(data_ctype(int(x_obj.p1)), x_obj.p1))
+        print('<td class="{}">P2={:g}</td>'.format(data_ctype(int(x_obj.p2)), x_obj.p2))
+        print('<td class="{}">P3={:g}</td>'.format(data_ctype(int(x_obj.p3)), x_obj.p3))
 
         a = x_obj.a
         b = x_obj.b
         c = x_obj.c
+        print('<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'.format(a, b, c))
 
-        delta = x_obj.delta
-        c_g = x_obj.c_g
-        yv0 = x_obj.y0_vertex
+        yv = x_obj.y_vertex
+        if a == 0:
+            print('<td class="{} y_vertex">yv={}</td>'.format('infin', infin))
+        else:
+            print('<td class="{} y_vertex">yv={}</td>'.format(x_obj.yv_type(), yv))
 
-        f0 = x_obj.offset0
-        a0 = x_obj.a0
-        b0 = x_obj.b0
-        c0 = x_obj.c0
+        f = x_obj.offset
+        if a == 0:
+            print('<td class="{} offset">f={:}</td>'.format('infin', infin))
+        else:
+            print('<td class="{} offset">f={:}</td>'.format(header_ctype(f), f))
+
         x01 = x_obj.x01
         x02 = x_obj.x02
         x03 = x_obj.x03
-        y0v_2 = x_obj.y0v_2
+        print('<td class="{}">x&ordm;1={:g}</td>'.format(data_ctype(int(x01)), x01))
+        print('<td class="{}">x&ordm;2={:g}</td>'.format(data_ctype(int(x02)), x02))
+        print('<td class="{}">x&ordm;3={:g}</td>'.format(data_ctype(int(x03)), x03))
+
+        a0 = x_obj.a0
+        b0 = x_obj.b0
+        c0 = x_obj.c0
+        print('<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'.format(a0, b0, c0))
+
+        y0v = x_obj.y0_vertex
+        if a == 0:
+            print('<td class="y_vertex {}">y&ordm;v={}</td>'.format('infin', infin))
+        else:
+            print('<td class="y_vertex {}">y&ordm;v={:.4g}</td>'.format(header_ctype(y0v), y0v))
+
+        f0 = '{:.4g}'.format(x_obj.offset0)
+        print('<td class="offset {}">f&ordm;={}</td>'.format(header_ctype(x_obj.offset0), f0))
+
+        delta = x_obj.delta
+        print('<td class="delta {}">&Delta;={:.0f}</td>'.format(header_ctype(x_obj.delta), delta))
+
+        c_g = x_obj.c_g
+        print('<td class="c_g {}" >CG={:.4g}</td>'.format(header_ctype(x_obj.delta), c_g))
+
         xv = x_obj.xv
+        if a == 0:
+            print('<td class="xv {}">xv={}</td>'.format(indef, indef))
+        else:
+            print('<td class="xv {}">xv={:.4g}</td>'.format(header_ctype(x_obj.xv), xv))
+
         lr = x_obj.lr
-        c0_a = x_obj.c0_a
-        y0v_2c0a = x_obj.y0v_2c0a
+        if a == 0:
+            print('<td class="lr {}">LR={}</td>'.format(indef, indef))
+        else:
+            print('<td class="lr {}">LR={:.4g}</td>'.format(header_ctype(x_obj.lr), lr))
+
         xvlr = x_obj.xvlr
+        if a == 0:
+            print('<td class="xvlr {}">-xv*LR={}</td>'.format(indef, indef))
+        else:
+            print('<td class="xvlr {}">-xv*LR={:.4g}</td>'.format(header_ctype(x_obj.xvlr, True), xvlr))
+
         y0vp_xv_lr = x_obj.y0vp_xv_lr
+        if a == 0:
+            print('<td class="y0vp_xv_lr {}">y&ordm;v+xv*LR={}</td>'.format(indef, indef))
+        else:
+            print('<td class="y0vp_xv_lr {}">y&ordm;v+xv*LR={:.4g}</td>'.format(header_ctype(x_obj.y0vp_xv_lr),
+                                                                                y0vp_xv_lr))
+
         y0vm_xv_lr = x_obj.y0vm_xv_lr
-        par_type = x_obj.par_type
+        if a == 0:
+            print('<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={}</td>'.format(indef, indef))
+        else:
+            print('<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={:.4g}</td>'.format(header_ctype(x_obj.y0vm_xv_lr),
+                                                                                y0vm_xv_lr))
+
+        y0v_2c0a = x_obj.y0v_2c0a
+        if a == 0:
+            print('<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={}</td>'.format(indef, indef))
+        else:
+            print('<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={:.4g}'
+                  '</td>'.format(header_ctype(x_obj.y0v_2c0a, True), y0v_2c0a))
+
+        c0_a = x_obj.c0_a
+        if a == 0:
+            print('<td class="c0_a {}">c&ordm;/a={}</td>'.format(indef, indef))
+        else:
+            print('<td class="c0_a {}">c&ordm;/a={:.0f}</td>'.format(header_ctype(x_obj.c0_a), c0_a))
+
+        y0v_2 = x_obj.y0v_2
+        if a == 0:
+            print('<td class="y0v_2 {}">(y&ordm;v)^2={}</td>'.format(indef, indef))
+        else:
+            print('<td class="y0v_2 {}">(y&ordm;v)^2={:.4g}</td>'.format(header_ctype(x_obj.y0v_2), y0v_2))
+
         len_all = len(big_seq[i])
+        print('<td class="qtd_elements">#E={:g}'.format(len_all))
+
         len_primes = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
+        print('<td class="qtd_primes">#P={:g}'.format(len_primes))
 
-        p1_txt = '<td class="{}">P1={:g}</td>'
-        p2_txt = '<td class="{}">P2={:g}</td>'
-        p3_txt = '<td class="{}">P3={:g}</td>'
-
-        poly_txt = '<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'
-        yv_txt = '<td class="{} y_vertex">yv={:.4g}</td>'
-        f_txt = '<td class="{} offset">f={:.4g}</td>'
-
-        poly0_txt = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'
-        y0v_txt = '<td class="y_vertex {}">y&ordm;v={:.4g}</td>'
-        f0_txt = '<td class="offset {}">f&ordm;={}</td>'
-
-        delta_txt = '<td class="delta {}">&Delta;={:.0f}</td>'
-        c_g_txt = '<td class="c_g {}" >CG={:.4g}</td>'
-
-        x01_txt = '<td class="{}">x&ordm;1={:g}</td>'
-        x02_txt = '<td class="{}">x&ordm;2={:g}</td>'
-        x03_txt = '<td class="{}">x&ordm;3={:g}</td>'
-
-        xv_txt = '<td class="xv {}">xv={:.4g}</td>'
-        lr_txt = '<td class="lr {}">LR={:.4g}</td>'
-
-        xvlr_txt = '<td class="xvlr {}">-xv*LR={:.4g}</td>'
-        y0vp_xv_lr_txt = '<td class="y0vp_xv_lr {}">y&ordm;v+xv*LR={:.4g}</td>'
-        y0vm_xv_lr_txt = '<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={:.4g}</td>'
-        y0v_2_txt = '<td class="y0v_2 {}">(y&ordm;v)^2={:.4g}</td>'
-        c0_a_txt = '<td class="c0_a {}">c&ordm;/a={:.0f}</td>'
-        y0v_2c0a_txt = '<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={:.4g}</td>'
-
-        q_elements_txt = '<td class="qtd_elements">#E={:02}'
-        q_prime_txt = '<td class="qtd_primes">#P={:02}'
-        par_type_txt = '<td class="{pt}">{pt}</td>'
-
-        print('<tr class="sequence_seeker_header">')
-        print('<td class="generation_line">{:03}</td>'.format(generation_order))
-        print('<td class="print_line">{:03g}</td>'.format(i + 1))
-
-        print(p1_txt.format(data_ctype(int(x_obj.p1)), x_obj.p1))
-        print(p2_txt.format(data_ctype(int(x_obj.p2)), x_obj.p2))
-        print(p3_txt.format(data_ctype(int(x_obj.p3)), x_obj.p3))
-
-        print(poly_txt.format(a, b, c))
-        print(yv_txt.format(x_obj.yv_type(), yv))
-        print(f_txt.format(header_ctype(f), f))
-
-        print(x01_txt.format(data_ctype(int(x01)), x01))
-        print(x02_txt.format(data_ctype(int(x02)), x02))
-        print(x03_txt.format(data_ctype(int(x03)), x03))
-
-        print(poly0_txt.format(a0, b0, c0))
-        print(y0v_txt.format(header_ctype(yv0), yv0))
-        print(f0_txt.format(header_ctype(f0), isinfinity(f0)))
-
-        print(delta_txt.format(header_ctype(delta), delta))
-        print(c_g_txt.format(header_ctype(delta), c_g))
-
-        print(xv_txt.format(header_ctype(xv), xv))
-        print(lr_txt.format(header_ctype(lr), lr))
-        print(xvlr_txt.format(header_ctype(xvlr, True), xvlr))
-        print(y0vp_xv_lr_txt.format(header_ctype(y0vp_xv_lr), y0vp_xv_lr))
-        print(y0vm_xv_lr_txt.format(header_ctype(y0vm_xv_lr), y0vm_xv_lr))
-        print(y0v_2_txt.format(header_ctype(y0v_2), y0v_2))
-        print(c0_a_txt.format(header_ctype(c0_a), c0_a))
-        print(y0v_2c0a_txt.format(header_ctype(y0v_2c0a, True), y0v_2c0a))
-
-        print(q_elements_txt.format(len_all))
-        print(q_prime_txt.format(len_primes))
-        print(par_type_txt.format(pt=par_type))
+        par_type = x_obj.par_type
+        print('<td class="{pt}">{pt}</td>'.format(pt=par_type))
 
         print('<td class="first composite">')
         flag = len(first)

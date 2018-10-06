@@ -190,7 +190,7 @@ class SequenceSeekerV3:
                 p2 = p2_i
                 p3 = p3_i
 
-                if ((p1 - (2 * p2) + p3) / 2.) == 0:  # Prevent infinite loop checking if p1, p2 and p3 are the same.
+                if p1 == p2 and p2 == p3:  # Prevent infinite loop checking if p1, p2 and p3 are the same.
                     if min_size <= 1:
                         res = x(p1, p2, p3, 0)
                         primes_seq = [res, res, res, flag, X(p1, p2, p3)]
