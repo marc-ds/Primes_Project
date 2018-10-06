@@ -19,7 +19,7 @@ if "p1" not in form:
     print('<title>Sequence Seeker</title>')
     print('</head>')
     print('<body>')
-    print('<form action="javascript:sendformv3()" method="post" id="sequence_seeker_form" name="collect_data_form" >')
+    print('<form action="javascript:sendformv3a()" method="post" id="sequence_seeker_form" name="collect_data_form" >')
     print('<div id="p_value">P1=&nbsp;<input type="text" name="p1" value="" />')
     print('&nbsp;&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="" />)')
     print('&nbsp;&nbsp;P2<=P3<=P2&nbsp;(<input type="text" name="kp3" value="" />)')
@@ -36,7 +36,7 @@ else:
     kp3 = int(form["kp3"].value)
     min_size = int(form["min_size"].value)
 
-    print('<form action="javascript:sendformv3()" method="post" id="sequence_seeker_form">')
+    print('<form action="javascript:sendformv3a()" method="post" id="sequence_seeker_form">')
     print('<div id="p_value">P1=&nbsp;<input type="text" name="p1" value="{:g}" />'.format(p1))
     print('&nbsp;&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="{}" />)'.format(kp2))
     print('&nbsp;&nbsp;P2<=P3<=P2&nbsp;(<input type="text" name="kp3" value="{}" />)'.format(kp3))
@@ -50,7 +50,39 @@ else:
     big_seq.sort(reverse=True, key=len)
 
     print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
-
+    print('<tr id=header_index >'
+          '<th id="go">GO</th>'
+          '<th onclick=\'w3.sortHTML("#sequence_seeker_table", ".sequence_seeker_header","td:nth-child(2)")\' id="pl">'
+          'PL</th>'
+          '<th id="p1">P1</th>'
+          '<th id="p2">P2</th>'
+          '<th id="p3">P3</th>'
+          '<th>x</th>'
+          '<th id="yv">yv</th>'
+          '<th id="f">f</th>'
+          '<th id="x01">x&ordm;1</th>'
+          '<th id="x02">x&ordm;2</th>'
+          '<th id="03">x&ordm;3</th>'
+          '<th id="y0">y&ordm;</th>'
+          '<th id="y0v">y&ordm;v</th>'
+          '<th id="f0">f&ordm;</th>'
+          '<th id="dta">&Delta;</th>'
+          '<th id="cg">CG</th>'
+          '<th id="xv">xv</th>'
+          '<th id="lr">LR</th>'
+          '<th id="xvlr">-xv * LR</th>'
+          '<th id="yvxvlr">y&ordm;v + xv * LR </th>'
+          '<th id="y0vxvlr">y&ordm;v - xv * LR</th>'
+          '<th id="y0v2">(y&ordm;v)^2</th>'
+          '<th id="c0a">c&ordm;/a</th>'
+          '<th id="y0v2c0a">(y&ordm;v)^2 - c&ordm;/a</th>'
+          '<th onclick=\'w3.sortHTML("#sequence_seeker_table", ".sequence_seeker_header","td:nth-child(25)")\' id="qe">'
+          '#E</th>'
+          '<th onclick=\'w3.sortHTML("#sequence_seeker_table", ".sequence_seeker_header","td:nth-child(26)")\' id="qp">'
+          '#P</th>'
+          '<th onclick=\'w3.sortHTML("#sequence_seeker_table", ".sequence_seeker_header","td:nth-child(27)")\''
+          ' id="type">Type</th>'
+          '</tr>')
     for i in range(0, len(big_seq)):
         sequence = big_seq[i]
 

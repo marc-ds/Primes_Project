@@ -46,10 +46,12 @@ table#sequence_seeker_table tr:hover, td:hover {
 
 .generation_line {
 	background-color: palegreen;
+	text-align: right;
 }
 
 .print_line {
 	background-color: whitesmoke;
+	text-align: right;
 }
 .poly, td.poly0 {
 	background-color:gray;
@@ -159,11 +161,10 @@ td.poly, td.poly0 {
 	font-weight: bold;
 }
 
-.infin, .indef {
-	background-color: #421301;
+.undefined, .infin {
+	background-color: #a00101;
 	color: white;
 }
-
 #loader {
 	  display: inline-block;
 	  position: absolute;
