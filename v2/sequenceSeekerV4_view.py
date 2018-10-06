@@ -39,8 +39,8 @@ else:
     min_size = int(form["min_size"].value)
 
     print('<form action="javascript:sendformv4()" method="post" id="sequence_seeker_form">')
-    print('<div id="p_value">P1 range;<input type="text" name="p1" value="{:g}" />'.format(p1))
-    print('&nbsp;&nbsp;P1<=P1+&nbsp;(<input type="text" name="kp1" value="{:g}" />)'.format(kp1))
+    print('<div id="p_value">P1=&nbsp;<input type="text" name="p1" value="{:g}" />'.format(p1))
+    print('&nbsp;&nbsp;P1 range&nbsp;(<input type="text" name="kp1" value="{:g}" />)'.format(kp1))
     print('&nbsp;&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="{}" />)'.format(kp2))
     print('&nbsp;&nbsp;P2<=P3<=P2&nbsp;(<input type="text" name="kp3" value="{}" />)'.format(kp3))
     print('&nbsp;&nbsp;#P>=&nbsp;<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
