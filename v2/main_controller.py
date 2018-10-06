@@ -119,6 +119,10 @@ def rpup_positive(value, k):
         yield value
 
 
+def range_ay2byc(a, b, c, y_init, y_end):
+    for y in range(y_init, y_end+1):
+        yield x_abc(a, b, c, y)
+
 def isinfinity(value):
     if value == 0:
         return '&infin;'
