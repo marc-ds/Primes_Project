@@ -30,6 +30,18 @@ def nextprime(value):
         return negative * -1
 
 
+def prevprime(value):
+    if value > 2:
+        return sp.prevprime(value)
+    elif value == (0 or 1):
+        return -1
+    elif value == 2:
+        return 1
+    else:
+        negative = sp.nextprime(abs(value))
+        return negative * -1
+
+
 def factorint(value):
     if value == 1:
         tmp = [(1,1)]
@@ -108,6 +120,19 @@ def header_ctype(value, dark=False):
             return 'zero'
 
 
+def rpdown_positive(value, k):
+    if not isprime(value):
+        value = prevprime(value)
+    yield value
+    i = 0
+    while i < k - 1:
+        value = prevprime(value)
+        if value < 1:
+            break
+        i += 1
+        yield value
+
+
 def rpup_positive(value, k):
     if not isprime(value):
         value = nextprime(value)
@@ -122,6 +147,7 @@ def rpup_positive(value, k):
 def range_ay2byc(a, b, c, y_init, y_end):
     for y in range(y_init, y_end+1):
         yield x_abc(a, b, c, y)
+
 
 def isinfinity(value):
     if value == 0:
