@@ -118,7 +118,7 @@ else:
         print('<td class="offset {}">f&ordm;={}</td>'.format(header_ctype(x_obj.offset0), f0))
 
         delta = x_obj.delta
-        print('<td class="delta {}">&Delta;={}</td>'.format(header_ctype(x_obj.delta), delta))
+        print('<td class="delta {}">&Delta;={:g}</td>'.format(header_ctype(x_obj.delta), delta))
 
         c_g = x_obj.c_g
         print('<td class="c_g {}" >CG={:.4g}</td>'.format(header_ctype(x_obj.delta), c_g))

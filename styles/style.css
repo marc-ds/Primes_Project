@@ -1,184 +1,195 @@
-td#a, td#b, td#c {
-	min-width: 60px;
-	text-align: center;
+#loader{
+	visibility: hidden;
 }
 
-td#qtd_primes {
-	min-width: 80px;
-	text-align: center;
+#datasheet_info{
+	visibility: hidden;
+	font-size: 8pt;
 }
 
-form.setup div {
-    height: 35%;
-    width: 95%;
+#datasheet_info span {
+	margin-right: 5px;
 }
 
-form.setup input {
-    width: 50px;
+div#p_value {
 }
 
-p#fill_fields {
-	text-align: center;
+form#sequence_seeker_form, form#blockbuster {
+	font-size: 8pt;
 }
-
-form#sequence_seeker, form#blockbuster {
-	width: 690px; 
-	margin: auto
-}
-form#sequence_seeker input, form#blockbuster input {
+form#sequence_seeker_form input, form#blockbuster input {
 	width: 70px;
-	font-size: 0.7em;
+	font-size: 7pt;
 }
 
-form#sequence_seeker input#min_value {
-	width: 45px;
+form#sequence_seeker_form input#min_value {
+	width: 48px;
 }
 
 form#sequence_seeker input#submit, form#blockbuster input#submit {
-	height: auto;
-	width: auto;
-	margin-left: 28px;
 }
 
-h1#sequence_seeker {
-	font-size: 1.3em;
-	margin: 5px;
-	margin-top: 0;
-	text-align: center;
-}
-
-h1#sequences_header {
-	font-size:1.5em;
-	font-family: "Avenir Black","Courrier new", monospace;
-}
-
-table#blockbuster, table#blockbuster0, table#blockbuster-inv, table#blockbuster0-inv {
-	background-color:black;
-	font-size:0.8em;
-	font-family: "Avenir Black","Courrier new", monospace;
+table#sequence_seeker_table {
+	font-size: 8pt;
 	float: left;
-	margin: 10px;
-}
-
-table#blockbuster, table#blockbuster0 {
-}
-
-table#blockbuster-inv, table#blockbuster0-inv {
-}
-
-#container_table {
-	margin:auto;
-	width: 50%
-}
-
-table#blockbuster td, table#blockbuster0 td, table#blockbuster-inv td, table#blockbuster0-inv td {
-  border:0px solid black;
-	min-height: 50px;
-	padding: 0px;
-	text-align: center;
-}
-
-tr#y_vertex, tr#offset, tr#y0_vertex, tr#offset0 {
-	background-color:#E6B8BF;
-	color: #1F497D;
+	margin-top: 10px;
 	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	border-collapse: collapse;
+  white-space: nowrap;
+
 }
 
-tr#a, tr#b, tr#c, tr#a0, tr#b0, tr#c0, th#delta, th#c_g, tr.density, tr.sequence_seeker_header {
+table#sequence_seeker_table th {
+	border: 1px solid black;
+}
+
+th#pl,th#qe, th#qp, th#type {
+	cursor: pointer;
+}
+table#sequence_seeker_table td {
+	border: 1px solid black;
+}
+
+table#sequence_seeker_table tr:hover, td:hover {
+	border: none;
+	border: 2px solid yellow;
+}
+
+.generation_line {
+	background-color: palegreen;
+	text-align: right;
+}
+
+.print_line {
+	background-color: whitesmoke;
+	text-align: right;
+}
+.poly, td.poly0 {
 	background-color:gray;
 	color: white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+  text-align: right;
+}
+
+.offset {
+	min-width: 11px
+}
+
+.y0vm_xv_lr {
+}
+
+.y0vp_xv_lr {
+}
+
+.xvlr{
+}
+
+.y0v_2 {
+}
+
+.y0v_2c0a {
+}
+
+.data, .first, .last {
+	text-align: center;
+}
+
+.first, last {}
+
+.first {
+	text-align: right;
+}
+
+.last {
+	text-align: left;
+}
+
+td.poly, td.poly0 {
+}
+
+.qtd_primes, .qtd_elements {
+	background-color: gold;
 }
 
 .negative {
 	background-color:#F2DCDB;
 	color:red;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-	font-size:0.75em;
+}
+
+.negative_dark {
+	background-color: #e2b7b6;
+	color: red;
 }
 
 .positive {
-	background-color:#DCE6F1;
+  background-color:#DCE6F1;
 	color:blue;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-	font-size:0.75em;
 }
-
+.positive_dark {
+	background-color: #98b0d5;
+	color: blue;
+}
 .prime {
 	background-color:#538DD5;
 	color:white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
 .one {
 	background-color:#00B0F0;
 	color: white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+.DES {
+	background-color: yellowgreen;
+}
+
+.ACC {
+	background-color: green;
+}
+
+.SUB {
+	background-color: greenyellow;
+	color:red;
 }
 
 .sqrt_round {
 	background-color:#FFFF00;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	color: black;
 }
 
 .composite {
 	background-color:#FCD5B4;
 	color: black;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 }
 
-.zero, tr#y0 th {
+.zero {
 	background-color:red;
 	color:white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
 	font-weight: bold;
 }
 
-.y {
-	background-color:#E6B8BF;
-	color: #1F497D;
-}
-
-tr#y1 th, tr#y-1 th {
-	background-color:#F2DCDB;
-	color: #1F497D;
-}
-
-td#blockhole {
-	background-color:black;
-	color:red;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-}
-
-.y0_prime, td#y0_prime, td#y0_prime0 {
-	background-color:#8DB4E2;
-	color:white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-}
-
-.y0_one, td#y0_one, td#y0_one0 {
-	background-color:#92CDDC;
+.undefined, .infin {
+	background-color: #a00101;
 	color: white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+#loader {
+	  display: inline-block;
+	  position: absolute;
+	  top: 30%;
+	  left: 40%;
+	  z-index: 1;
+    border-top: 20px solid #538DD5;
+    border-right: 20px solid #FCD5B4;
+    border-bottom: 20px solid #538DD5;
+    border-left: 20px solid #FCD5B4;
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+    animation: spin 3s linear infinite;
 }
 
-.y0_sqrt_round, td#y0_sqrt_round, td#y0_sqrt_round0 {
-	background-color:#D8E4BC;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-}
-
-.y0_composite, td#y0_composite, td#y0_composite0 {
-	background-color:#FDE9D9;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-}
-
-tr.density {
-	background-color:gray;
-	color: white;
-	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
-	font-size:0.8em;
-}
-
-td.sequence_seeker {
-	text-align: left
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

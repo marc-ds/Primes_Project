@@ -28,7 +28,13 @@ if "p1" not in form:
           '#P>=&nbsp;<input type="text" name="min_size" value="" id="min_value"/>'
           '&nbsp;&nbsp;<input type="submit" value="Generate" id="submit"/></form></div>')
 
-    print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
+    print('<div id="datasheet_info">'
+          '<span id="elapsed_field_full">Elapsed time=<span id="elapsed_field"></span></span>'
+          '<span id="init_field_full">Start time=<span id="init_field"></span></span>'
+          '<span id="end_field_full">Stop time=<span id="end_field"></span></span>'
+          '<span id="nextp1_field"></span>'
+          '</div>')
+    print('<span id="loader"></span><div id="content"></div>')
 
 else:
 
@@ -53,6 +59,7 @@ else:
     #big_seq = sorted(calc(min_size), key=get_obj)
     #big_seq.sort(reverse=True, key=len)
 
+    print('<span id="nextp1">The next P1 is {}</span>'.format(sp.nextprime(p1, kp1+1)))
     print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
 
     for i in range(0, len(big_seq)):
@@ -113,7 +120,7 @@ else:
         print('<td class="offset {}">f&ordm;={}</td>'.format(header_ctype(x_obj.offset0), f0))
 
         delta = x_obj.delta
-        print('<td class="delta {}">&Delta;={}</td>'.format(header_ctype(x_obj.delta), delta))
+        print('<td class="delta {}">&Delta;={:g}</td>'.format(header_ctype(x_obj.delta), delta))
 
         c_g = x_obj.c_g
         print('<td class="c_g {}" >CG={:.4g}</td>'.format(header_ctype(x_obj.delta), c_g))

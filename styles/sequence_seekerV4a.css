@@ -2,7 +2,17 @@
 	visibility: hidden;
 }
 
-div#p_value {
+#datasheet_info{
+	visibility: hidden;
+	font-size: 8pt;
+}
+
+#datasheet_info span {
+	margin-right: 15px;
+}
+
+div#content {
+	font-size: 8pt;
 }
 
 form#sequence_seeker_form, form#blockbuster {
