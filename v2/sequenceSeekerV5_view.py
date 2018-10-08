@@ -29,9 +29,9 @@ if "p1" not in form:
           '&nbsp;&nbsp;<input type="submit" value="Generate" id="submit"/></form></div>')
 
     print('<div id="datasheet_info">'
-          '<span id="elapsed_field_full">Elapsed time=<span id="elapsed_field"></span></span>'
           '<span id="init_field_full">Start time=<span id="init_field"></span></span>'
-          '<span id="end_field_full">Stop time=<span id="end_field"></span></span>'
+          '<span id="end_field_full">End time=<span id="end_field"></span></span>'
+          '<span id="elapsed_field_full">Elapsed time=<span id="elapsed_field"></span></span>'
           '<span id="nextp1_field"></span>'
           '</div>')
     print('<span id="loader"></span><div id="content"></div>')

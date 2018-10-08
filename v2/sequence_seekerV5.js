@@ -2,14 +2,13 @@ function sendform() {
     var formElement = document.querySelector("form");
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/v2/sequenceSeekerV5_view.py");
-    var yhr = new XMLHttpRequest();
-    yhr.open("POST", "/v2/next_seq.py");
     xhr.timeout = 4294967295;
 
     function set_loader() {
         start = new Date().valueOf();
         init = new Date();
         document.getElementById("init_field").innerHTML = init;
+        document.getElementById("init_field_full").style.visibility='visible';
         document.getElementById("loader").style.visibility='visible';
         document.getElementById("content").style.visibility='hidden';
 }
@@ -19,7 +18,6 @@ function sendform() {
         total = stop - start
         document.getElementById("end_field").innerHTML = end;
         document.getElementById("elapsed_field").innerHTML = total.toString().concat('ms');
-        document.getElementById("init_field_full").style.visibility='visible';
         document.getElementById("elapsed_field_full").style.visibility='visible';
         document.getElementById("end_field_full").style.visibility='visible';
     };
