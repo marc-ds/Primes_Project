@@ -461,7 +461,7 @@ class SequenceSeekerV6:
         """The user set P1 and columns range (k) for P1 (kp1) P2 (kp2) and P3 (kp3)
         The initial value for P2 and P3 are P1"""
 
-        self.p1_range = list(rpdown_positive(p1, kp1))
+        self.p1_range = list(rpup_positive(p1, kp1))
         self.p2_k = kp2
         self.p3_k = kp3
 
@@ -473,7 +473,7 @@ class SequenceSeekerV6:
         flag = 0  # Flag to count how much interactions the program do to find that sequence.
 
         for p1_i in self.p1_range:
-            p2_range = rpup_positive(int(p1_i), self.p2_k)
+            p2_range = rpdown_positive(int(p1_i), self.p2_k)
             for p2_i in p2_range:  # Start the first loop for p2, starting by P1 value.
                 p3_range = rpup_positive(int(p2_i), self.p3_k)
 

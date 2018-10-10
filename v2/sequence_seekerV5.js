@@ -9,6 +9,8 @@ function sendform() {
         init = new Date();
         document.getElementById("init_field").innerHTML = init;
         document.getElementById("init_field_full").style.visibility='visible';
+        document.getElementById("elapsed_field_full").style.visibility='hidden';
+        document.getElementById("end_field_full").style.visibility='hidden';
         document.getElementById("loader").style.visibility='visible';
         document.getElementById("content").style.visibility='hidden';
 }

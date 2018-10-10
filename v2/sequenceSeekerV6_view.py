@@ -59,7 +59,7 @@ else:
     #big_seq = sorted(calc(min_size), key=get_obj)
     #big_seq.sort(reverse=True, key=len)
 
-    #print('<span id="nextp1">The next P1 is {}</span>'.format(sp.nextprime(p1, kp1+1)))
+    print('<span id="nextp1">The next P1 is {}</span>'.format(sp.nextprime(p1, kp1+1)))
     print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
 
     for i in range(0, len(big_seq)):
