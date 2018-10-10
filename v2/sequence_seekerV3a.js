@@ -1,7 +1,7 @@
 function sendform() {
     var formElement = document.querySelector("form");
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/v2/sequenceSeekerV4a_view.py");
+    xhr.open("POST", "/v2/sequenceSeekerV3a_view.py");
     xhr.timeout = 4294967295;
 
     function set_loader() {
@@ -13,7 +13,7 @@ function sendform() {
         document.getElementById("end_field_full").style.visibility='hidden';
         document.getElementById("loader").style.visibility='visible';
         document.getElementById("content").style.visibility='hidden';
-    };
+}
     function show_time() {
         stop = new Date().valueOf();
         end = new Date();

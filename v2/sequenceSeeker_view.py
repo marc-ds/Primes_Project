@@ -10,148 +10,217 @@ cgitb.enable()
 form = cgi.FieldStorage()
 
 print('Content-type: text/html\r\n\r')
-print('<html>')
-print('<head>')
-print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seeker.css">')
-print('<title>Sequence Seeker</title>')
-print('</head>')
-print('<body>')
 
-if "p1" not in form or "p2" not in form or "p3" not in form:
+if "p1" not in form:
 
-    print('<form action="/v2/sequenceSeeker_view.py" method="post" id="sequence_seeker">')
-    print('<div id="p_value">P1 initial value = <input type="text" name="p1" value="" />')
-    print('P2 initial value &nbsp;= <input type="text" name="p2" value="" />')
-    print('P3 initial value &nbsp;= <input type="text" name="p3" value="" /></div>')
-    print('<div id="p_step">P1 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p1_step" value="0" />')
-    print('P2 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p2_step" value="0" />')
-    print('P3 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p3_step" value="1" /></div>')
-    print('<div class="others" id="k">Columns range = <input type="text" name="k" value="100" />')
-    print('Min. #P 1st seq &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= '
-          '<input type="text" name="min_size" value="7" id="min_value"/>')
-    print('<input type="submit" value="Generate" id="submit"/></div></form>')
-    print('</body>')
-    print('</html>')
+    print('<html>')
+    print('<head>')
+    print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seekerV4a.css">')
+    print('<script src="sequence_seekerV1.js"></script>')
+    print('<title>SSE v.1</title>')
+    print('</head>')
+    print('<body>')
+
+    print('<form action="javascript:sendform()" method="post" id="sequence_seeker_form" name="collect_data_form" >')
+
+    print('<div id="abc">SSE v.1&nbsp;&nbsp;|&nbsp;&nbsp;'
+          'P1=&nbsp;<input type="text" name="p1" value="" />&nbsp;&nbsp;'
+          'P1step=&nbsp;<input type="text" name="p1_step" value="" />&nbsp;&nbsp;'
+          'P2=&nbsp;<input type="text" name="p2" value="" />&nbsp;&nbsp;'
+          'P2step=&nbsp;<input type="text" name="p2_step" value="" />&nbsp;&nbsp;'
+          'P3=&nbsp;(<input type="text" name="p3" value="" />)&nbsp;&nbsp;'
+          'P3step=&nbsp;<input type="text" name="p3_step" value="" />&nbsp;&nbsp;'
+          'Columns&nbsp;(<input type="text" name="k" value="" />)&nbsp;&nbsp;'
+          '#P>=&nbsp;<input type="text" name="min_size" value="" id="min_value"/>'
+          '&nbsp;&nbsp;<input type="submit" value="GO" id="submit"/></form></div>')
+
+    print('<div id="datasheet_info">'
+          '<span id="init_field_full">Start time=<span id="init_field"></span></span>'
+          '<span id="end_field_full">End time=<span id="end_field"></span></span>'
+          '<span id="elapsed_field_full">Elapsed time=<span id="elapsed_field"></span></span>'
+          '<span id="nextp1_field"></span>'
+          '</div>')
+    print('<span id="loader"></span><div id="content"></div>')
 
 else:
 
-    p1 = float(form["p1"].value)
-    p2 = float(form["p2"].value)
-    p3 = float(form["p3"].value)
-    p1_step = float(form["p1_step"].value)
-    p2_step = float(form["p2_step"].value)
-    p3_step = float(form["p3_step"].value)
+    p1 = int(form["p1"].value)
+    p2 = int(form["p2"].value)
+    p3 = int(form["p3"].value)
+    p1_step = int(form["p1_step"].value)
+    p2_step = int(form["p2_step"].value)
+    p3_step = int(form["p3_step"].value)
     k = int(form["k"].value)
     min_size = int(form["min_size"].value)
 
-    print('<form action="/v2/sequenceSeeker_view.py" method="post" id="sequence_seeker">')
-    print('<div id="p_value">P1 initial value = <input type="text" name="p1" value="{:g}" />'.format(p1))
-    print('P2 initial value &nbsp;= <input type="text" name="p2" value="{:g}" />'.format(p2))
-    print('P3 initial value = <input type="text" name="p3" value="{:g}" /></div>'.format(p3))
-    print('<div id="p_step">P1 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p1_step" value="{:g}" />'.format(p1_step))
-    print('P2 step value &nbsp;&nbsp;&nbsp;= <input type="text" name="p2_step" value="{:g}" />'.format(p2_step))
-    print('P3 step value &nbsp;&nbsp;= <input type="text" name="p3_step" value="{:g}" /></div>'.format(p3_step))
-    print('<div class="others" id="k">Columns range = <input type="text" name="k" value="{}" />'.format(k))
-    print('Min. #P 1st seq &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= '
-          '<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
-    print('<input type="submit" value="Generate" id="submit"/></div></form>')
+    calc = SequenceSeeker(p1, p2, p3, p1_step, p2_step, p3_step, k)
+    big_seq = calc(min_size)
 
-    calc = SequenceSeeker(p1,p2,p3,p1_step,p2_step,p3_step,k)
-    big_seq = sorted(calc(min_size), reverse=True, key=len)
-
-    print('<h1 id=sequence_seeker >{} sequences with {} primes or more elements found.</h1>'.format(len(big_seq), min_size))
-    print('<table id=sequence_seeker>')
+    print('<span id="nextp1">The next P1 is {}</span>'.format(sp.nextprime(p1, (p1_step*k))))
+    print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
 
     for i in range(0, len(big_seq)):
         sequence = big_seq[i]
+
         x_obj = sequence.pop()
+        generation_order = sequence.pop()
         first = factorint(int(sequence.pop(0)))
         last = factorint(int(sequence.pop()))
 
-        yv = x_obj.y_vertex
-        f = x_obj.offset
+        print('<tr class="sequence_seeker_header">')
+        print('<td class="generation_line">{:.0f}</td>'.format(generation_order))
+        print('<td class="print_line">{:g}</td>'.format(i + 1))
+
+        indef = 'undefined'
+        infin = '&infin;'
+
+        print('<td class="{}">P1={:g}</td>'.format(data_ctype(int(x_obj.p1)), x_obj.p1))
+        print('<td class="{}">P2={:g}</td>'.format(data_ctype(int(x_obj.p2)), x_obj.p2))
+        print('<td class="{}">P3={:g}</td>'.format(data_ctype(int(x_obj.p3)), x_obj.p3))
+
         a = x_obj.a
         b = x_obj.b
         c = x_obj.c
-        delta = x_obj.delta
-        sqrtdelta = sqrt(abs(delta))
-        c_g = sqrtdelta - int(sqrtdelta)
+        print('<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'.format(a, b, c))
 
-        yv0 = x_obj.y_vertex0
-        f0 = x_obj.offset0
-        a0 = x_obj.a0
-        b0 = x_obj.b0
-        c0 = x_obj.c0
-        delta0 = x_obj.delta0
-        sqrtdelta0 = sqrt(abs(delta0))
-        c_g0 = sqrtdelta - int(sqrtdelta0)
+        yv = x_obj.y_vertex
+        if a == 0:
+            print('<td class="{} y_vertex">yv={}</td>'.format('infin', infin))
+        else:
+            print('<td class="{} y_vertex">yv={:.4g}</td>'.format(x_obj.yv_type(), yv))
+
+        f = x_obj.offset
+        if a == 0:
+            print('<td class="{} offset">f={:}</td>'.format('infin', infin))
+        else:
+            print('<td class="{} offset">f={:}</td>'.format(header_ctype(f), f))
+
         x01 = x_obj.x01
         x02 = x_obj.x02
         x03 = x_obj.x03
+        print('<td class="{}">x&ordm;1={:g}</td>'.format(data_ctype(int(x01)), x01))
+        print('<td class="{}">x&ordm;2={:g}</td>'.format(data_ctype(int(x02)), x02))
+        print('<td class="{}">x&ordm;3={:g}</td>'.format(data_ctype(int(x03)), x03))
+
+        a0 = x_obj.a0
+        b0 = x_obj.b0
+        c0 = x_obj.c0
+        print('<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'.format(a0, b0, c0))
+
+        y0v = x_obj.y0_vertex
+        if a == 0:
+            print('<td class="y_vertex {}">y&ordm;v={}</td>'.format('infin', infin))
+        else:
+            print('<td class="y_vertex {}">y&ordm;v={:.4g}</td>'.format(header_ctype(y0v), y0v))
+
+        f0 = '{:.4g}'.format(x_obj.offset0)
+        print('<td class="offset {}">f&ordm;={}</td>'.format(header_ctype(x_obj.offset0), f0))
+
+        delta = x_obj.delta
+        print('<td class="delta {}">&Delta;={:g}</td>'.format(header_ctype(x_obj.delta), delta))
+
+        c_g = x_obj.c_g
+        print('<td class="c_g {}" >CG={:.4g}</td>'.format(header_ctype(x_obj.delta), c_g))
+
+        xv = x_obj.xv
+        if a == 0:
+            print('<td class="xv {}">xv={}</td>'.format(indef, indef))
+        else:
+            print('<td class="xv {}">xv={:.4g}</td>'.format(header_ctype(x_obj.xv), xv))
+
+        lr = x_obj.lr
+        if a == 0:
+            print('<td class="lr {}">LR={}</td>'.format(indef, indef))
+        else:
+            print('<td class="lr {}">LR={:.3g}</td>'.format(header_ctype(x_obj.lr), lr))
+
+        xvlr = x_obj.xvlr
+        if a == 0:
+            print('<td class="xvlr {}">-xv*LR={}</td>'.format(indef, indef))
+        else:
+            print('<td class="xvlr {}">-xv*LR={:.4g}</td>'.format(header_ctype(x_obj.xvlr, True), xvlr))
+
+        y0vm_xv_lr = x_obj.y0vm_xv_lr
+        if a == 0:
+            print('<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={}</td>'.format(indef, indef))
+        else:
+            print('<td class="y0vm_xv_lr {}">y&ordm;v-xv*LR={:.4g}</td>'.format(header_ctype(x_obj.y0vm_xv_lr),
+                                                                                y0vm_xv_lr))
+        y0vp_xv_lr = x_obj.y0vp_xv_lr
+        if a == 0:
+            print('<td class="y0vp_xv_lr {}">y&ordm;v+xv*LR={}</td>'.format(indef, indef))
+        else:
+            print('<td class="y0vp_xv_lr {}">y&ordm;v+xv*LR={:.4g}</td>'.format(header_ctype(x_obj.y0vp_xv_lr),
+                                                                                y0vp_xv_lr))
+        y0v_2 = x_obj.y0v_2
+        if a == 0:
+            print('<td class="y0v_2 {}">(y&ordm;v)^2={}</td>'.format(indef, indef))
+        else:
+            print('<td class="y0v_2 {}">(y&ordm;v)^2={:.4g}</td>'.format(header_ctype(x_obj.y0v_2), y0v_2))
+
+        c0_a = x_obj.c0_a
+        if a == 0:
+            print('<td class="c0_a {}">c&ordm;/a={}</td>'.format(indef, indef))
+        else:
+            print('<td class="c0_a {}">c&ordm;/a={:.0f}</td>'.format(header_ctype(x_obj.c0_a), c0_a))
+
+        y0v_2c0a = x_obj.y0v_2c0a
+        if a == 0:
+            print('<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={}</td>'.format(indef, indef))
+        else:
+            print('<td class="y0v_2c0a {}">(y&ordm;v)^2-c&ordm;/a={:.4g}'
+                  '</td>'.format(header_ctype(x_obj.y0v_2c0a, True), y0v_2c0a))
+
+        if x_obj.p1 == x_obj.p2 == x_obj.p3:
+            len_all = 'N'
+            print('<td class="qtd_elements">#E={}'.format(len_all))
+        else:
+            len_all = len(big_seq[i])
+            print('<td class="qtd_elements">#E={:g}'.format(len_all))
+
+        if x_obj.p1 == x_obj.p2 == x_obj.p3:
+            len_primes = '*'
+            print('<td class="qtd_primes">#P={}'.format(len_primes))
+        else:
+            len_primes = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
+            print('<td class="qtd_primes">#P={:g}'.format(len_primes))
+
         par_type = x_obj.par_type
-        length = len(big_seq[i]) - big_seq[i].count(1) - big_seq[i].count(-1)
+        print('<td class="{pt}">{pt}</td>'.format(pt=par_type))
 
-        p1_txt = '<td id="{}">p1={:g}</td>'
-        p2_txt = '<td id="{}">p2={:g}</td>'
-        p3_txt = '<td id="{}">p3={:g}</td>'
-        poly_txt = '<td class="poly">x={:g}y^2{:+g}y{:+g}</td>'
-        yv_txt = '<td class="y_vertex" id="{}" >yv={:1.4g}</td>'
-        off_txt = '<td class="offset" id="{}" >f={:1.4g}</th>'
-        delta_txt = '<td class="delta" id="{}" >&Delta;={:.0f}</th>'
-        c_g_txt = '<td class="c_g" id="{}" >CG={:.4g}</th>'
-
-        poly_txt0 = '<td class="poly0">x&ordm;={:g}y^2{:+g}y{:+g}</td>'
-        yv_txt0 = '<td class="y_vertex" id="{}" >y&ordm;v={:1.4g}</td>'
-        off_txt0 = '<td class="offset" id="{}" >f&ordm;={}</th>'
-        delta_txt0 = '<td class="delta" id="{}" >&Delta;&ordm;={:.0f}</th>'
-        c_g_txt0 = '<td class="c_g" id="{}" >CG&ordm;={:.4g}</th>'
-        x01_txt = '<td id="{}">x&ordm;1={:g}</td>'
-        x02_txt = '<td id="{}">x&ordm;2={:g}</td>'
-        x03_txt = '<td id="{}">x&ordm;3={:g}</td>'
-        len_txt = '<td class="qtd_primes" id="qtd_primes" >#P={}'
-        par_type_txt = '<td class="{pt}" >{pt}</td>'
-
-        print('<tr class="sequence_seeker_header">')
-        print(p1_txt.format(data_ctype(int(x_obj.p1)), x_obj.p1))
-        print(p2_txt.format(data_ctype(int(x_obj.p2)), x_obj.p2))
-        print(p3_txt.format(data_ctype(int(x_obj.p3)), x_obj.p3))
-        print(poly_txt.format(a,b,c))
-        print(yv_txt.format(x_obj.yv_type(), yv))
-        print(off_txt.format(header_ctype(f), f))
-        print(delta_txt.format(header_ctype(delta), delta))
-        print(c_g_txt.format(header_ctype(delta), c_g))
-        print(poly_txt0.format(a0, b0, c0))
-        print(yv_txt0.format(header_ctype(yv0), yv0))
-        print(off_txt0.format(header_ctype(f0), f0))
-        print(delta_txt0.format(header_ctype(delta0), delta0))
-        print(c_g_txt0.format(header_ctype(delta0), c_g0))
-        print(x01_txt.format(data_ctype(int(x01)), x01))
-        print(x02_txt.format(data_ctype(int(x02)), x02))
-        print(x03_txt.format(data_ctype(int(x03)), x03))
-        print(par_type_txt.format(pt=par_type))
-        print(len_txt.format(length))
-
-
+        print('<td class="first composite">')
+        flag = len(first)
         for value, exponent in first.items():
-            print('<td class="first" id="composite">{:}^{}</td>'.format(value, exponent), end='')
-
+            flag -= 1
+            if flag > 0:
+                print('{}^{}*'.format(value, exponent), end='')
+            else:
+                print('{}^{}'.format(value, exponent), end='')
+        print('</td>')
 
         for result in sequence:
-            if abs(result) is 1:
-                print('<td class="data" id="one">{}</td>'.format(result))
+            if abs(result) == 1:
+                print('<td class="data one">{:g}</td>'.format(result))
             elif result == 0:
-                print('<td class="data" id="zero">{}</td>'.format(result))
+                print('<td class="data zero">{:0g}</td>'.format(result))
             elif isprime(result):
-                print('<td class="data" id="prime">{}</td>'.format(result))
+                print('<td class="data prime">{:0g}</td>'.format(result))
             elif not (sqrt(abs(result)) * 10) % 2:
-                print('<td class="data" id="sqrt_round">{}</td>'.format(result))
+                print('<td class="data sqrt_round">{:0g}</td>'.format(result))
             else:
-                print('<td class="data" id="composite">{}</td>'.format(result))
+                print('<td class="data composite">{:2g}</td>'.format(result))
 
+        print('<td class="last composite">')
+        flag = len(last)
         for value, exponent in last.items():
-            print('<td class="last" id="composite">{:}^{}</td>'.format(value, exponent), end='')
+            flag -= 1
+            if flag > 0:
+                print('{:}^{}*'.format(value, exponent), end='')
+            else:
+                print('{:}^{}'.format(value, exponent), end='')
+        print('</td>')
 
         print('</tr>')
-
-print('</body>')
-print('</html>')
+    print('</table>')
+    print('</body>')
+    print('</html>')

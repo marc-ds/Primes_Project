@@ -11,24 +11,29 @@ print('Content-type: text/html\r\n\r')
 
 if "p1" not in form:
 
-
     print('<html>')
     print('<head>')
     print('<script src="https://www.w3schools.com/lib/w3.js"></script>')
-    print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seekerV3a.css">')
-    print('<script src="js.js"></script>')
-    print('<title>Sequence Seeker</title>')
+    print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seekerV4a.css">')
+    print('<script src="sequence_seekerV3a.js"></script>')
+    print('<title>SSE v.3.a</title>')
     print('</head>')
     print('<body>')
-    print('<form action="javascript:sendformv3a()" method="post" id="sequence_seeker_form" name="collect_data_form" >')
-    print('<div id="p_value">P1=&nbsp;<input type="text" name="p1" value="" />')
+    print('<form action="javascript:sendform()" method="post" id="sequence_seeker_form" name="collect_data_form" >')
+    print('<div id="p_value">SSE v.3.a&nbsp;&nbsp;|&nbsp;&nbsp;P1=&nbsp;<input type="text" name="p1" value="" />')
     print('&nbsp;&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="" />)')
     print('&nbsp;&nbsp;P2<=P3<=P2&nbsp;(<input type="text" name="kp3" value="" />)')
     print('&nbsp;&nbsp;#P>=&nbsp;<input type="text" name="min_size" value="" id="min_value"/>')
     print('<input type="submit" value="GO" id="submit"/></form>')
     print('</div>')
 
-    print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
+    print('<div id="datasheet_info">'
+          '<span id="init_field_full">Start time=<span id="init_field"></span></span>'
+          '<span id="end_field_full">End time=<span id="end_field"></span></span>'
+          '<span id="elapsed_field_full">Elapsed time=<span id="elapsed_field"></span></span>'
+          '<span id="nextp1_field"></span>'
+          '</div>')
+    print('<span id="loader"></span><div id="content"></div>')
 
 else:
 
@@ -39,16 +44,7 @@ else:
 
     calc = SequenceSeekerV3(p1, kp2, kp3)
 
-    big_seq = sorted(calc(min_size), key=get_obj)
-    big_seq.sort(reverse=True, key=len)
-
-    print('<form action="javascript:sendformv3a()" method="post" id="sequence_seeker_form">')
-    print('<div id="p_value">P1=&nbsp;<input type="text" name="p1" value="{:g}" />'.format(p1))
-    print('&nbsp;&nbsp;P1<=P2<=P1&nbsp;(<input type="text" name="kp2" value="{}" />)'.format(kp2))
-    print('&nbsp;&nbsp;P2<=P3<=P2&nbsp;(<input type="text" name="kp3" value="{}" />)'.format(kp3))
-    print('&nbsp;&nbsp;#P>=&nbsp;<input type="text" name="min_size" value="{}" id="min_value"/>'.format(min_size))
-    print('<input type="submit" value="GO" id="submit"/></form>')
-    print('</div>')
+    big_seq = calc(min_size)
 
     print('<span id="loader"></span><table id="sequence_seeker_table" class="w3-table-all" >')
     print('<tr id=header_index >'
@@ -72,8 +68,8 @@ else:
           '<th id="xv">xv</th>'
           '<th id="lr">LR</th>'
           '<th id="xvlr">-xv*LR</th>'
-          '<th id="yvxvlr">y&ordm;v+xv*LR </th>'
-          '<th id="y0vxvlr">y&ordm;v-xv*LR</th>'
+          '<th id="yvxvlr">y&ordm;v-xv*LR </th>'
+          '<th id="y0vxvlr">y&ordm;v+xv*LR</th>'
           '<th id="y0v2">(y&ordm;v)^2</th>'
           '<th id="c0a">c&ordm;/a</th>'
           '<th id="y0v2c0a">(y&ordm;v)^2-c&ordm;/a</th>'
@@ -84,6 +80,7 @@ else:
           '<th onclick=\'w3.sortHTML("#sequence_seeker_table", ".sequence_seeker_header","td:nth-child(27)")\''
           ' id="type">Type</th>'
           '</tr>')
+
     for i in range(0, len(big_seq)):
         sequence = big_seq[i]
 
@@ -165,25 +162,23 @@ else:
         else:
             print('<td class="xvlr {}">{:.4g}</td>'.format(header_ctype(x_obj.xvlr, True), xvlr))
 
-        y0vp_xv_lr = x_obj.y0vp_xv_lr
-        if a == 0:
-            print('<td class="y0vp_xv_lr {}">{}</td>'.format(indef, indef))
-        else:
-            print('<td class="y0vp_xv_lr {}">{:.4g}</td>'.format(header_ctype(x_obj.y0vp_xv_lr),
-                                                                 y0vp_xv_lr))
-
         y0vm_xv_lr = x_obj.y0vm_xv_lr
         if a == 0:
             print('<td class="y0vm_xv_lr {}">{}</td>'.format(indef, indef))
         else:
             print('<td class="y0vm_xv_lr {}">{:.4g}</td>'.format(header_ctype(x_obj.y0vm_xv_lr),
                                                                  y0vm_xv_lr))
-
-        y0v_2c0a = x_obj.y0v_2c0a
+        y0vp_xv_lr = x_obj.y0vp_xv_lr
         if a == 0:
-            print('<td class="y0v_2c0a {}">{}</td>'.format(indef, indef))
+            print('<td class="y0vp_xv_lr {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="y0v_2c0a {}">{:.4g}</td>'.format(header_ctype(x_obj.y0v_2c0a, True), y0v_2c0a))
+            print('<td class="y0vp_xv_lr {}">{:.4g}</td>'.format(header_ctype(x_obj.y0vp_xv_lr),
+                                                                 y0vp_xv_lr))
+        y0v_2 = x_obj.y0v_2
+        if a == 0:
+            print('<td class="y0v_2 {}">{}</td>'.format(indef, indef))
+        else:
+            print('<td class="y0v_2 {}">{:.4g}</td>'.format(header_ctype(x_obj.y0v_2), y0v_2))
 
         c0_a = x_obj.c0_a
         if a == 0:
@@ -191,11 +186,11 @@ else:
         else:
             print('<td class="c0_a {}">{:.0f}</td>'.format(header_ctype(x_obj.c0_a), c0_a))
 
-        y0v_2 = x_obj.y0v_2
+        y0v_2c0a = x_obj.y0v_2c0a
         if a == 0:
-            print('<td class="y0v_2 {}">{}</td>'.format(indef, indef))
+            print('<td class="y0v_2c0a {}">{}</td>'.format(indef, indef))
         else:
-            print('<td class="y0v_2 {}">{:.4g}</td>'.format(header_ctype(x_obj.y0v_2), y0v_2))
+            print('<td class="y0v_2c0a {}">{:.4g}</td>'.format(header_ctype(x_obj.y0v_2c0a, True), y0v_2c0a))
 
         len_all = len(big_seq[i])
         print('<td class="qtd_elements">{:02g}'.format(len_all))

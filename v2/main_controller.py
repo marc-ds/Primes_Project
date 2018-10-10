@@ -320,8 +320,8 @@ class X:
             self.y0v_2c0a = 00
 
         self.xvlr = -self.xv * self.lr
-        self.y0vp_xv_lr = self.y0_vertex - self.xv + self.lr
-        self.y0vm_xv_lr = self.y0_vertex + self.xv + self.lr
+        self.y0vm_xv_lr = self.y0_vertex - self.xv * self.lr
+        self.y0vp_xv_lr = self.y0_vertex + self.xv * self.lr
         self.par_type = self.par_type()
 
     def __call__(self, y):
@@ -387,29 +387,3 @@ class X:
         else:
             return 'none'
 
-
-"""def range_primes_below(value=-10, k=10):
-    current = value
-    end = value + k -1
-
-    yield value
-
-    while current <= end:
-        if value > 2:
-            value = sp.prevprime(value)
-        elif value <= -1:
-            value = -sp.nextprime(abs(value))
-        elif value == 2:
-            value = 1
-        elif value == 1:
-            value = -1
-
-        current += 1
-        yield value
-
-def range_primes(value, k):
-    below_list = list(range_primes_below(value, k+1))
-    above_list = list(range_primes_above(value, k))
-    below_list.pop(0)
-    below_list.reverse()
-    return below_list + above_list"""
