@@ -184,8 +184,8 @@ class SequenceSeekerV3:
         for p2_i in self.p2_range:  # Start the first loop for p2, starting by P1 value.
             p3_range = rpup_positive(int(p2_i), self.p3_k)
 
-            for p3_i in p3_range:  # Start p3 loop out of actual p2 value, so:
-                primes_seq = list()                         # P2 <= P3 <= P3+k
+            for p3_i in p3_range:    # Start p3 loop out of actual p2 value, so:
+                primes_seq = list()  # P2 <= P3 <= P3+k
                 flag += 1
                 p1 = self.p1
                 p2 = p2_i
@@ -211,8 +211,8 @@ class SequenceSeekerV3:
                 y_step = 1  # and the steps that positives and negative loops.
 
                 possible_prime = x(p1, p2, p3, yp)
-                while isprime(possible_prime):          # While possible prime is true, keep appending
-                    primes_seq.append(possible_prime)   # positives y possible_prime to prime sequence.
+                while isprime(possible_prime):         # While possible prime is true, keep appending
+                    primes_seq.append(possible_prime)  # positives y possible_prime to prime sequence.
                     yp += y_step
                     possible_prime = x(p1, p2, p3, yp)
 
@@ -242,8 +242,8 @@ class SequenceSeekerV4:
         The initial value for P2 and P3 are P1"""
         self.p1 = p1
         self.p1_range = list(rpup_positive(abs(p1), p1_k))  # P1 range: P1 <= P1 + p2_k (P1 columns range)
-        self.p2_k = p2_k                                    # P2 range: P1 <= P2 <= P2 + p2_k (P2 columns range)
-        self.p3_k = p3_k                                    # P3 range: P2 <= P3 <= P3 + p2_k (P3 columns range)
+        self.p2_k = p2_k  # P2 range: P1 <= P2 <= P2 + p2_k (P2 columns range)
+        self.p3_k = p3_k  # P3 range: P2 <= P3 <= P3 + p2_k (P3 columns range)
 
     def __call__(self, min_size):
         """ Return an list with all sequences, each one with an x object,
@@ -314,9 +314,9 @@ class SequenceSeekerV4a:
         """The user set P1 and columns range (k) for P2 (p2_k) and P3 (p3_k)
         The initial value for P2 and P3 are P1"""
 
-        self.p1_range = list(range_ay2byc(a,b,c,y_init,y_end))  # P1 range: P1 <= P1 + p2_k (P1 columns range)
-        self.p2_k = p2_k                                  # P2 range: P1 <= P2 <= P2 + p2_k (P2 columns range)
-        self.p3_k = p3_k                                  # P3 range: P2 <= P3 <= P3 + p2_k (P3 columns range)
+        self.p1_range = list(range_ay2byc(a, b, c, y_init, y_end))  # P1 range: P1 <= P1 + p2_k (P1 columns range)
+        self.p2_k = p2_k  # P2 range: P1 <= P2 <= P2 + p2_k (P2 columns range)
+        self.p3_k = p3_k  # P3 range: P2 <= P3 <= P3 + p2_k (P3 columns range)
 
     def __call__(self, min_size):
         """ Return an list with all sequences, each one with an x object,
