@@ -12,7 +12,7 @@ def mod9table():
     rg_rows = range(2, rows_number)
     rows = [list(), list()]
 
-    for i in rg_cols:
+    for un in rg_cols:
         rows[0].append(0)
         rows[1].append(1)
 
