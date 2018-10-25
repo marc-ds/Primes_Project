@@ -1,0 +1,65 @@
+table#abs, table#mod9, table#no-color {
+  font-size: 8px;
+  text-align: center;
+  border-collapse: collapse;
+  white-space: nowrap;
+  border: 2px solid black;
+  font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+}
+
+table#abs td, table#mod9 td {
+  border: 1px solid white;
+  margin: 0px;
+  padding: 0px;
+}
+
+.value0 {
+  background-color: #ff0000;
+  color: white;
+}
+
+.value1 {
+  background-color: #ffc700;
+  color: black;
+}
+
+.value2 {
+  background-color: #00ffb6;
+  color: black;  
+}
+
+.value3 {
+  background-color: #ff6e00;
+  color: white;
+}
+
+.value4 {
+  background-color: #ffff00;
+  color: black;
+}
+
+.value5 {
+  background-color: #54ff00;
+  color: black;
+}
+
+.value6 {
+  background-color: #ff009d;
+  color: white;
+}
+
+.value7 {
+  background-color: #c7ff00;
+  color: black;
+}
+
+.value8 {
+  background-color: #00ffa5;
+  color: black; 
+}
+
+table#no-color td {
+	background-color:#FCD5B4;
+	color: black;
+  border: 1px solid white;
+}
