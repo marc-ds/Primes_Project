@@ -1,5 +1,5 @@
-table#abs, table#mod9, table#no-color {
-  font-size: 8px;
+table#abs, table#mod9 {
+  font-size: 8.5px;
   text-align: center;
   border-collapse: collapse;
   white-space: nowrap;
@@ -11,6 +11,11 @@ table#abs td, table#mod9 td {
   border: 1px solid white;
   margin: 0px;
   padding: 0px;
+}
+
+table#mod9 td {
+  width: 10px;
+  height: 10px;
 }
 
 .value0 {
@@ -61,5 +66,4 @@ table#abs td, table#mod9 td {
 table#no-color td {
 	background-color:#FCD5B4;
 	color: black;
-  border: 1px solid white;
 }
