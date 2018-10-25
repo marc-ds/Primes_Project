@@ -4,53 +4,78 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/mod9table')
-def mod9table():
-    rows_number = 400
-    columns_number = 400
-    rg_cols = range(0, columns_number)
-    rg_rows = range(2, rows_number)
+@app.route('/triangle/mod9/<columns_number>/<rows_number>')
+def triangle_mod9(columns_number, rows_number):
+    n_value = 1
+    s_value = 0
+    range_cols = range(0, int(columns_number))
+    range_rows = range(2, int(rows_number))
     rows = [list(), list()]
 
-    for un in rg_cols:
-        rows[0].append(0)
-        rows[1].append(1)
+    for i in range_cols:
+        rows[0].append(int(s_value))
+        rows[1].append(int(n_value)+int(s_value))
 
-    for a in rg_rows:
+    for r in range_rows:
         row = []
-        for b in rg_cols:
-            if b == 0:
-                value = 1
+        for c in range_cols:
+            if c == 0:
+                value = int(n_value)
             else:
-                value = row[b-1] + rows[a-1][b]
+                value = row[c-1] + rows[r-1][c]
             row.append(value)
 
         rows.append(row)
 
-    return render_template('mod9table.html', rows=rows)
+    return render_template('triangle_mod.html', rows=rows)
 
 
-@app.route('/table')
-def abstable():
-    rows_number = 200
-    columns_number = 200
-    rg_cols = range(0, columns_number)
-    rg_rows = range(2, rows_number)
+@app.route('/triangle/N<n_value>s<s_value>/<columns_number>/<rows_number>')
+def triangle_ns(n_value, s_value, columns_number, rows_number):
+
+    range_cols = range(0, int(columns_number))
+    range_rows = range(2, int(rows_number))
     rows = [list(), list()]
 
-    for i in rg_cols:
-        rows[0].append(0)
-        rows[1].append(1)
+    for i in range_cols:
+        rows[0].append(int(s_value))
+        rows[1].append(int(n_value)+int(s_value))
 
-    for a in rg_rows:
+    for r in range_rows:
         row = []
-        for b in rg_cols:
-            if b == 0:
-                value = 1
+        for c in range_cols:
+            if c == 0:
+                value = int(n_value)
             else:
-                value = row[b-1] + rows[a-1][b]
+                value = row[c-1] + rows[r-1][c]
             row.append(value)
 
         rows.append(row)
 
-    return render_template('table.html', rows=rows)
+    return render_template('triangle.html', rows=rows)
+
+
+@app.route('/triangle-nc/N<n_value>s<s_value>/<columns_number>/<rows_number>')
+def triangle_nc(n_value, s_value, columns_number, rows_number):
+
+    range_cols = range(0, int(columns_number))
+    range_rows = range(2, int(rows_number))
+    rows = [list(), list()]
+
+    for i in range_cols:
+        rows[0].append(int(s_value))
+        rows[1].append(int(n_value)+int(s_value))
+
+    for r in range_rows:
+        row = []
+        for c in range_cols:
+            if c == 0:
+                value = int(n_value)
+            else:
+                value = row[c-1] + rows[r-1][c]
+            row.append(value)
+
+        rows.append(row)
+
+    return render_template('triangle-nc.html', rows=rows)
+
