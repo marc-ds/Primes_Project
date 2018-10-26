@@ -66,4 +66,5 @@ table#mod9 td {
 table#no-color td {
 	background-color:#FCD5B4;
 	color: black;
+  text-align: center;
 }
