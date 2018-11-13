@@ -63,6 +63,7 @@ def triangle_ns(n_value, s_value, columns_number, rows_number):
         rows.append(row)  # adiciona a linha atual ao conjunto de linhas.
     return render_template('triangle.html', rows=rows)
 
+
 @app.route('/triangle-nc/N<n_value>s<s_value>/<columns_number>/<rows_number>')
 def triangle_nc(n_value, s_value, columns_number, rows_number):
 
@@ -92,20 +93,21 @@ def triangle_nc(n_value, s_value, columns_number, rows_number):
 
     return render_template('triangle-nc.html', rows=rows)
 
+
 @app.route('/RepUnitPowers/<columns_number>/<rows_number>')
 def rep_unit_powers(columns_number, rows_number):
 
-    range_cols = range(0, int(columns_number))  # range das colunas.
-    range_rows = range(1, int(rows_number))     # range das linhas.
+    range_cols = range(1, int(columns_number)+1)  # range das colunas.
+    range_rows = range(1, int(rows_number)+1)     # range das linhas.
     rows = [list(), list()]
-    '''row = []
+    row = ['t']
     for c in range_cols:
-        row.append(c)
-    rows.append(row)'''
+        row.append('int(10^(y-1)/9)^{:g}'.format(c))
+    rows.append(row)
     for r in range_rows:
         row = []
         y = r
-        #row.append(y)
+        row.append(f'y={y}')
         for c in range_cols:
             row.append((int((10**(y-1))/9))**c)
         rows.append(row)
