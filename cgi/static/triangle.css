@@ -70,6 +70,7 @@ table#no-color td {
 }
 
 table#no-color tr.row3 td,
+table#no-color tr.row4 td,
 table#no-color td.col0 {
   background-color: gray;
   color: white;

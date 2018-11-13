@@ -97,19 +97,25 @@ def triangle_nc(n_value, s_value, columns_number, rows_number):
 @app.route('/RepUnitPowers/<columns_number>/<rows_number>')
 def rep_unit_powers(columns_number, rows_number):
 
-    range_cols = range(1, int(columns_number)+1)  # range das colunas.
+    range_cols = range(0, int(columns_number)+1)  # range das colunas.
     range_rows = range(1, int(rows_number)+1)     # range das linhas.
     rows = [list(), list()]
     row = ['t']
     for c in range_cols:
-        row.append('int(10^(y-1)/9)^{:g}'.format(c))
+        row.append('{:g}'.format(c))
     rows.append(row)
+
+    row = ['Index(y)']
+    for c in range_cols:
+        row.append('(R_y)^{:g}'.format(c))
+    rows.append(row)
+
     for r in range_rows:
         row = []
         y = r
-        row.append(f'y={y}')
+        row.append(f'{y}')
         for c in range_cols:
-            row.append((int((10**(y-1))/9))**c)
+            row.append(int((10**y-1)/9)**c)
         rows.append(row)
 
     return render_template('rep_unit_powers.html', rows=rows)
