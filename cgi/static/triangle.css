@@ -68,3 +68,9 @@ table#no-color td {
 	color: black;
   text-align: center;
 }
+
+table#no-color tr.row3 td,
+table#no-color td.col0 {
+  background-color: gray;
+  color: white;
+}
