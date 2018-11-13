@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-# enable debugging
 from flask import Flask, render_template
+from decimal import Decimal
 app = Flask(__name__)
 
 
@@ -102,12 +103,12 @@ def rep_unit_powers(columns_number, rows_number):
     rows = [list(), list()]
     row = ['t']
     for c in range_cols:
-        row.append('{:g}'.format(c))
+        row.append('{}'.format(c))
     rows.append(row)
 
     row = ['Index(y)']
     for c in range_cols:
-        row.append('(R_y)^{:g}'.format(c))
+        row.append('(R_y)^{}'.format(c))
     rows.append(row)
 
     for r in range_rows:
@@ -115,7 +116,7 @@ def rep_unit_powers(columns_number, rows_number):
         y = r
         row.append(f'{y}')
         for c in range_cols:
-            row.append(int((10**y-1)/9)**c)
+            row.append(int(Decimal(10**y-1)/9)**c)
         rows.append(row)
 
     return render_template('rep_unit_powers.html', rows=rows)
