@@ -114,10 +114,33 @@ def rep_unit_powers(columns_number, rows_number):
     for r in range_rows:
         row = []
         y = r
+        svalue = int('1' * y)
         row.append(f'{y}')
         for c in range_cols:
-            row.append(int(Decimal(10**y-1)/9)**c)
+            row.append(svalue**c)
         rows.append(row)
 
     return render_template('rep_unit_powers.html', rows=rows)
 
+
+@app.route('/RepUnitPowers/mod9/<columns_number>/<rows_number>')
+def rep_unit_powers_mod9(columns_number, rows_number):
+
+    range_cols = range(0, int(columns_number)+1)  # range das colunas.
+    range_rows = range(1, int(rows_number)+1)     # range das linhas.
+    rows = [list(), list()]
+    row = [' ']
+    for c in range_cols:
+        row.append('{}'.format(c))
+    rows.append(row)
+
+    for r in range_rows:
+        row = []
+        y = r
+        svalue = int('1' * y)
+        row.append(f'{y}')
+        for c in range_cols:
+            row.append((svalue**c) % 9)
+        rows.append(row)
+
+    return render_template('rep_unit_powers_mod9.html', rows=rows)

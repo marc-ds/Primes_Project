@@ -11,6 +11,7 @@ table#abs td, table#mod9 td {
   border: 1px solid white;
   margin: 0px;
   padding: 0px;
+  min-width: 10px;
 }
 
 table#mod9 td {
@@ -69,9 +70,8 @@ table#no-color td {
   text-align: center;
 }
 
-table#no-color tr.row3 td,
-table#no-color tr.row4 td,
-table#no-color td.col0 {
+table tr.row3 td,
+table td.col0 {
   background-color: gray;
   color: white;
 }
