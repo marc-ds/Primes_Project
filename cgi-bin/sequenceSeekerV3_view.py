@@ -11,7 +11,7 @@ print('Content-type: text/html\r\n\r')
 
 if "p1" not in form:
 
-    print('<html>')
+    print('<html>').
     print('<head>')
     print('<script src="https://www.w3schools.com/lib/w3.js"></script>')
     print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seekerV2.css">')
