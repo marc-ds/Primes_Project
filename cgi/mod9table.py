@@ -115,7 +115,7 @@ def rep_unit_powers(columns_number, rows_number):
         row = []
         y = r
         svalue = int('1' * y)
-        row.append(f'{y}')
+        row.append('{}'.format(y))
         for c in range_cols:
             row.append(svalue**c)
         rows.append(row)
@@ -138,7 +138,7 @@ def rep_unit_powers_mod9(columns_number, rows_number):
         row = []
         y = r
         svalue = int('1' * y)
-        row.append(f'{y}')
+        row.append('{}'.format(y))
         for c in range_cols:
             row.append((svalue**c) % 9)
         rows.append(row)
