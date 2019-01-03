@@ -25,7 +25,7 @@ for p1 in p1_range:
     except:
         print('Erro ao salvar dados de posição')"""
 
-    print('P1:{}'.format(p1))
+    print('{} | SSE{} P1={}'.format(datetime.datetime.now(), engine, p1))
 
     if engine == 'v5':
         p2_range = rpup_positive(int(p1), rangep2)
@@ -95,6 +95,6 @@ for p1 in p1_range:
                 print('{} | {} do tipo {} com {} elementos'.format(datetime.datetime.now(), formula, obj_x.par_type, sequence_size))
 
             except:
-                print('Erro ao salvar a formula, tipo ou tamanho da sequencia')
+                print('!!! Erro ao salvar a formula, tipo ou tamanho da sequencia!')
 
 con.close()
