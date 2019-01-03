@@ -1,5 +1,6 @@
 from ssedb_lib import X, isprime, nextprime, rpup_positive, x, rpdown_positive
 import sqlite3
+import datetime
 
 con = sqlite3.connect("database.db")
 c = con.cursor()
@@ -8,14 +9,23 @@ density_range = 1
 
 engine = input('Sequence Seeker Engine v5 or v6 (default: v5) = ') or 'v5'
 p1_initial = int(input('P1 value (default: 1) = ') or 1)
-rangep1 = int(input('P1 range (default: 10) = ') or 10)
-rangep2 = int(input('P2 range (default: 10) = ') or 10)
-rangep3 = int(input('P3 range (default: 10) = ') or 10)
-min_size = int(input('Number of sequence minimum primes (default: 10) = ') or 10)
+rangep1 = int(input('P1 range (default: 1000) = ') or 1000)
+rangep2 = int(input('P2 range (default: {}) = '.format(rangep1)) or rangep1)
+rangep3 = int(input('P3 range (default: {}) = '.format(rangep2)) or rangep2)
+min_size = int(input('Number of sequence minimum primes (default: 30) = ') or 30)
 
 p1_range = rpup_positive(p1_initial, rangep1)
 
 for p1 in p1_range:
+
+    """try:
+        c.execute('INSERT INTO position (p1, engine, p2_range, p3_range) VALUES (?,?,?,?)',
+                  (p1, engine, rangep2, rangep3))
+        print('P1:{}'.format(p1))
+    except:
+        print('Erro ao salvar dados de posição')"""
+
+    print('P1:{}'.format(p1))
 
     if engine == 'v5':
         p2_range = rpup_positive(int(p1), rangep2)
@@ -79,13 +89,12 @@ for p1 in p1_range:
                 continue
 
             try:
-                c.execute('INSERT INTO xzero (formula, sequence_size, density) VALUES (?,?,?)',
-                          (formula, sequence_size, density))
+                c.execute('INSERT INTO xzero (formula, sequence_size) VALUES (?,?)',
+                          (formula, sequence_size))
                 con.commit()
-
-                print('Salvo {}, do tipo {} com {} elementos'.format(formula, obj_x.par_type, sequence_size))
+                print('{} | {} do tipo {} com {} elementos'.format(datetime.datetime.now(), formula, obj_x.par_type, sequence_size))
 
             except:
-                print('Erro ao salvar a formula, tamanho da sequencia ou densidade')
+                print('Erro ao salvar a formula, tipo ou tamanho da sequencia')
 
 con.close()
