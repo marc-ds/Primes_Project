@@ -14,7 +14,7 @@ if "p1" not in form:
     print('<html>')
     print('<head>')
     print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seekerV4a.css">')
-    print('<script src="sequence_seekerV6.js"></script>')
+    print('<script src="/scripts/sequence_seekerV6.js"></script>')
     print('<title>SSE v.6</title>')
     print('</head>')
     print('<body>')

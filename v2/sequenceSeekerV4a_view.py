@@ -14,7 +14,7 @@ if "a" not in form:
     print('<html>')
     print('<head>')
     print('<link rel="stylesheet" type="text/css" href="/styles/sequence_seekerV4a.css">')
-    print('<script src="sequence_seekerV4a.js"></script>')
+    print('<script src="/scripts/sequence_seekerV4a.js"></script>')
     print('<title>SSE v.4.a</title>')
     print('</head>')
     print('<body>')
