@@ -1,0 +1,213 @@
+#loader{
+	visibility: hidden;
+}
+
+#datasheet_info{
+	visibility: hidden;
+	font-size: 8pt;
+}
+
+#datasheet_info span {
+	margin-right: 15px;
+}
+
+div#content {
+	font-size: 8pt;
+}
+
+form#sequence_seeker_form, form#blockbuster {
+	font-size: 8pt;
+}
+form#sequence_seeker_form input, form#blockbuster input {
+	width: 70px;
+	font-size: 7pt;
+}
+
+form#sequence_seeker_form input#min_value {
+	width: 48px;
+}
+
+form#sequence_seeker input#submit, form#blockbuster input#submit {
+}
+
+table#sequence_seeker_table {
+	font-size: 8pt;
+	float: left;
+	margin-top: 10px;
+	font-family: "Arial Narrow", Tahoma, Arial, sans-serif;
+	font-weight: bold;
+	text-align: left;
+	border-collapse: collapse;
+  white-space: nowrap;
+  border: 5px solid black;
+}
+
+
+table#sequence_seeker_table th {
+	text-align: center;
+	border: 1px solid black;
+}
+
+table#sequence_seeker_table tr {
+	border-top: 1px solid black;
+}
+
+th#pl,th#qe, th#qp, th#type {
+	cursor: pointer;
+}
+table#sequence_seeker_table td {
+	border: 1px solid black;
+}
+
+.generation_line {
+	background-color: palegreen;
+	text-align: right;
+}
+
+.print_line {
+	background-color: whitesmoke;
+	text-align: right;
+}
+.poly, td.poly0 {
+	background-color:gray;
+	color: white;
+  text-align: right;
+}
+
+.offset {
+	min-width: 11px
+}
+
+.y0vm_xv_lr {
+}
+
+.y0vp_xv_lr {
+}
+
+.xvlr{
+}
+
+.y0v_2 {
+}
+
+.y0v_2c0a {
+}
+
+.data, .first, .last {
+	text-align: center;
+}
+
+.first, last {}
+
+.first {
+	text-align: right;
+}
+
+.last {
+	text-align: left;
+}
+
+table#sequence_seeker_table th#f,
+table#sequence_seeker_table th#f0,
+table#sequence_seeker_table th#y0v2c0a,
+table#sequence_seeker_table th#type,
+table#sequence_seeker_table td.offset, 
+table#sequence_seeker_table td.sub, 
+table#sequence_seeker_table td.acc, 
+table#sequence_seeker_table td.des {
+	border-right: 5px solid black;
+}
+
+table#sequence_seeker_table td.qtd_elements {
+	border-left: 5px solid black;
+}
+
+table#sequence_seeker_table tr:hover {
+	border: 2px solid yellow;
+}
+
+.qtd_primes, .qtd_elements {
+	background-color: gold;
+}
+
+.negative {
+	background-color:#F2DCDB;
+	color:red;
+}
+
+.negative_dark {
+	background-color: #e2b7b6;
+	color: red;
+}
+
+.positive {
+  background-color:#DCE6F1;
+	color:blue;
+}
+.positive_dark {
+	background-color: #98b0d5;
+	color: blue;
+}
+.prime {
+	background-color:#538DD5;
+	color:white;
+}
+
+.one {
+	background-color:#00B0F0;
+	color: white;
+}
+
+.DES {
+	background-color: yellowgreen;
+}
+
+.ACC {
+	background-color: green;
+}
+
+.SUB {
+	background-color: greenyellow;
+	color:red;
+}
+
+.sqrt_round {
+	background-color:#FFFF00;
+	color: black;
+}
+
+.composite {
+	background-color:#FCD5B4;
+	color: black;
+}
+
+.zero {
+	background-color:red;
+	color:white;
+	font-weight: bold;
+}
+
+.undefined, .infin {
+	background-color: #a00101;
+	color: white;
+}
+#loader {
+	  display: inline-block;
+	  position: absolute;
+	  top: 30%;
+	  left: 40%;
+	  z-index: 1;
+    border-top: 20px solid #538DD5;
+    border-right: 20px solid #FCD5B4;
+    border-bottom: 20px solid #538DD5;
+    border-left: 20px solid #FCD5B4;
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

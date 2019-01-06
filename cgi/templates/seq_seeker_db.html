@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sequence_seekerV4a.css') }}">
+    <meta charset="UTF-8">
+    <title>Sequence Seeker DB</title>
+</head>
+<body>
+<table>
+
+    {% for reg in regs %}
+    <tr>
+      <td>Formula={{reg[1]}} #e={{reg[2]}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

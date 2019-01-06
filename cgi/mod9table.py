@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-# enable debugging
 from flask import Flask, render_template
+import sqlite3
 from decimal import Decimal
 app = Flask(__name__)
 
@@ -144,3 +145,14 @@ def rep_unit_powers_mod9(columns_number, rows_number):
         rows.append(row)
 
     return render_template('rep_unit_powers_mod9.html', rows=rows)
+
+@app.route('/SequenceSeekerDB/<page>')
+def seq_seeker_db(page):
+
+    con = sqlite3.connect("bkp.db")
+    c = con.cursor()
+    c.execute('SELECT * FROM xzero ORDER BY sequence_size DESC LIMIT ?, 2000', (int(page)*2000-2000,))
+    regs = c.fetchall()
+
+    return render_template('seq_seeker_db.html', regs=regs, page=page)
+
