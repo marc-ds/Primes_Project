@@ -8,9 +8,9 @@
 <body>
 <table>
 
-    {% for reg in regs %}
+    {% for x in lines %}
     <tr>
-      <td>Formula={{reg[1]}} #e={{reg[2]}}</td>
+      <td>Tipo={{x[0].par_type}} #e={{x[1]}} | A={{x[0].a}} B={{x[0].b}} C={{x[0].c}}</td>
     </tr>
     {% endfor %}
 

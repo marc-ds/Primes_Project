@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-# enable debugging
 from flask import Flask, render_template
 import sqlite3
+from ssedb_lib import X0
 from decimal import Decimal
 app = Flask(__name__)
 
@@ -146,13 +147,30 @@ def rep_unit_powers_mod9(columns_number, rows_number):
 
     return render_template('rep_unit_powers_mod9.html', rows=rows)
 
-@app.route('/SequenceSeekerDB/<page>')
-def seq_seeker_db(page):
+""""@app.route('/SequenceSeekerDB/1/<page>')
+def seq_seeker_db0(page):
 
     con = sqlite3.connect("bkp.db")
     c = con.cursor()
     c.execute('SELECT * FROM xzero ORDER BY sequence_size DESC LIMIT ?, 2000', (int(page)*2000-2000,))
     regs = c.fetchall()
 
-    return render_template('seq_seeker_db.html', regs=regs, page=page)
+    return render_template('seq_seeker_db.html', regs=regs, page=page)"""
 
+@app.route('/SequenceSeekerDB/<page>')
+def seq_seeker_db(page):
+
+    con = sqlite3.connect("bkp.db")
+    c = con.cursor()
+    c.execute('SELECT * FROM xzero ORDER BY sequence_size DESC LIMIT ?, 2000', (int(page)*2000-2000,))
+    lines = list()
+    for reg in c.fetchall():
+        pair = list()
+        a,x = reg[1].split('y^2')
+        b,c = x.split('y')
+        obj_x = X0(int(a),int(b),int(c))
+        pair.append(obj_x)
+        pair.append(reg[2])
+        lines.append(pair)
+
+    return render_template('seq_seeker_db.html', lines=lines, page=page)

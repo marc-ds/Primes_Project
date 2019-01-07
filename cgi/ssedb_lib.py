@@ -272,6 +272,121 @@ class X:
             return 'none'
 
 
+class X0:
+    """by P1, P2 and P3 set the values of a, b, c, delta, C.G.,
+    y_vertex and offset, when called return f(x) = ay^2 + by + c"""
+
+    def __init__(self, a, b, c):
+        """initialize all attributes"""
+
+        self.a = a
+        self.b = b
+        self.c = c
+
+        self.y_vertex = y_vertex(self.a, self.b)
+        self.offset = offset(self.a, self.b)
+
+        self.delta = (self.b ** 2 - (4 * self.a * self.c))
+        sqrtdelta = sqrt(abs(int(self.delta)))
+        self.c_g = sqrtdelta - int(sqrtdelta)
+
+        self.a0 = abs(self.a)
+        self.b0 = -abs(self.b + (2 * self.a * self.offset))
+        if self.a <= 0:
+            self.c0 = -(self.c + self.a * (self.offset ** 2) + (self.b * self.offset))
+        elif self.a > 0:
+            self.c0 = (self.c + self.a * (self.offset ** 2) + (self.b * self.offset))
+
+        self.y0_vertex = y_vertex(self.a0, self.b0)
+        self.offset0 = offset(self.a0, self.b0)
+
+        self.x01 = self.a0 - self.b0 + self.c0
+        self.x02 = self.c0
+        self.x03 = self.a0 + self.b0 + self.c0
+
+        self.x_y0 = x_abc(a,b,c,0)
+        self.y0v_2 = self.y0_vertex ** 2
+
+        if self.a != 0:
+            self.xv = (-1 * self.delta) / (4 * abs(self.a))
+            self.lr = 1 / abs(self.a)
+            self.c0_a = self.c0 / abs(self.a)
+            self.y0v_2c0a = (self.y0v_2 - self.c0) / self.a
+        else:
+            self.xv = 00
+            self.lr = 00
+            self.c0_a = 00
+            self.y0v_2c0a = 00
+
+        self.xvlr = -self.xv * self.lr
+        self.y0vm_xv_lr = self.y0_vertex - self.xv * self.lr
+        self.y0vp_xv_lr = self.y0_vertex + self.xv * self.lr
+        self.par_type = self.par_type()
+
+    def __call__(self, y):
+        """return the value of f(x) = ay^2 + by + c"""
+        return x_abc(self.a, self.b, self.c, y)
+
+    def when_f0(self, y):
+        """return the value of f(x) = ay^2 + by + c when offset is 0"""
+        return x_abc(self.a0, self.b0, self.c0, y)
+
+    def density_pos(self, yn):
+        return density(self.a, self.b, self.c, range(1, yn + 1))
+
+    def density_neg(self, yn):
+        return density(self.a, self.b, self.c, range(-yn + 1, 1))
+
+    def density_pos0(self, yn):
+        return density(self.a0, self.b0, self.c0, range(1, yn + 1))
+
+    def density_neg0(self, yn):
+        return density(self.a0, self.b0, self.c0, range(-yn + 1, 1))
+
+    def type(self, y0=False):
+        """return if the number are abs(one), composite, prime or a perfect sqrt"""
+        if y0:
+            return data_ctypey0(self.x_y0)
+        else:
+            return data_ctype(self.x_y0)
+
+    def type0(self, y0=False):
+        """return if the number when f0 are
+        abs(one), composite, prime or a perfect sqrt"""
+        if y0:
+            return data_ctypey0(self.x_y0)
+        else:
+            return data_ctype(self.x_y0)
+
+    def yv_type(self):
+        return header_ctype(self.y_vertex)
+
+    def f_type(self):
+        return header_ctype(self.offset)
+
+    def d_type(self):
+        return header_ctype(self.delta)
+
+    def cg_type(self):
+        return header_ctype(self.c_g)
+
+    def yv_type0(self):
+        return header_ctype(self.y0_vertex)
+
+    def f_type0(self):
+        return header_ctype(self.offset0)
+
+    def par_type(self):
+        if self.y0_vertex == 0:
+            return 'SUB'
+        elif self.y0_vertex < 0.5 > 0:
+            return 'ACC'
+        elif self.y0_vertex == 0.5:
+            return 'DES'
+        else:
+            return 'none'
+
+
 class SequenceSeekerV5:
 
     def __init__(self, p1, kp1, kp2, kp3):
