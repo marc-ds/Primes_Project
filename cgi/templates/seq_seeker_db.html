@@ -76,7 +76,20 @@
             <td class="y0v_2 {{x[0].y0v_2_type()}}">(y&ordm;v)^2-c&ordm;/a={{'%.4g'|format(x[0].y0v_2|float)}}</td>
         {% endif %}
 
-        <td class="qtd_elements">#E={{x[1]}}
+        <td class="qtd_elements">#E={{x[1]}}</td>
+        <td class="{{x[0].par_type}}">{{x[0].par_type}}</td>
+
+        {% for value in x[0].sequence() %}
+
+        {% if result == 1 %}
+                <td class="data one">{{'%.g'|format(value|float)}}</td>
+        {% elif value == 0 %}
+                <td class="data zero">{{'%.0g'|format(value|float)}}</td>
+        {% else %}
+                <td class="data prime">{{value}}</td>
+        {% endif %}
+
+        {% endfor %}
 
     </tr>
     {% endfor %}

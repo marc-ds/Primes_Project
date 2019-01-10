@@ -153,7 +153,7 @@ def seq_seeker_db(page):
 
     con = sqlite3.connect("bkp.db")
     c = con.cursor()
-    c.execute('SELECT * FROM xzero ORDER BY sequence_size DESC LIMIT ?, 2000', (int(page)*2000-2000,))
+    c.execute('SELECT * FROM xzero ORDER BY sequence_size DESC LIMIT ?, 100', (int(page)*100-100,))
     lines = list()
     for reg in c.fetchall():
         pair = list()

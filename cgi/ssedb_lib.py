@@ -410,6 +410,30 @@ class X0:
         else:
             return 'none'
 
+    def sequence(self):
+        primes_seq = list()
+        yp = 1
+        yn = -1
+
+        possible_prime = x_abc(self.a, self.b, self.c, 0)
+        primes_seq.append(possible_prime)
+
+        possible_prime = x_abc(self.a, self.b, self.c, yp)
+        while isprime(possible_prime):
+            primes_seq.append(possible_prime)
+            yp += 1
+            possible_prime = x_abc(self.a, self.b, self.c, yp)
+
+        primes_seq.reverse()
+
+        possible_prime = x_abc(self.a, self.b, self.c, yn)
+        while isprime(possible_prime):
+            primes_seq.append(possible_prime)
+            yn -= 1
+            possible_prime = x_abc(self.a, self.b, self.c, yn)
+
+        return primes_seq
+
 
 class SequenceSeekerV5:
 
