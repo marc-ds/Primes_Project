@@ -147,15 +147,6 @@ def rep_unit_powers_mod9(columns_number, rows_number):
 
     return render_template('rep_unit_powers_mod9.html', rows=rows)
 
-""""@app.route('/SequenceSeekerDB/1/<page>')
-def seq_seeker_db0(page):
-
-    con = sqlite3.connect("bkp.db")
-    c = con.cursor()
-    c.execute('SELECT * FROM xzero ORDER BY sequence_size DESC LIMIT ?, 2000', (int(page)*2000-2000,))
-    regs = c.fetchall()
-
-    return render_template('seq_seeker_db.html', regs=regs, page=page)"""
 
 @app.route('/SequenceSeekerDB/<page>')
 def seq_seeker_db(page):

@@ -370,6 +370,30 @@ class X0:
     def cg_type(self):
         return header_ctype(self.c_g)
 
+    def xv_type(self):
+        return header_ctype(self.xv)
+
+    def lr_type(self):
+        return header_ctype(self.lr)
+
+    def xvlr_type(self):
+        return header_ctype(self.xvlr, True)
+
+    def y0v_2c0a_type(self):
+        return header_ctype(self.y0v_2c0a, True)
+
+    def c0_a_type(self):
+        return header_ctype(self.c0_a)
+
+    def y0v_2_type(self):
+        return header_ctype(self.y0v_2)
+
+    def y0vp_xv_lr_type(self):
+        return header_ctype(self.y0vp_xv_lr)
+
+    def y0vm_xv_lr_type(self):
+        return header_ctype(self.y0vm_xv_lr)
+
     def yv_type0(self):
         return header_ctype(self.y0_vertex)
 
