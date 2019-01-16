@@ -112,9 +112,9 @@ table#sequence_seeker_table th#f0,
 table#sequence_seeker_table th#y0v2c0a,
 table#sequence_seeker_table th#type,
 table#sequence_seeker_table td.offset, 
-table#sequence_seeker_table td.sub, 
-table#sequence_seeker_table td.acc, 
-table#sequence_seeker_table td.des {
+table#sequence_seeker_table td.SUB, 
+table#sequence_seeker_table td.ACC, 
+table#sequence_seeker_table td.DES {
 	border-right: 5px solid black;
 }
 
@@ -210,4 +210,15 @@ table#sequence_seeker_table tr:hover {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.next_page {
+	float: right
+}
+.prev_page {
+	float: left;
+}
+
+table .sequence_seeker_header {
+	text-align: center;
 }

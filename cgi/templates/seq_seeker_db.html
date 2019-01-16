@@ -6,77 +6,111 @@
     <title>Sequence Seeker DB</title>
 </head>
 <body>
+<a href="http://127.0.0.1:5000/SequenceSeekerDB/{{ page - 1 }}" class="prev_page"> Previous page</a>
+<a href="http://127.0.0.1:5000/SequenceSeekerDB/{{ page + 1 }}" class="next_page"> Next page</a>
 <table id="sequence_seeker_table" class="w3-table-all" >
+
+    <tr id=header_index >
+          <th id="go">ID</th>
+          <th id="x01">a_0</th>
+          <th id="x02">b_0</th>
+          <th id="03">c_0</th>
+          <th id="yv">yv</th>
+          <th id="f">f</th>
+
+          <th id="dta">&Delta;</th>
+          <th id="cg">CG</th>
+          <th id="xv">xv</th>
+          <th id="lr">LR</th>
+          <th id="xvlr">-xv*LR</th>
+          <th id="yvxvlr">y&ordm;v+xv*LR </th>
+          <th id="y0vxvlr">y&ordm;v-xv*LR</th>
+          <th id="y0v2">(y&ordm;v)^2</th>
+          <th id="c0a">c&ordm;/a</th>
+          <th id="y0v2c0a">(y&ordm;v)^2-c&ordm;/a</th>
+          <th id="qe">#E</th>
+          <th id="qp">#P</th>
+          <th id="den">#D</th>
+          <th id="oeis">OEIS</th>
+          <th id="type">Type</th>
+    </tr>
 
     {% for x in lines %}
     <tr class="sequence_seeker_header">
 
-        <td class="poly">x={{x[0].a}}y^2{{'%+g'|format(x[0].b|float)}}y{{'%+g'|format(x[0].c|float)}}</td>
+        <td class="id">{{x[2]}}</td>
+        <td class="poly">{{x[0].a}}</td>
+        <td class="poly">{{x[0].b}}</td>
+        <td class="poly">{{x[0].c}}</td>
+
         {% if x[0].a == 0 %}
-            <td class="infin y_vertex">yv=&infin;</td>
+            <td class="infin y_vertex">&infin;</td>
         {% else %}
-            <td class="{{x[0].yv_type()}} y_vertex">yv={{'%.4g'|format(x[0].y_vertex|float)}}</td>
+            <td class="{{x[0].yv_type()}} y_vertex">{{'%.4g'|format(x[0].y_vertex|float)}}</td>
         {% endif %}
 
         {% if a == 0 %}
-            <td class="infin offset">f={:}</td>
+            <td class="infin offset">{:}</td>
         {% else %}
-            <td class="{{x[0].f_type()}} offset">f={{'%.4g'|format(x[0].offset|float)}}</td>
+            <td class="{{x[0].f_type()}} offset">{{'%.4g'|format(x[0].offset|float)}}</td>
         {% endif %}
 
-        <td class="delta {{x[0].d_type()}}">&Delta;={{'%.g'|format(x[0].delta|float)}}</td>
+        <td class="delta {{x[0].d_type()}}">{{'%.g'|format(x[0].delta|float)}}</td>
 
-        <td class="delta {{x[0].d_type()}}">CG={{'%.4g'|format(x[0].c_g|float)}}</td>
-
-        {% if a == 0 %}
-            <td class="xv indef">xv=indef</td>'
-        {% else %}
-            <td class="xv {{x[0].xv_type()}}">xv={{'%.4g'|format(x[0].xv|float)}}</td>
-        {% endif %}
+        <td class="delta {{x[0].d_type()}}">{{'%.4g'|format(x[0].c_g|float)}}</td>
 
         {% if a == 0 %}
-            <td class="lr indef">LR=indef</td>
+            <td class="xv indef">indef</td>'
         {% else %}
-            <td class="lr {{x[0].lr_type()}}">LR={{'%.3g'|format(x[0].lr|float)}}</td>
+            <td class="xv {{x[0].xv_type()}}">{{'%.4g'|format(x[0].xv|float)}}</td>
         {% endif %}
 
         {% if a == 0 %}
-            <td class="xvlr indef">-xv*LR=indef</td>
+            <td class="lr indef">indef</td>
         {% else %}
-            <td class="xvlr {{x[0].xvlr_type()}}">-xv*LR={{'%.4g'|format(x[0].xvlr|float)}}</td>
+            <td class="lr {{x[0].lr_type()}}">{{'%.3g'|format(x[0].lr|float)}}</td>
         {% endif %}
 
         {% if a == 0 %}
-            <td class="y0vp_xv_lr indef">y&ordm;v+xv*LR=indef</td>
+            <td class="xvlr indef">indef</td>
         {% else %}
-            <td class="y0vp_xv_lr {{x[0].y0vp_xv_lr_type()}}">y&ordm;v+xv*LR={{'%.4g'|format(x[0].y0vp_xv_lr|float)}}</td>
+            <td class="xvlr {{x[0].xvlr_type()}}">{{'%.4g'|format(x[0].xvlr|float)}}</td>
         {% endif %}
 
         {% if a == 0 %}
-            <td class="y0vm_xv_lr indef">y&ordm;v+xv*LR=indef</td>
+            <td class="y0vp_xv_lr indef">indef</td>
         {% else %}
-            <td class="y0vm_xv_lr {{x[0].y0vm_xv_lr_type()}}">y&ordm;v-xv*LR={{'%.4g'|format(x[0].y0vm_xv_lr|float)}}</td>
+            <td class="y0vp_xv_lr {{x[0].y0vp_xv_lr_type()}}">{{'%.4g'|format(x[0].y0vp_xv_lr|float)}}</td>
         {% endif %}
 
         {% if a == 0 %}
-            <td class="y0v_2c0a indef">(y&ordm;v)^2-c&ordm;/a=indef</td>
+            <td class="y0vm_xv_lr indef">indef</td>
         {% else %}
-            <td class="y0v_2c0a {{x[0].y0v_2c0a_type()}}">(y&ordm;v)^2-c&ordm;/a={{'%.4g'|format(x[0].y0v_2c0a|float)}}</td>
+            <td class="y0vm_xv_lr {{x[0].y0vm_xv_lr_type()}}">{{'%.4g'|format(x[0].y0vm_xv_lr|float)}}</td>
         {% endif %}
 
         {% if a == 0 %}
-            <td class="c0_a indef">c&ordm;/a=indef</td>
+            <td class="y0v_2c0a indef">indef</td>
         {% else %}
-            <td class="c0_a {{x[0].c0_a_type()}}">c&ordm;/a={{'%.0f'|format(x[0].c0_a|float)}}</td>
+            <td class="y0v_2c0a {{x[0].y0v_2c0a_type()}}">{{'%.4g'|format(x[0].y0v_2|float)}}</td>
         {% endif %}
 
         {% if a == 0 %}
-            <td class="y0v_2 indef">(y&ordm;v)^2-c&ordm;/a=indef</td>
+            <td class="c0_a indef">indef</td>
         {% else %}
-            <td class="y0v_2 {{x[0].y0v_2_type()}}">(y&ordm;v)^2-c&ordm;/a={{'%.4g'|format(x[0].y0v_2|float)}}</td>
+            <td class="c0_a {{x[0].c0_a_type()}}">{{'%.0f'|format(x[0].c0_a|float)}}</td>
+        {% endif %}
+
+        {% if a == 0 %}
+            <td class="y0v_2 indef">indef</td>
+        {% else %}
+            <td class="y0v_2 {{x[0].y0v_2_type()}}">{{'%.4g'|format(x[0].y0v_2c0a|float)}}</td>
         {% endif %}
 
         <td class="qtd_elements">#E={{x[1]}}</td>
+        <td class="qtd_primes">&nbsp</td>
+        <td class="density">&nbsp</td>
+        <td class="type">&nbsp</td>
         <td class="{{x[0].par_type}}">{{x[0].par_type}}</td>
 
         {% for value in x[0].sequence() %}
@@ -95,6 +129,7 @@
     {% endfor %}
 
 </table>
-
+<a href="http://127.0.0.1:5000/SequenceSeekerDB/{{ page - 1 }}" class="prev_page"> Previous page</a>
+<a href="http://127.0.0.1:5000/SequenceSeekerDB/{{ page + 1 }}" class="next_page"> Next page</a>
 </body>
 </html>
