@@ -71,7 +71,7 @@ table#sequence_seeker_table td {
 .poly, td.poly0 {
 	background-color:gray;
 	color: white;
-  text-align: right;
+  text-align: center;
 }
 
 .offset {
