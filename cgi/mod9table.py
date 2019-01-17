@@ -188,4 +188,4 @@ def seq_seeker_tp(par_type, page):
         else:
             continue
 
-    return render_template('seq_seeker_db.html', lines=lines, par_type=par_type, page=int(page), )
+    return render_template('seq_seeker_tp.html', lines=lines, par_type=par_type, page=int(page), )
