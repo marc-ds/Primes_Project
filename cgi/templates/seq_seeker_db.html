@@ -6,12 +6,13 @@
     <title>Sequence Seeker DB</title>
 </head>
 <body>
-<a href="http://192.168.1.36:5000/SequenceSeekerDB/{{ page - 1 }}" class="prev_page"> Previous page</a>
-<a href="http://192.168.1.36:5000/SequenceSeekerDB/{{ page + 1 }}" class="next_page"> Next page</a>
+<a href="http://192.168.1.36:5000/SequenceSeekerDB/{{ page - 1 }}" class="prev_page"> Pagina Anterior</a>
+<a href="http://192.168.1.36:5000/SequenceSeekerDB/{{ page + 1 }}" class="next_page"> Proxima Pagina</a>
 <table id="sequence_seeker_table" class="w3-table-all" >
 
     <tr id=header_index >
-          <th id="go">ID</th>
+          <th id="go">GO</th>
+          <th id="x_id">ID</th>
           <th id="x01">a_0</th>
           <th id="x02">b_0</th>
           <th id="03">c_0</th>
@@ -37,7 +38,8 @@
     {% for x in lines %}
     <tr class="sequence_seeker_header">
 
-        <td class="id">{{x[2]}}</td>
+        <td class="go">&nbsp</td>
+        <td class="x_id">{{x[2]}}</td>
         <td class="poly">{{x[0].a}}</td>
         <td class="poly">{{x[0].b}}</td>
         <td class="poly">{{x[0].c}}</td>
@@ -128,7 +130,7 @@
     {% endfor %}
 
 </table>
-<a href="http://192.168.1.36:5000/SequenceSeekerDB/{{ page - 1 }}" class="prev_page"> Previous page</a>
-<a href="http://192.168.1.36:5000/SequenceSeekerDB/{{ page + 1 }}" class="next_page"> Next page</a>
+<a href="http://192.168.1.36:5000/SequenceSeekerDB/{{ page - 1 }}" class="prev_page"> Pagina Anterior </a>
+<a href="http://192.168.1.36:5000/SequenceSeekerDB/{{ page + 1 }}" class="next_page"> Proxima Pagina </a>
 </body>
 </html>

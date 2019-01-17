@@ -166,3 +166,26 @@ def seq_seeker_db(page):
         lines.append(pair)
 
     return render_template('seq_seeker_db.html', lines=lines, page=int(page), )
+
+
+@app.route('/SequenceSeekerDB/<par_type>/<page>')
+def seq_seeker_pt(par_type, page):
+
+    con = sqlite3.connect("bkp.db")
+    c = con.cursor()
+    c.execute('SELECT * FROM xzero ORDER BY sequence_size DESC LIMIT ?, 50', (int(page)*50-50,))
+    lines = list()
+    for reg in c.fetchall():
+        pair = list()
+        a,x = reg[1].split('y^2')
+        b,c = x.split('y')
+        obj_x = X0(int(a),int(b),int(c))
+        if obj_x.par_type == par_type:
+            pair.append(obj_x)
+            pair.append(reg[2])
+            pair.append(reg[0])
+            lines.append(pair)
+        else:
+            continue
+
+    return render_template('seq_seeker_db.html', lines=lines, page=int(page), )
