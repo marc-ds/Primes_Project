@@ -169,7 +169,7 @@ def seq_seeker_db(page):
 
 
 @app.route('/SequenceSeekerDB/<par_type>/<page>')
-def seq_seeker_pt(par_type, page):
+def seq_seeker_tp(par_type, page):
 
     con = sqlite3.connect("bkp.db")
     c = con.cursor()
@@ -188,4 +188,4 @@ def seq_seeker_pt(par_type, page):
         else:
             continue
 
-    return render_template('seq_seeker_db.html', lines=lines, page=int(page), )
+    return render_template('seq_seeker_db.html', lines=lines, par_type=par_type, page=int(page), )
