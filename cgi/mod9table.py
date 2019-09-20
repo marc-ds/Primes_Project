@@ -151,7 +151,7 @@ def rep_unit_powers_mod9(columns_number, rows_number):
 @app.route('/SequenceSeekerDB/<page>')
 def seq_seeker_db(page):
 
-    con = sqlite3.connect("bkp.db")
+    con = sqlite3.connect("bkpa.db")
     c = con.cursor()
     c.execute('SELECT * FROM xzero ORDER BY sequence_size DESC LIMIT ?, 50', (int(page)*50-50,))
     lines = list()
